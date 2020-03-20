@@ -75,7 +75,6 @@ AppAsset::register($this);
 
     <!-- Footer Elements -->
     <div class="container">
-        <div></div>
         <!-- Social buttons -->
         <ul class="list-unstyled list-inline text-center text-white">
             <li class="list-inline-item">
