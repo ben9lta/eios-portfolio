@@ -44,10 +44,6 @@ return [
                 '<action>'=>'site/<action>',
             ],
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => false,
-        ],
     ],
     'params' => $params,
 ];
