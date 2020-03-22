@@ -13,6 +13,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $password_confirm;
 
 
     /**
@@ -34,6 +35,19 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => 'Пароли не совпадают!'],
+            ['password', 'compare', 'compareAttribute' => 'password_confirm', 'message' => 'Пароли не совпадают!'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Логин',
+            'email' => 'Email',
+            'password' => 'Пароль',
+            'password_confirm' => 'Повторите пароль',
         ];
     }
 
