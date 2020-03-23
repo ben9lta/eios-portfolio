@@ -37,7 +37,7 @@ class SignupForm extends Model
             ['password', 'string', 'min' => 6],
 
             ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => 'Пароли не совпадают!'],
-            ['password', 'compare', 'compareAttribute' => 'password_confirm', 'message' => 'Пароли не совпадают!'],
+//            ['password', 'compare', 'compareAttribute' => 'password_confirm', 'message' => 'Пароли не совпадают!'],
         ];
     }
 
