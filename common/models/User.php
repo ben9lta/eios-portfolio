@@ -88,6 +88,10 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
+    public static function findByLogin($login)
+    {
+        return static::find()->where(['status' => self::STATUS_ACTIVE])->andWhere(['username' => $login])->orWhere(['email' => $login])->one();
+    }
     /**
      * Finds user by password reset token
      *
