@@ -49,7 +49,6 @@ AppAsset::register($this);
         $menuItems[] = '<li class="nav-item">'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-//                'Выйти (' . Yii::$app->user->identity->username . ')',
                 'Выйти (' . \common\models\User::getFullname(Yii::$app->user->identity->username) . ')',
                 ['class' => 'btn nav-link', 'style' => 'margin: -1px 0;']
             )
