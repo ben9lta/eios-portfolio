@@ -43,13 +43,14 @@ AppAsset::register($this);
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li class="nav-item">'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+//                'Выйти (' . Yii::$app->user->identity->username . ')',
+                'Выйти (' . \common\models\User::getFullname(Yii::$app->user->identity->username) . ')',
                 ['class' => 'btn nav-link', 'style' => 'margin: -1px 0;']
             )
             . Html::endForm()
