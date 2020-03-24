@@ -14,15 +14,16 @@ use yii\web\IdentityInterface;
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token
- * @property string $fname
- * @property string $lname
- * @property string $mname
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $middle_name
  * @property string $verification_token
  * @property string $email
  * @property string $auth_key
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
+ * @property string $authKey
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -71,6 +72,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
+     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
@@ -88,9 +90,20 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
+    public static function getFullname($username) {
+        $user = static::findOne(['username' => $username]);
+        if($user['last_name'] && $user['first_name'])
+            if($user['middle_name'])
+                return $user['last_name'] .' '. mb_substr($user['first_name'],0, 1) . '. ' . mb_substr($user['middle_name'],0, 1). '.' ;
+            else
+                return $user['last_name'] .' '. mb_substr($user['first_name'],0, 1) . '.' ;
+
+        return $user['username'];
+    }
+
     public static function findByLogin($login)
     {
-        return static::find()->where(['status' => self::STATUS_ACTIVE])->andWhere(['username' => $login])->orWhere(['email' => $login])->one();
+        return static::find()->where(['status' => self::STATUS_ACTIVE])->andWhere(['username' => $login])->orWhere(['email' => $login])->limit(1)->one();
     }
     /**
      * Finds user by password reset token
@@ -179,6 +192,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
+     * @throws \yii\base\Exception
      */
     public function setPassword($password)
     {
@@ -187,6 +201,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates "remember me" authentication key
+     * @throws \yii\base\Exception
      */
     public function generateAuthKey()
     {
@@ -195,6 +210,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates new password reset token
+     * @throws \yii\base\Exception
      */
     public function generatePasswordResetToken()
     {
@@ -203,6 +219,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates new token for email verification
+     * @throws \yii\base\Exception
      */
     public function generateEmailVerificationToken()
     {
