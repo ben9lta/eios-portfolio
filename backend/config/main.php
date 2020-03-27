@@ -11,15 +11,17 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'rbac' => [
+            'class' => 'mdm\admin\Module',
+        ]
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'identityClass' => 'mdm\admin\models\User',
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
@@ -41,10 +43,21 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'rbac' => 'rbac/role',
                 '<action>'=>'site/<action>',
             ],
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\DbManager'
+        ]
 
+    ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*',
+            'rbac/*',
+        ]
     ],
     'params' => $params,
 ];
