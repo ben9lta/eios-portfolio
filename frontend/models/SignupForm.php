@@ -55,6 +55,7 @@ class SignupForm extends Model
      * Signs user up.
      *
      * @return bool whether the creating new account was successful and email was sent
+     * @throws \Exception
      */
     public function signup()
     {
@@ -69,8 +70,15 @@ class SignupForm extends Model
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
         if($this->sendEmail($user))
-            return $user->save();
+            if($user->save())
+            {
+                $auth = Yii::$app->authManager;
+                $role = $auth->getRole('Студент');
+                $auth->assign($role, $user->id);
+                return $user->save();
+            }
 
+        return null;
     }
 
     /**
