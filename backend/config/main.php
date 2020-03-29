@@ -47,10 +47,6 @@ return [
                 '<action>'=>'site/<action>',
             ],
         ],
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\DbManager'
-        ]
-
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
