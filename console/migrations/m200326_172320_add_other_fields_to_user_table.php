@@ -13,7 +13,7 @@ class m200326_172320_add_other_fields_to_user_table extends Migration
     public function safeUp()
     {
         $this->addColumn('user', 'phone', $this->string(11));
-        $this->addColumn('user', 'gender', $this->smallInteger()->notNull()->defaultValue(0));
+        $this->addColumn('user', 'gender', $this->smallInteger()->defaultValue(0));
         $this->addColumn('user', 'birthday', $this->dateTime());
         $this->addColumn('user', 'consent', $this->boolean()); // Согласие на обработку персональных данных
         $this->addColumn('user', 'photo', $this->string());
