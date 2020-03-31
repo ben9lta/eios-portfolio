@@ -21,8 +21,6 @@ class m200330_175421_insert_admin_user_table extends Migration
         $user->status = 10;
         $user->generateEmailVerificationToken();
         if($user->save()) {
-            $col = [];
-            foreach($user as $key => $value) $col[$key] = $value;
             $auth = Yii::$app->authManager;
             $role = $auth->getRole('Администратор');
             $auth->assign($role, $user->getId());
