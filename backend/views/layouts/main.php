@@ -39,19 +39,19 @@ AppAsset::register($this);
         ['label' => 'Home', 'url' => ['/site/index']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
+        $menuItems[] = '<li class="nav-item">'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
+                'Выйти (' . \common\models\User::getFullname(Yii::$app->user->identity->username) . ')',
+                ['class' => 'btn nav-link', 'style' => 'margin: -1px 0;']
             )
             . Html::endForm()
             . '</li>';
     }
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'nav navbar-nav ml-auto'],
         'items' => $menuItems,
     ]);
     NavBar::end();
@@ -66,12 +66,37 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+<footer class="page-footer font-small bg-dark pt-4">
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+    <!-- Footer Elements -->
+    <div class="container">
+        <!-- Social buttons -->
+        <ul class="list-unstyled list-inline text-center text-white">
+            <li class="list-inline-item">
+                <a class="btn-floating btn-fb mx-1">
+                    <i class="fab fa-facebook"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-gplus mx-1">
+                    <i class="fab fa-vk"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-li mx-1">
+                    <i class="fab fa-discord"> </i>
+                </a>
+            </li>
+        </ul>
+        <!-- Social buttons -->
+
     </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-white py-3">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></div>
+    <!-- Copyright -->
+
 </footer>
 
 <?php $this->endBody() ?>
