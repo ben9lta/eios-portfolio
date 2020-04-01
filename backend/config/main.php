@@ -46,6 +46,7 @@ return [
             'rules' => [
                 'rbac' => 'rbac/role',
                 '<action>'=>'site/<action>',
+                'rbac/default' => 'rbac/role',
             ],
         ],
     ],
