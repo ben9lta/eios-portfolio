@@ -18,7 +18,7 @@ class Module extends \mdm\admin\Module
         if (parent::beforeAction($action)) {
             /* @var $action \yii\base\Action */
             $view = $action->controller->getView();
-            $view->params['breadcrumbs'][0]['label'] = 'Rbac';
+            $view->params['breadcrumbs'][0]['label'] = 'Управление доступом';
             $view->params['breadcrumbs'][0]['url'] = '/rbac';
             return true;
         }
