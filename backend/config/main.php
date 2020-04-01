@@ -13,7 +13,8 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'rbac' => [
-            'class' => 'mdm\admin\Module',
+//            'class' => 'mdm\admin\Module',
+            'class' => 'app\modules\rbac\Module'
         ]
     ],
     'components' => [
