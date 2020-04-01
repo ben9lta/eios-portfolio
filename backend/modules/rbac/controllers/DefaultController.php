@@ -15,12 +15,8 @@ class DefaultController extends Controller
      * @param string $page
      * @return string
      */
-    public function actionIndex($page = 'user')
+    public function actionIndex($page = 'Readme.md')
     {
-        if (strpos($page, '.png') !== false) {
-            $file = Yii::getAlias("@mdm/admin/{$page}");
-            return Yii::$app->getResponse()->sendFile($file);
-        }
-        return $this->render('index', ['page' => $page]);
+        return $this->render('@app/modules/rbac/views/default/index.php', ['page' => $page]);
     }
 }
