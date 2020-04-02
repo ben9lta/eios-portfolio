@@ -22,13 +22,13 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['error', 'login', 'logout'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['Администратор'],
                     ],
                 ],
             ],
@@ -97,4 +97,5 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
 }

@@ -14,7 +14,16 @@ return [
     'modules' => [
         'rbac' => [
             'class' => 'mdm\admin\Module',
-//            'class' => 'app\modules\rbac\Module'
+//            'class' => 'app\modules\rbac\Module',
+            'as access' => [
+                'class' => 'yii\filters\AccessControl',
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['Администратор'],
+                    ]
+                ]
+            ],
         ]
     ],
     'components' => [
@@ -50,12 +59,12 @@ return [
             ],
         ],
     ],
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            'site/*',
-            'rbac/*',
-        ]
-    ],
+//    'as access' => [
+//        'class' => 'mdm\admin\components\AccessControl',
+//        'allowActions' => [
+//            'site/*',
+//            'rbac/*',
+//        ]
+//    ],
     'params' => $params,
 ];
