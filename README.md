@@ -58,3 +58,59 @@ frontend
 vendor/                  contains dependent 3rd-party packages
 environments/            contains environment-based overrides
 ```
+
+Для создания бота для регистрации
+'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => Yii::getAlias('@common') . DIRECTORY_SEPARATOR . 'mail',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.mail.ru',  // e.g. smtp.mandrillapp.com or smtp.gmail.com
+                'username' => 'Email',
+                'password' => 'Пароль',
+                'port' => '587', // Port 25 is a very common port too
+                'encryption' => 'tls', // It is often used, check your provider or mail server specs
+            ],
+        ],
+
+И в common/config/params.php - изменить значение у свойства 'supportEmail'
+
+
+
+
+sudo apt-get install apache2 mysql-client mysql-server php7.2 
+sudo apt-get install php7.2-curl php-mbstring php-dom php-gd php-mysql
+
+#Клонирование репозитория
+git clone https://github.com/ben9lta/eios-portfolio.git 
+# зайти в дерикторию
+# cd GIT
+
+#Обновлнеие и установка пакетов
+composer update
+composer install
+
+#инициализация проекта
+php init
+
+#Сюда прописывать БД
+#common/config/main-local.php
+
+sudo a2ensite <ИМЯ ФАЙЛА КОНФИГУРАЦИЙ>
+
+#Если апачь не запускается после выполненения "sudo a2ensite site"
+#sudo a2enmod rewrite
+#sudo service apache2 restart
+
+#магия, может надо может нет
+#composer global require "fxp/composer-asset-plugin:~1.0.3"
+
+# для того чтобы работал rbac
+composer require mdmsoft/yii2-admin "~2.0"
+
+#миграции для rbac
+./yii migrate --migrationPath=@mdm/admin/migrations
+./yii migrate --migrationPath=@yii/rbac/migrations
+./yii rbac/init
+./yii migrate
