@@ -8,30 +8,26 @@ use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Регистрация';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Пожалуйста, заполните следующие поля для регистрации: </p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'email') ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <?= $form->field($model, 'password_confirm')->passwordInput() ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
+    <div class="card card-login card-container">
+        <div class="thumbnail">
+            <?= Html::img('https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg', ['class' => 'profile-img-card my-4'])?>
         </div>
+        <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+
+        <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Логин'])->label(false) ?>
+
+        <?= $form->field($model, 'email')->textInput(['placeholder' => 'Email'])->label(false) ?>
+
+        <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
+
+        <?= $form->field($model, 'password_confirm')->passwordInput(['placeholder' => 'Повторите пароль'])->label(false) ?>
+        <div class="form-group text-center">
+            <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-red', 'name' => 'signup-button']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
     </div>
+
 </div>
