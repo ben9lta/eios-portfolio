@@ -23,8 +23,8 @@ $this->title = 'Регистрация';
         <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
         <?= $form->field($model, 'password_confirm')->passwordInput(['placeholder' => 'Повторите пароль'])->label(false) ?>
-        <div class="form-group text-center">
-            <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-red', 'name' => 'signup-button']) ?>
+        <div class="form-group">
+            <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-lg btn-red btn-block', 'name' => 'signup-button']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>
