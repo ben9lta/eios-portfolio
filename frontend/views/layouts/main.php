@@ -33,6 +33,7 @@ AppAsset::register($this);
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
+//            'renderInnerContainer' => false,
         'options' => [
             'class' => 'navbar navbar-expand-lg navbar-light bg-light',
         ],
