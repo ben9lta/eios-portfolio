@@ -71,7 +71,7 @@ class Users extends \yii\db\ActiveRecord
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
-            'status' => 'Status',
+            'status' => 'Статус',
             'created_at' => 'Создан',
             'updated_at' => 'Обновлен',
             'verification_token' => 'Verification Token',
@@ -89,6 +89,16 @@ class Users extends \yii\db\ActiveRecord
     public function getGender()
     {
         return $this->gender > 0 ? $this->gender === 1 ? 'Мужской' : 'Женский' : null;
+    }
+
+    public function getStatus()
+    {
+        if($this->status === 9)
+            return 'Не подтвержденный';
+        if($this->status === 10)
+            return 'Подтвержден';
+        if($this->status === 0)
+            return 'Удален';
     }
 
     /**
