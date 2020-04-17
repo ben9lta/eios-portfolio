@@ -1,6 +1,7 @@
 <?php
 return [
     'language' => 'ru-RU',
+    'timeZone' => 'Europe/Moscow',
     'name' => 'ЭИОС ГПА',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -8,6 +9,11 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'formatter' => [
+            'dateFormat' => 'd.MM.yyyy',
+            'timeFormat' => 'H:mm:ss',
+            'datetimeFormat' => 'd.MM.yyyy H:mm',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
