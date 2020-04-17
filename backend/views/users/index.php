@@ -37,6 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'middle_name',
             'username',
             'email:email',
+            [
+                'attribute' => 'status',
+                'value' => 'Status'
+            ],
             'consent',
             [
                 'class' => 'common\modules\GridView\ActionColumn',
