@@ -92,6 +92,12 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function getFullname($username) {
         $user = static::findOne(['username' => $username]);
+        return $user['last_name'] . ' ' . $user['first_name'] . ' ' . $user['middle_name'];
+    }
+
+    public static function getUserInitials($username)
+    {
+        $user = static::findOne(['username' => $username]);
         if($user['last_name'] && $user['first_name'])
             if($user['middle_name'])
                 return $user['last_name'] .' '. mb_substr($user['first_name'],0, 1) . '. ' . mb_substr($user['middle_name'],0, 1). '.' ;

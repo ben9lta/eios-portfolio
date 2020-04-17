@@ -44,7 +44,7 @@ AppAsset::register($this);
         $menuItems[] = '<li class="nav-item">'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Выйти (' . \common\models\User::getFullname(Yii::$app->user->identity->username) . ')',
+                'Выйти (' . \common\models\User::getUserInitials(Yii::$app->user->identity->username) . ')',
                 ['class' => 'btn nav-link', 'style' => 'margin: -1px 0;']
             )
             . Html::endForm()
