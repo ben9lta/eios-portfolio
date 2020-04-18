@@ -30,11 +30,11 @@ body {
 }
 
 .color-red {
-    color: #EF3B3A;
+    color: #EF3B3A !important;
 }
 
 .color-red:hover {
-    color: #cc3837;
+    color: #cc3837 !important;
 }
 
 /* end Red styles */
@@ -221,3 +221,16 @@ a.desc:after {
 /* end show password */
 
 /* end login */
+
+
+/* Policy */
+.policy-block {
+    text-align: justify;
+}
+
+.policy-block ul.policy li {
+    font-size: .9rem;
+    padding: 2.5px;
+}
+
+/* End Policy */
