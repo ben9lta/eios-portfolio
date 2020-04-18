@@ -41,6 +41,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 ''=>'site/index',
+                'profile'=>'user/index',
                 '<action>'=>'site/<action>',
             ],
         ],
@@ -49,6 +50,7 @@ return [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'site/*',
+            'user/*',
         ]
     ],
     'params' => $params,
