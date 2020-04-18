@@ -145,6 +145,11 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionPolicy()
+    {
+        return $this->render('policy');
+    }
+
     /**
      * Signs user up.
      *
