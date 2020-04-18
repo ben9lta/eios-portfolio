@@ -3,6 +3,7 @@
 namespace backend\models\users;
 
 use Yii;
+use \yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user".
@@ -30,7 +31,7 @@ use Yii;
  * @property Publications[] $publications
  * @property Students[] $students
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -40,22 +41,42 @@ class Users extends \yii\db\ActiveRecord
         return 'user';
     }
 
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['gender' => null]);
+    }
+
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'consent'], 'required'],
             [['status', 'created_at', 'updated_at', 'gender', 'consent'], 'integer'],
             [['birthday'], 'safe'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token', 'photo'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['first_name', 'last_name', 'middle_name'], 'string', 'max' => 20],
-            [['phone'], 'string', 'max' => 11],
+            [['phone'], 'match', 'pattern' => '/^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/i'],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
+            [['gender'], 'default', 'value' => null],
+            ['birthday', 'datetime', 'format' => 'php:Y-m-d']
         ];
     }
 
@@ -68,7 +89,7 @@ class Users extends \yii\db\ActiveRecord
             'id' => '№',
             'username' => 'Логин',
             'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
+            'password_hash' => 'Пароль',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
             'status' => 'Статус',
@@ -98,7 +119,23 @@ class Users extends \yii\db\ActiveRecord
         if($this->status === 10)
             return 'Подтвержден';
         if($this->status === 0)
-            return 'Удален';
+            return '-';
+    }
+
+    public function getBirthday()
+    {
+        return $this->birthday ? Yii::$app->formatter->asDate(strtotime($this->birthday),'dd.MM.Y') : null;
+    }
+
+    public function getConsent()
+    {
+        return $this->consent === 1 ? 'Подтверждено' : null;
+    }
+
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        $this->birthday = Yii::$app->formatter->asDate(strtotime($this->birthday), "php:Y-m-d");
+        return parent::save($runValidation, $attributeNames);
     }
 
     /**
