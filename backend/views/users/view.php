@@ -48,7 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->getGender(),
             ],
             'birthday',
-            'consent',
+            [
+                'attribute' => 'consent',
+                'value' => $model->getConsent()
+            ],
             'photo',
         ],
     ]) ?>

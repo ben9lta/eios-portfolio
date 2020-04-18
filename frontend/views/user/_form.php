@@ -6,32 +6,15 @@ use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\users\Users */
+/* @var $model frontend\models\user\User */
 /* @var $form yii\widgets\ActiveForm */
 
+$valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($model['birthday']),'dd.MM.Y') : '';
 ?>
 
 <div class="users-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-
-<!--    --><?//= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
-
-<!--    --><?//= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
-
-<!--    --><?//= $form->field($model, 'password_reset_token')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-<!--    --><?//= $form->field($model, 'created_at')->textInput() ?>
-
-<!--    --><?//= $form->field($model, 'updated_at')->textInput() ?>
-
-<!--    --><?//= $form->field($model, 'verification_token')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
@@ -51,7 +34,7 @@ use yii\widgets\MaskedInput;
     <label class="control-label">Дата рождения</label>
     <?= DatePicker::widget([
         'name' => 'Users[birthday]',
-        'value' => $model->getBirthday(),
+        'value' => $valueBirthday,
         'options' => ['placeholder' => 'Выберите дату'],
         'type' => DatePicker::TYPE_COMPONENT_APPEND,
         'pluginOptions' => [
@@ -63,6 +46,15 @@ use yii\widgets\MaskedInput;
     <p class="mb-3"></p>
 
     <?= $form->field($model, 'photo')->textInput(['maxlength' => true]) ?>
+
+    <?php
+        if(empty($model['consent'])) {
+           echo $form->field($model, 'consent')->checkbox([
+                'label' => 'Я соглашаюсь на ' . $this->render('_modal', ['policy' => $this->render('//site/policy')]),
+                'uncheck' => '',
+            ]);
+        }
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

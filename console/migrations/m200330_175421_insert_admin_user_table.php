@@ -13,6 +13,19 @@ class m200330_175421_insert_admin_user_table extends Migration
      */
     public function safeUp()
     {
+        $auth = Yii::$app->authManager;
+        // добавляем роль "Администратор"
+        $admin = $auth->createRole('Администратор');
+        $auth->add($admin);
+
+        // добавляем роль "Студент"
+        $student = $auth->createRole("Студент");
+        $auth->add($student);
+
+        // добавляем роль "Пользователь"
+        $simple = $auth->createRole("Пользователь");
+        $auth->add($simple);
+
         $user = new \common\models\User();
         $user->username = 'admin';
         $user->setPassword(123456);
@@ -33,6 +46,9 @@ class m200330_175421_insert_admin_user_table extends Migration
      */
     public function safeDown()
     {
+        $auth = Yii::$app->authManager;
+        $auth->removeAll();
+
         $id = \common\models\User::findOne(['username' => 'admin'])->getId();
         $this->delete('user', ['id' => $id]);
         $this->delete('auth_assignment', ['user_id' => $id]);

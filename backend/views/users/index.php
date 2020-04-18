@@ -39,9 +39,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             [
                 'attribute' => 'status',
-                'value' => 'Status'
+                'value' => 'Status',
+                'filter' => Html::activeDropDownList($searchModel, 'status',
+                    [9 => 'В ожидании', 10 => 'Подтвержден'],
+                    ['class'=>'form-control','prompt' => 'Все']
+                ),
             ],
-            'consent',
+            [
+                'attribute' => 'consent',
+                'value' => 'Consent',
+                'filter' => Html::activeDropDownList($searchModel, 'consent',
+                    [0 => '-', 1 => '+'],
+                    ['class'=>'form-control','prompt' => 'Все']
+                ),
+            ],
             [
                 'class' => 'common\modules\GridView\ActionColumn',
                 'header'=>'Действия',

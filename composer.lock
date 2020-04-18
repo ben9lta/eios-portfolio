@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60b84920b0e17f8c8ea0c01c525cbb27",
+    "content-hash": "06c2c417362504459f4d639813a6555d",
     "packages": [
         {
             "name": "2amigos/yii2-arrayquery-component",
@@ -386,6 +386,112 @@
                 "html"
             ],
             "time": "2019-10-28T03:44:26+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-krajee-base",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-krajee-base.git",
+                "reference": "8aa48bb2e7613db45b3c34f7a9346d7f43b1f4ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/8aa48bb2e7613db45b3c34f7a9346d7f43b1f4ec",
+                "reference": "8aa48bb2e7613db45b3c34f7a9346d7f43b1f4ec",
+                "shasum": ""
+            },
+            "suggest": {
+                "yiisoft/yii2-bootstrap": "for Krajee extensions to work with Bootstrap 3.x version",
+                "yiisoft/yii2-bootstrap4": "for Krajee extensions to work with Bootstrap 4.x version"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\base\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Base library and foundation components for all Yii2 Krajee extensions.",
+            "homepage": "https://github.com/kartik-v/yii2-krajee-base",
+            "keywords": [
+                "base",
+                "extension",
+                "foundation",
+                "krajee",
+                "widget",
+                "yii2"
+            ],
+            "time": "2019-05-25T07:25:02+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-datepicker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-datepicker.git",
+                "reference": "fada92bc506d382ea3367daac6a1f7a9adf434b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/fada92bc506d382ea3367daac6a1f7a9adf434b2",
+                "reference": "fada92bc506d382ea3367daac6a1f7a9adf434b2",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": ">=2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\date\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Enhanced Yii2 wrapper for the bootstrap datepicker plugin (sub repo split from yii2-widgets).",
+            "homepage": "https://github.com/kartik-v/yii2-widget-datepicker",
+            "keywords": [
+                "date",
+                "extension",
+                "form",
+                "jquery",
+                "picker",
+                "plugin",
+                "select2",
+                "widget",
+                "yii2"
+            ],
+            "time": "2020-03-20T14:21:31+00:00"
         },
         {
             "name": "mdmsoft/yii2-admin",
@@ -814,12 +920,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "df7ff1f48549fb2c829ed0471385afd3991d8f39"
+                "reference": "193b13f660f9009d852b8a3dd0c5d4d5b84f9ea8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/df7ff1f48549fb2c829ed0471385afd3991d8f39",
-                "reference": "df7ff1f48549fb2c829ed0471385afd3991d8f39",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/193b13f660f9009d852b8a3dd0c5d4d5b84f9ea8",
+                "reference": "193b13f660f9009d852b8a3dd0c5d4d5b84f9ea8",
                 "shasum": ""
             },
             "require": {
@@ -906,7 +1012,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2020-04-05T08:55:26+00:00"
+            "time": "2020-04-13T08:58:18+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap4",
@@ -2057,12 +2163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
-                "reference": "b0843c8cbcc2dc5eda5158e583c7199a5e44c86d"
+                "reference": "74a67151cce1fe4aa5960636ae510ddf1faefdb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/b0843c8cbcc2dc5eda5158e583c7199a5e44c86d",
-                "reference": "b0843c8cbcc2dc5eda5158e583c7199a5e44c86d",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/74a67151cce1fe4aa5960636ae510ddf1faefdb3",
+                "reference": "74a67151cce1fe4aa5960636ae510ddf1faefdb3",
                 "shasum": ""
             },
             "require": {
@@ -2101,7 +2207,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2019-12-20T12:45:35+00:00"
+            "time": "2020-04-10T20:41:10+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2561,12 +2667,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6f19efdc4bf8113f72e2eaccd12ad758df4ba789"
+                "reference": "1cc2dcf1b2777312c7266c19a68805cf4801f03e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f19efdc4bf8113f72e2eaccd12ad758df4ba789",
-                "reference": "6f19efdc4bf8113f72e2eaccd12ad758df4ba789",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1cc2dcf1b2777312c7266c19a68805cf4801f03e",
+                "reference": "1cc2dcf1b2777312c7266c19a68805cf4801f03e",
                 "shasum": ""
             },
             "require": {
@@ -2636,7 +2742,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-04-03T05:57:47+00:00"
+            "time": "2020-04-17T05:49:06+00:00"
         },
         {
             "name": "psr/container",
@@ -3501,12 +3607,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "619054da7627df1c2169c7aabe0df78f9320847c"
+                "reference": "38e523fdbea8953cc4cf58f2faeef32f0aaba722"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/619054da7627df1c2169c7aabe0df78f9320847c",
-                "reference": "619054da7627df1c2169c7aabe0df78f9320847c",
+                "url": "https://api.github.com/repos/symfony/console/zipball/38e523fdbea8953cc4cf58f2faeef32f0aaba722",
+                "reference": "38e523fdbea8953cc4cf58f2faeef32f0aaba722",
                 "shasum": ""
             },
             "require": {
@@ -3572,7 +3678,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2020-04-05T07:04:12+00:00"
+            "time": "2020-04-12T12:38:26+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -4348,12 +4454,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "2432896bb6a7543b96adbbe3bd8f6af5d5a5cead"
+                "reference": "5f947e52ada35c6c9fb916657aad5202ffad9c21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/2432896bb6a7543b96adbbe3bd8f6af5d5a5cead",
-                "reference": "2432896bb6a7543b96adbbe3bd8f6af5d5a5cead",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/5f947e52ada35c6c9fb916657aad5202ffad9c21",
+                "reference": "5f947e52ada35c6c9fb916657aad5202ffad9c21",
                 "shasum": ""
             },
             "require": {
@@ -4403,7 +4509,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-30T11:43:41+00:00"
+            "time": "2020-04-16T16:52:30+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -4656,7 +4762,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "yiisoft/yii2-bootstrap4": 20
+        "yiisoft/yii2-bootstrap4": 20,
+        "kartik-v/yii2-widget-datepicker": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
