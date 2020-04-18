@@ -109,6 +109,11 @@ sudo a2ensite <ИМЯ ФАЙЛА КОНФИГУРАЦИЙ>
 # для того чтобы работал rbac
 composer require mdmsoft/yii2-admin "~2.0"
 
+#Накатить все миграции
+yii migrate
+
+#--------------------------------------------------
+#На черный день
 #миграции для rbac
 ./yii migrate --migrationPath=@mdm/admin/migrations
 ./yii migrate --migrationPath=@yii/rbac/migrations
