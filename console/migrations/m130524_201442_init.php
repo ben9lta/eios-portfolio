@@ -23,10 +23,37 @@ class m130524_201442_init extends Migration
             'created_at'           => $this->integer()->notNull(),
             'updated_at'           => $this->integer()->notNull(),
         ], $tableOptions);
+
+        Yii::$app->runAction('migrate/up', [
+            'migrationPath' => '@yii/rbac/migrations',
+            'interactive' => true, // таким образом мы всегда говорим yes на все запросы в консоли
+        ]);
+
+        Yii::$app->runAction('migrate/up', [
+            'migrationPath' => '@mdm/admin/migrations',
+            'interactive' => true, // таким образом мы всегда говорим yes на все запросы в консоли
+        ]);
+
     }
 
     public function down()
     {
         $this->dropTable('{{%user}}');
+
+        echo "rbac cannot be reverted.\n";
+
+        Yii::$app->runAction('migrate/down', [
+            'migrationPath' => '@yii/rbac/migrations',
+            'interactive' => true,
+        ]);
+
+        echo "mdm_admin cannot be reverted.\n";
+
+        Yii::$app->runAction('migrate/down', [
+            'migrationPath' => '@mdm/admin/migrations',
+            'interactive' => true,
+        ]);
+
+        return false;
     }
 }
