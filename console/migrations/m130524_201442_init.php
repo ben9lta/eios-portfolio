@@ -26,12 +26,12 @@ class m130524_201442_init extends Migration
 
         Yii::$app->runAction('migrate/up', [
             'migrationPath' => '@yii/rbac/migrations',
-            'interactive' => true, // таким образом мы всегда говорим yes на все запросы в консоли
+            'interactive' => 0, // таким образом мы всегда говорим yes на все запросы в консоли
         ]);
 
         Yii::$app->runAction('migrate/up', [
             'migrationPath' => '@mdm/admin/migrations',
-            'interactive' => true, // таким образом мы всегда говорим yes на все запросы в консоли
+            'interactive' => 0, // таким образом мы всегда говорим yes на все запросы в консоли
         ]);
 
     }
@@ -44,14 +44,14 @@ class m130524_201442_init extends Migration
 
         Yii::$app->runAction('migrate/down', [
             'migrationPath' => '@yii/rbac/migrations',
-            'interactive' => true,
+            'interactive' => 0,
         ]);
 
         echo "mdm_admin cannot be reverted.\n";
 
         Yii::$app->runAction('migrate/down', [
             'migrationPath' => '@mdm/admin/migrations',
-            'interactive' => true,
+            'interactive' => 0,
         ]);
 
         return false;
