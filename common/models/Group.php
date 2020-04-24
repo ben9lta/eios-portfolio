@@ -50,7 +50,7 @@ class Group extends \yii\db\ActiveRecord
             'id' => '№ Группы',
             'title' => 'Наименование',
             'course' => 'Курс',
-            'dir_id' => '№ Дирекции',
+            'dir_id' => '№ Направления',
             'curator_id' => '№ Куратора',
         ];
     }

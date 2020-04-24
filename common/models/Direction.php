@@ -45,7 +45,7 @@ class Direction extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => '№ Дирекции',
+            'id' => '№ Направления',
             'title' => 'Наименование',
             'code' => 'Шифр',
             'dep_id' => '№ Факультета',
