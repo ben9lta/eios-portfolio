@@ -4,6 +4,8 @@ namespace backend\models\users;
 
 use Yii;
 use \yii\db\ActiveRecord;
+use yii\helpers\FileHelper;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "user".
@@ -33,6 +35,8 @@ use \yii\db\ActiveRecord;
  */
 class Users extends ActiveRecord
 {
+
+    public $imageFile;
     /**
      * {@inheritdoc}
      */
@@ -76,7 +80,15 @@ class Users extends ActiveRecord
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
             [['gender'], 'default', 'value' => null],
-            ['birthday', 'datetime', 'format' => 'php:Y-m-d']
+            [['birthday'], 'datetime', 'format' => 'php:Y-m-d'],
+            [['photo', 'imageFile'], 'image',
+                'extensions' => ['jpg', 'jpeg', 'png'],
+                'checkExtensionByMimeType' => true,
+                'skipOnEmpty' => true,
+                'maxSize' => 2000 * 1024, // 2 МБ = 2000 * 1024 байта = 2 048 000‬ байт
+                'tooBig' => 'Лимит 2Мб'
+            ],
+            [['photo'], 'default', 'value' => null]
         ];
     }
 
@@ -132,8 +144,40 @@ class Users extends ActiveRecord
         return $this->consent === 1 ? 'Подтверждено' : null;
     }
 
+    public function uploadImage($image, $attr)
+    {
+        if ($this->validate($attr)) {
+
+            if(empty($image))
+                return false;
+
+            $destination = 'storage/users/' . $this->id . '/uploads/photo/';
+            $path = Yii::getAlias('@' . $destination);
+            $filename = $this->randomFileName($image);
+
+            if($this->photo)
+                unlink(Yii::getAlias('@' . $this->photo));
+
+            if (FileHelper::createDirectory($path, $mode = 0775, $recursive = true)) {
+                $image->saveAs($path . $filename);
+                $this->photo = $destination . $filename;
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function randomFileName($file)
+    {
+        return uniqid() . '.' . $file->extension; //QW52ASDx.jpg
+    }
+
     public function save($runValidation = true, $attributeNames = null)
     {
+        $photo = UploadedFile::getInstance($this, 'imageFile');
+        $this->uploadImage($photo, 'imageFile');
         $this->birthday = Yii::$app->formatter->asDate(strtotime($this->birthday), "php:Y-m-d");
         return parent::save($runValidation, $attributeNames);
     }
