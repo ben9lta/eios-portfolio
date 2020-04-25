@@ -14,7 +14,9 @@ $valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($mo
 
 <div class="users-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype' => 'multipart/form-data']
+    ]); ?>
 
     <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
@@ -45,7 +47,8 @@ $valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($mo
     ]); ?>
     <p class="mb-3"></p>
 
-    <?= $form->field($model, 'photo')->textInput(['maxlength' => true]) ?>
+    <label class="control-label"><?= $model->getAttributeLabel('photo')?></label>
+    <?= $form->field($model, 'imageFile')->fileInput(['accept' => '.jpeg, .jpg, .png'])->label('') ?>
 
     <?php
         if(empty($model['consent'])) {
