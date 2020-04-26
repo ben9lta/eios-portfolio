@@ -14,6 +14,10 @@ $valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($mo
 
 <div class="users-form">
 
+    <?php
+        if(!empty($model['photo']))
+            echo '<img src="' . \backend\models\users\Users::getFileUrl($model['photo']) . '"alt="' . common\models\User::getUserInitials($model["username"]) . '" width=200 height=200>'
+    ?>
     <?php $form = ActiveForm::begin([
         'options' => ['enctype' => 'multipart/form-data']
     ]); ?>
@@ -53,7 +57,7 @@ $valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($mo
     <?php
         if(empty($model['consent'])) {
            echo $form->field($model, 'consent')->checkbox([
-                'label' => 'Я соглашаюсь на ' . $this->render('_modal', ['policy' => $this->render('//site/policy')]),
+                'label' => 'Я соглашаюсь на ' . $this->render('_modal', ['policy' => $this->render('/site/policy')]),
                 'uncheck' => '',
             ]);
         }
