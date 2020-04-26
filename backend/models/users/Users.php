@@ -5,6 +5,7 @@ namespace backend\models\users;
 use Yii;
 use \yii\db\ActiveRecord;
 use yii\helpers\FileHelper;
+use yii\helpers\Url;
 use yii\web\UploadedFile;
 
 /**
@@ -173,6 +174,18 @@ class Users extends ActiveRecord
     {
         return uniqid() . '.' . $file->extension; //QW52ASDx.jpg
     }
+
+    public static function getFileUrl($file)
+    {
+        $url = Url::base(true);
+        $position = strpos($url, '//') + 2;
+
+        $storageUrl = substr($url, 0, $position) . 'storage.' . substr($url, $position);
+        $fileUrl = substr($file, strpos($file, '/'));
+
+        return $storageUrl . $fileUrl;
+    }
+
 
     public function save($runValidation = true, $attributeNames = null)
     {
