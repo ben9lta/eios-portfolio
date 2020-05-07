@@ -4,6 +4,8 @@ use kartik\date\DatePicker;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
+use common\models\User as CUser;
+use backend\models\users\Users as BUsers;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\user\User */
@@ -14,9 +16,13 @@ $valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($mo
 
 <div class="users-form">
 
-    <?php
-        if(!empty($model['photo']))
-            echo '<img src="' . \backend\models\users\Users::getFileUrl($model['photo']) . '"alt="' . common\models\User::getUserInitials($model["username"]) . '" width=200 height=200>'
+    <?=
+        '<img src="' . BUsers::getFileUrl(
+                (!empty($model['photo'])
+                    ? $model['photo']
+                    : 'users/undefined-user.webp'
+                )
+        ) . '"alt="' . CUser::getUserInitials($model["username"]) . '" width=200 height=200>'
     ?>
     <?php $form = ActiveForm::begin([
         'options' => ['enctype' => 'multipart/form-data']
