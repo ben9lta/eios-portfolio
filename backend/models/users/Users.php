@@ -4,6 +4,7 @@ namespace backend\models\users;
 
 use common\models\Group;
 use common\models\Publications;
+use common\models\storage\Storage;
 use common\models\Students;
 use Yii;
 use \yii\db\ActiveRecord;
@@ -156,11 +157,11 @@ class Users extends ActiveRecord
                 return false;
 
             $destination = 'users/' . $this->id . '/uploads/photo/';
-            $path = Yii::getAlias('@storage/' . $destination);
-            $filename = $this->randomFileName($image);
+            $path = Storage::getStoragePath() . $destination;
+            $filename = Storage::randomFileName($image);
 
             if($this->photo)
-                unlink(Yii::getAlias('@storage/' . $this->photo));
+                unlink(Storage::getStoragePath() . $this->photo);
 
             if (FileHelper::createDirectory($path, $mode = 0775, $recursive = true)) {
                 $image->saveAs($path . $filename);
@@ -172,22 +173,6 @@ class Users extends ActiveRecord
             return false;
         }
     }
-
-    public function randomFileName($file)
-    {
-        return uniqid() . '.' . $file->extension; //QW52ASDx.jpg
-    }
-
-    public static function getFileUrl($file)
-    {
-        $url = Url::base(true);
-        $position = strpos($url, '//') + 2;
-
-        $storageUrl = substr($url, 0, $position) . 'storage.' . substr($url, $position);
-
-        return $storageUrl . '/'. $file;
-    }
-
 
     public function save($runValidation = true, $attributeNames = null)
     {
