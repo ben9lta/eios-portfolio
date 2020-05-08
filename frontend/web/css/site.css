@@ -137,6 +137,16 @@ a.desc:after {
     border: none;
 }
 
+/*User profile*/
+.profile-update .users-form img {
+    object-fit: cover;
+    object-position: top;
+    width: 200px;
+    height: 200px;
+}
+
+/*------Медиа запросы-------*/
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;
