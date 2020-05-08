@@ -1,11 +1,13 @@
 <?php
 
+use common\models\storage\Storage;
 use kartik\date\DatePicker;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
 use common\models\User as CUser;
 use backend\models\users\Users as BUsers;
+
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\user\User */
@@ -17,12 +19,11 @@ $valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($mo
 <div class="users-form">
 
     <?=
-        '<img src="' . BUsers::getFileUrl(
-                (!empty($model['photo'])
-                    ? $model['photo']
-                    : 'users/undefined-user.webp'
-                )
-        ) . '"alt="' . CUser::getUserInitials($model["username"]) . '" width=200 height=200>'
+        Html::img(Storage::getFileUrl(
+            (!empty($model['photo']) ? $model['photo'] : CUser::DEFAULT_USER_IMAGE)),
+            ['alt' => CUser::getUserInitials($model["username"])]
+        );
+
     ?>
     <?php $form = ActiveForm::begin([
         'options' => ['enctype' => 'multipart/form-data']
