@@ -7,7 +7,7 @@ use yii\helpers\Url;
 class Storage
 {
     public static function getStoragePath() {
-        return Yii::getAlias('@storage');
+        return Yii::getAlias('@storage/');
     }
     public static function randomFileName($file)
     {
