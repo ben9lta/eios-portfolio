@@ -84,7 +84,6 @@ class Users extends ActiveRecord
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
-            [['gender'], 'default', 'value' => null],
             [['birthday'], 'datetime', 'format' => 'php:Y-m-d'],
             [['photo', 'imageFile'], 'image',
                 'extensions' => ['jpg', 'jpeg', 'png'],
@@ -93,8 +92,8 @@ class Users extends ActiveRecord
                 'maxSize' => 2000 * 1024, // 2 МБ = 2000 * 1024 байта = 2 048 000‬ байт
                 'tooBig' => 'Лимит 2Мб'
             ],
-            [['photo'], 'default', 'value' => null]
-        ];
+            [['photo', 'phone', 'first_name', 'last_name', 'middle_name', 'gender'], 'default', 'value' => null]
+         ];
     }
 
     /**
@@ -178,7 +177,7 @@ class Users extends ActiveRecord
     {
         $photo = UploadedFile::getInstance($this, 'imageFile');
         $this->uploadImage($photo, 'imageFile');
-        $this->birthday = Yii::$app->formatter->asDate(strtotime($this->birthday), "php:Y-m-d");
+        $this->birthday = empty($this->birthday) ? null : (Yii::$app->formatter->asDate(strtotime($this->birthday), "php:Y-m-d"));
         return parent::save($runValidation, $attributeNames);
     }
 
