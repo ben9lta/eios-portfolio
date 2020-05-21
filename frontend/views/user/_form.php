@@ -13,7 +13,7 @@ use backend\models\users\Users as BUsers;
 /* @var $model frontend\models\user\User */
 /* @var $form yii\widgets\ActiveForm */
 
-$valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($model['birthday']),'dd.MM.Y') : '';
+$valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($model['birthday']),'dd.MM.Y') : null;
 ?>
 
 <div class="users-form">
