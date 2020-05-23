@@ -31,12 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'type',
             'status',
             'date',
             'result',
             'document',
             'stud_id',
+            'type_id',
         ],
     ]) ?>
 

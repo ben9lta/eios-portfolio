@@ -9,14 +9,15 @@ use Yii;
  *
  * @property int $id
  * @property string $title
- * @property string|null $type
  * @property string|null $status
  * @property string $date
  * @property string|null $result
  * @property string|null $document
  * @property int $stud_id
+ * @property int $type_id
  *
  * @property Students $stud
+ * @property ActivityType $type
  */
 class Achievements extends \yii\db\ActiveRecord
 {
@@ -34,11 +35,12 @@ class Achievements extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'date', 'stud_id'], 'required'],
+            [['title', 'date', 'stud_id', 'type_id'], 'required'],
             [['date'], 'safe'],
-            [['stud_id'], 'integer'],
-            [['title', 'type', 'status', 'result', 'document'], 'string', 'max' => 255],
+            [['stud_id', 'type_id'], 'integer'],
+            [['title', 'status', 'result', 'document'], 'string', 'max' => 255],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['stud_id' => 'id']],
+            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => ActivityType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
 
@@ -50,12 +52,12 @@ class Achievements extends \yii\db\ActiveRecord
         return [
             'id' => '№ Достижения',
             'title' => 'Наименование',
-            'type' => 'Вид',
             'status' => 'Статус',
             'date' => 'Дата',
             'result' => 'Результат',
             'document' => 'Документ',
             'stud_id' => '№ Студента',
+            'type_id' => '№ Деятельности',
         ];
     }
 
@@ -67,5 +69,15 @@ class Achievements extends \yii\db\ActiveRecord
     public function getStud()
     {
         return $this->hasOne(Students::className(), ['id' => 'stud_id']);
+    }
+
+    /**
+     * Gets query for [[Type]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getType()
+    {
+        return $this->hasOne(ActivityType::className(), ['id' => 'type_id']);
     }
 }

@@ -19,17 +19,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'type') ?>
-
     <?= $form->field($model, 'status') ?>
 
     <?= $form->field($model, 'date') ?>
 
-    <?php // echo $form->field($model, 'result') ?>
+    <?= $form->field($model, 'result') ?>
 
     <?php // echo $form->field($model, 'document') ?>
 
     <?php // echo $form->field($model, 'stud_id') ?>
+
+    <?php // echo $form->field($model, 'type_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>

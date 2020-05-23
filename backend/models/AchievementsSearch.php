@@ -17,8 +17,8 @@ class AchievementsSearch extends Achievements
     public function rules()
     {
         return [
-            [['id', 'stud_id'], 'integer'],
-            [['title', 'type', 'status', 'date', 'result', 'document'], 'safe'],
+            [['id', 'stud_id', 'type_id'], 'integer'],
+            [['title', 'status', 'date', 'result', 'document'], 'safe'],
         ];
     }
 
@@ -61,10 +61,10 @@ class AchievementsSearch extends Achievements
             'id' => $this->id,
             'date' => $this->date,
             'stud_id' => $this->stud_id,
+            'type_id' => $this->type_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'result', $this->result])
             ->andFilterWhere(['like', 'document', $this->document]);
