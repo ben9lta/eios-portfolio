@@ -6,9 +6,10 @@ use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\users\Users */
+/* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 
+$valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($model['birthday']),'dd.MM.Y') : null;
 ?>
 
 <div class="users-form">
@@ -50,8 +51,8 @@ use yii\widgets\MaskedInput;
 
     <label class="control-label">Дата рождения</label>
     <?= DatePicker::widget([
-        'name' => 'Users[birthday]',
-        'value' => $model->getBirthday(),
+        'name' => 'User[birthday]',
+        'value' => $valueBirthday,
         'options' => ['placeholder' => 'Выберите дату'],
         'type' => DatePicker::TYPE_COMPONENT_APPEND,
         'pluginOptions' => [
@@ -62,7 +63,8 @@ use yii\widgets\MaskedInput;
     ]); ?>
     <p class="mb-3"></p>
 
-    <?= $form->field($model, 'photo')->textInput(['maxlength' => true]) ?>
+    <label class="control-label"><?= $model->getAttributeLabel('photo')?></label>
+    <?= $form->field($model, 'imageFile')->fileInput(['accept' => '.jpeg, .jpg, .png'])->label('') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
