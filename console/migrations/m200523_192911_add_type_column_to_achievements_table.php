@@ -38,8 +38,10 @@ class m200523_192911_add_type_column_to_achievements_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropColumn('achievements', 'type_id');
+        $this->addColumn('achievements', 'type', 'string');
         $this->dropForeignKey('{{%fk-achievements-type_id}}','{{%achievements}}');
         $this->dropIndex('{{%idx-achievements-type_id}}', '{{%achievements}}');
+        $this->dropColumn('achievements', 'type_id');
+
     }
 }
