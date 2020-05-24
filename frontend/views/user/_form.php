@@ -5,8 +5,7 @@ use kartik\date\DatePicker;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
-use common\models\User as CUser;
-use backend\models\users\Users as BUsers;
+use common\models\User as Users;
 
 
 /* @var $this yii\web\View */
@@ -20,8 +19,8 @@ $valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($mo
 
     <?=
         Html::img(Storage::getFileUrl(
-            (!empty($model['photo']) ? $model['photo'] : CUser::DEFAULT_USER_IMAGE)),
-            ['alt' => CUser::getUserInitials($model["username"])]
+            (!empty($model['photo']) ? $model['photo'] : Users::DEFAULT_USER_IMAGE)),
+            ['alt' => Users::getUserInitials($model["username"])]
         );
 
     ?>
