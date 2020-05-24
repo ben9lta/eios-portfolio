@@ -50,6 +50,8 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
     const DEFAULT_USER_IMAGE = 'users/undefined-user.webp';
+
+    public $imageFile;
     /**
      * {@inheritdoc}
      */
@@ -160,9 +162,15 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->consent === 1 ? 'Подтверждено' : null;
     }
 
+    public static function hasLastname($user) {
+        return empty($user['last_name']) ? false : true;
+    }
+
     public static function getFullname($username) {
         $user = static::findOne(['username' => $username]);
-        return $user['last_name'] . ' ' . $user['first_name'] . ' ' . $user['middle_name'];
+        if(self::hasLastname($user))
+            return $user['last_name'] . ' ' . $user['first_name'] . ' ' . $user['middle_name'];
+        return $user->username;
     }
 
     public static function getUserInitials($username)
@@ -205,14 +213,6 @@ class User extends ActiveRecord implements IdentityInterface
         } else {
             return false;
         }
-    }
-
-    public function save($runValidation = true, $attributeNames = null)
-    {
-        $photo = UploadedFile::getInstance($this, 'imageFile');
-        $this->uploadImage($photo, 'imageFile');
-        $this->birthday = empty($this->birthday) ? null : (Yii::$app->formatter->asDate(strtotime($this->birthday), "php:Y-m-d"));
-        return parent::save($runValidation, $attributeNames);
     }
 
     /**
@@ -370,6 +370,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        $photo = UploadedFile::getInstance($this, 'imageFile');
+        $this->uploadImage($photo, 'imageFile');
+        $this->birthday = empty($this->birthday) ? null : (Yii::$app->formatter->asDate(strtotime($this->birthday), "php:Y-m-d"));
+        return parent::save($runValidation, $attributeNames);
     }
 
     /**
