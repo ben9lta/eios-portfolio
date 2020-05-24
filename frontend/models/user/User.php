@@ -2,14 +2,14 @@
 
 namespace frontend\models\user;
 
-use backend\models\users\Users as BUsers;
+use common\models\User as Users;
 use yii\base\Model;
 
 class User extends Model
 {
     private $model;
 
-    public function __construct(BUsers $model, $config = [])
+    public function __construct(Users $model, $config = [])
     {
         $this->model = $model;
         parent::__construct($config);
