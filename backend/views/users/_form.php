@@ -9,7 +9,7 @@ use yii\widgets\MaskedInput;
 /* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 
-$valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($model['birthday']),'dd.MM.Y') : null;
+$valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($model->birthday),'dd.MM.Y') : null;
 ?>
 
 <div class="users-form">

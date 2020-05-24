@@ -9,18 +9,18 @@ use common\models\User as Users;
 
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\user\User */
+/* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 
-$valueBirthday = $model['birthday'] ? Yii::$app->formatter->asDate(strtotime($model['birthday']),'dd.MM.Y') : null;
+$valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($model->birthday),'dd.MM.Y') : null;
 ?>
 
 <div class="users-form">
 
     <?=
         Html::img(Storage::getFileUrl(
-            (!empty($model['photo']) ? $model['photo'] : Users::DEFAULT_USER_IMAGE)),
-            ['alt' => Users::getUserInitials($model["username"])]
+            (!empty($model->last_name) ? $model->last_name : Users::DEFAULT_USER_IMAGE))
+//            ['alt' => $model->getUserInitials()]
         );
 
     ?>
