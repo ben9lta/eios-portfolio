@@ -11,6 +11,8 @@ use yii\bootstrap4\Breadcrumbs;
 use common\widgets\Alert;
 
 AppAsset::register($this);
+if(!Yii::$app->user->isGuest)
+    $user = \common\models\User::findIdentity(Yii::$app->user->id);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -44,7 +46,7 @@ AppAsset::register($this);
         $menuItems[] = '<li class="nav-item">'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Выйти (' . \common\models\User::getUserInitials(Yii::$app->user->identity->username) . ')',
+                'Выйти (' . $user->getUserInitials() . ')',
                 ['class' => 'btn nav-link', 'style' => 'margin: -1px 0;']
             )
             . Html::endForm()
