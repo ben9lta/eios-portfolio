@@ -162,27 +162,23 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->consent === 1 ? 'Подтверждено' : null;
     }
 
-    public static function hasLastname($user) {
-        return empty($user['last_name']) ? false : true;
+    public function hasLastname() {
+        return empty($this->last_name) ? false : true;
     }
 
-    public static function getFullname($username) {
-        $user = static::findOne(['username' => $username]);
-        if(self::hasLastname($user))
-            return $user['last_name'] . ' ' . $user['first_name'] . ' ' . $user['middle_name'];
-        return $user->username;
+    public function getFullname() {
+        return $this->hasLastname()
+            ? implode(' ', [$this->last_name, $this->first_name, $this->middle_name])
+            : $this->username;
     }
 
-    public static function getUserInitials($username)
+    public function getUserInitials()
     {
-        $user = static::findOne(['username' => $username]);
-        if($user['last_name'] && $user['first_name'])
-            if($user['middle_name'])
-                return $user['last_name'] .' '. mb_substr($user['first_name'],0, 1) . '. ' . mb_substr($user['middle_name'],0, 1). '.' ;
-            else
-                return $user['last_name'] .' '. mb_substr($user['first_name'],0, 1) . '.' ;
-
-        return $user['username'];
+        if($this->last_name AND $this->first_name) {
+            if($this->middle_name) return $this->last_name .' '. mb_substr($this->first_name, 0, 1) . '. ' . mb_substr($this->middle_name, 0, 1) . '.';
+            else return $this->last_name .' '. mb_strstr($this->first_name, 0, 1) . '.';
+        }
+        return $this->username;
     }
 
     public static function findByLogin($login)
