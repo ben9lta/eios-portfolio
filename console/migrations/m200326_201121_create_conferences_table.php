@@ -17,6 +17,12 @@ class m200326_201121_create_conferences_table extends Migration
      */
     public function safeUp()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+
         $this->createTable('{{%conferences}}', [
             'id'         => $this->primaryKey(),
             'title'      => $this->string()->notNull(),
@@ -29,7 +35,7 @@ class m200326_201121_create_conferences_table extends Migration
             'student_id' => $this->integer()->notNull(),
             'status_id'  => $this->integer()->notNull(),
             'type_id'    => $this->integer()->notNull(),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `student_id`
         $this->createIndex(
