@@ -19,8 +19,8 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
 
     <?=
         Html::img(Storage::getFileUrl(
-            (!empty($model->last_name) ? $model->last_name : Users::DEFAULT_USER_IMAGE))
-//            ['alt' => $model->getUserInitials()]
+            (!empty($model->photo) ? $model->photo : Users::DEFAULT_USER_IMAGE)),
+            ['alt' => $model->getUserInitials()]
         );
 
     ?>
