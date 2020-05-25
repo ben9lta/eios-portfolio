@@ -41,7 +41,7 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
         ],
     ]) ?>
 
-    <?= $form->field($model, 'gender')->dropDownList(['' => '', 1 => 'Мужской', 2 => 'Женский']) ?>
+    <?= $form->field($model, 'gender')->dropDownList(['' => '', 0 => 'Мужской', 1 => 'Женский']) ?>
 
     <label class="control-label">Дата рождения</label>
     <?= DatePicker::widget([

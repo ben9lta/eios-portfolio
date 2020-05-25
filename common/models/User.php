@@ -141,12 +141,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if (!isset($this->gender))
             return null;
-
-        switch ($this->gender) {
-            case 0: return 'Мужской';
-            case 1: return 'Женский';
-            default: return null;
-        }
+        return $this->gender === 0 ? 'Мужской' : 'Женский';
     }
 
     public function getStatus()
