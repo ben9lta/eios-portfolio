@@ -20,6 +20,8 @@ class m200417_195917_insert_users_user_table_ extends Migration
         $user->generateAuthKey();
         $user->email = 'user1@mail.ru';
         $user->status = 10;
+        $user->created_at = time();
+        $user->updated_at = $user->created_at;
         $user->first_name = 'Александр';
         $user->last_name = 'Кочерыжкин';
         $user->middle_name = 'Сергеевич';
@@ -39,6 +41,9 @@ class m200417_195917_insert_users_user_table_ extends Migration
         $user->generateAuthKey();
         $user->email = 'user2@mail.ru';
         $user->status = 10;
+        $user->created_at = time();
+        $user->updated_at = $user->created_at;
+        $user->consent = 0;
         $user->generateEmailVerificationToken();
         if($user->save()) {
             $auth = Yii::$app->authManager;
