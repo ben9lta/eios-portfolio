@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use backend\models\users\Users;
+use common\models\User as Users;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\NotFoundHttpException;
