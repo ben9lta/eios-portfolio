@@ -15,7 +15,6 @@ $this->title = 'Вход';
             <?= Html::img('https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg', ['class' => 'profile-img-card my-4'])?>
         </div>
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
             <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Логин'])->label(false) ?>
             <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль', 'id' => 'login-password-form'])->label(false) ?>
 
@@ -29,7 +28,6 @@ $this->title = 'Вход';
                 <br>
                 <?= Html::a('Отрпавить письмо с подтверждением.', ['site/resend-verification-email'], ['class' => 'color-red']) ?>
             </div>
-
         <?php ActiveForm::end(); ?>
     </div>
 </div>
