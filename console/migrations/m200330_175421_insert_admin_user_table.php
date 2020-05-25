@@ -31,7 +31,10 @@ class m200330_175421_insert_admin_user_table extends Migration
         $user->setPassword(123456);
         $user->generateAuthKey();
         $user->email = Yii::$app->params['supportEmail'];
+        $user->created_at = time();
+        $user->updated_at = $user->created_at;
         $user->status = 10;
+        $user->consent = 1;
         $user->generateEmailVerificationToken();
         if($user->save()) {
             $auth = Yii::$app->authManager;
