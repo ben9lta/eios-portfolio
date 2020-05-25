@@ -18,21 +18,9 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
-<!--    --><?//= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
-
-<!--    --><?//= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
-
-<!--    --><?//= $form->field($model, 'password_reset_token')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
-
-<!--    --><?//= $form->field($model, 'created_at')->textInput() ?>
-
-<!--    --><?//= $form->field($model, 'updated_at')->textInput() ?>
-
-<!--    --><?//= $form->field($model, 'verification_token')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
@@ -47,7 +35,7 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
         ],
     ]) ?>
 
-    <?= $form->field($model, 'gender')->dropDownList(['' => '', 1 => 'Мужской', 2 => 'Женский']) ?>
+    <?= $form->field($model, 'gender')->dropDownList(['' => '', 0 => 'Мужской', 1 => 'Женский']) ?>
 
     <label class="control-label">Дата рождения</label>
     <?= DatePicker::widget([

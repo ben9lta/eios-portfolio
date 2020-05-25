@@ -139,17 +139,23 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getGender()
     {
-        return $this->gender > 0 ? $this->gender === 1 ? 'Мужской' : 'Женский' : null;
+        if (!isset($this->gender))
+            return null;
+
+        switch ($this->gender) {
+            case 0: return 'Мужской';
+            case 1: return 'Женский';
+            default: return null;
+        }
     }
 
     public function getStatus()
     {
-        if($this->status === 9)
-            return 'Не подтвержденный';
-        if($this->status === 10)
-            return 'Подтвержден';
-//        if($this->status === 0)
-        return '-';
+        switch ($this->status) {
+            case 9: return 'Не подтвержденный';
+            case 10: return 'Подтвержден';
+            default: return null;
+        }
     }
 
     public function getBirthday()
