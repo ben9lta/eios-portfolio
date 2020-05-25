@@ -26,7 +26,7 @@ $this->title = 'Вход';
             <div style="color:#999;margin:1em 0">
                 <?= Html::a('Восстановить пароль.', ['site/request-password-reset'], ['class' => 'color-red']) ?>
                 <br>
-                <?= Html::a('Отрпавить письмо с подтверждением.', ['site/resend-verification-email'], ['class' => 'color-red']) ?>
+                <?= Html::a('Отправить письмо с подтверждением.', ['site/resend-verification-email'], ['class' => 'color-red']) ?>
             </div>
         <?php ActiveForm::end(); ?>
     </div>
