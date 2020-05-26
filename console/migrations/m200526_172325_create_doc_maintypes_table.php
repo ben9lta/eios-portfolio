@@ -21,7 +21,7 @@ class m200526_172325_create_doc_maintypes_table extends Migration
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull(),
             'comments' => $this->string()->defaultValue(null),
-        ]);
+        ],$tableOptions);
     }
 
     /**
