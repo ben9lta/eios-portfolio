@@ -7,7 +7,7 @@ use common\modules\GridView\GridView;
 /* @var $searchModel backend\models\DocTypesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Doc Types';
+$this->title = 'Типы документов';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="doc-types-index">
