@@ -26,24 +26,28 @@ class m200526_165225_insert_to_department_table extends Migration
         ]);
 
         $this->insert('department', [
+            'id'        => 1,
             'title'     => 'Кафедра менеджмента и туристского бизнеса',
             'address'   => 'г. Ялта, ул. Халтурина, д.14, каб.4, 12',
             'inst_id'   => 1
         ]);
 
         $this->insert('department', [
+            'id'        => 2,
             'title'     => 'Кафедра математики, теории и методики обучения математике',
             'address'   => 'г. Ялта, ул. Севастопольска, 2-А, каб. 16',
             'inst_id'   => 1
         ]);
 
         $this->insert('department', [
+            'id'        => 3,
             'title'     => 'Кафедра информатики и информационных технологий',
             'address'   => 'г. Ялта, ул. Халтурина, д. 14, каб 36',
             'inst_id'   => 1
         ]);
 
         $this->insert('department', [
+            'id'        => 4,
             'title'     => 'Кафедра экономики и финансов',
             'address'   => 'г. Ялта, ул. Халтурина, д. 14, каб.15',
             'inst_id'   => 1
