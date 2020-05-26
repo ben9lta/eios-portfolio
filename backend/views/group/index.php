@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'course',
             'dir_id',
             'curator_id',
+            'form_id',
 
             [
                 'class' => 'common\modules\GridView\ActionColumn',

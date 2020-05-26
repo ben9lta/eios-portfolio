@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\GroupSearch */
+/* @var $model backend\models\EduLevelSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="group-search">
+<div class="edu-level-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -19,16 +19,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'course') ?>
-
-    <?= $form->field($model, 'dir_id') ?>
-
-    <?= $form->field($model, 'curator_id') ?>
-
-    <?= $form->field($model, 'form_id') ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Очистить', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 

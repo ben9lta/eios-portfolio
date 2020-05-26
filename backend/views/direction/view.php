@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'code',
             'dep_id',
+            'level_id',
         ],
     ]) ?>
 

@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Group */
+/* @var $model common\models\EduForm */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Формы образования', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="group-view">
+<div class="edu-form-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -31,10 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'course',
-            'dir_id',
-            'curator_id',
-            'form_id',
         ],
     ]) ?>
 

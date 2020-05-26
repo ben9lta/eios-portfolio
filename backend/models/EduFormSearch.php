@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Students;
+use common\models\EduForm;
 
 /**
- * StudentsSearch represents the model behind the search form of `common\models\Students`.
+ * EduFormSearch represents the model behind the search form of `common\models\EduForm`.
  */
-class StudentsSearch extends Students
+class EduFormSearch extends EduForm
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,8 @@ class StudentsSearch extends Students
     public function rules()
     {
         return [
-            [['id', 'user_id', 'group_id', 'budget'], 'integer'],
+            [['id'], 'integer'],
+            [['title'], 'safe'],
         ];
     }
 
@@ -39,7 +40,7 @@ class StudentsSearch extends Students
      */
     public function search($params)
     {
-        $query = Students::find();
+        $query = EduForm::find();
 
         // add conditions that should always apply here
 
@@ -58,10 +59,9 @@ class StudentsSearch extends Students
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'group_id' => $this->group_id,
-            'budget' => $this->budget,
         ]);
+
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

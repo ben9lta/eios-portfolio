@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use common\modules\GridView\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\DirectionSearch */
+/* @var $searchModel backend\models\EduFormSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Направления';
+$this->title = 'Формы образования';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="direction-index">
+<div class="edu-form-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -27,9 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'code',
-            'dep_id',
-            'level_id',
 
             [
                 'class' => 'common\modules\GridView\ActionColumn',
