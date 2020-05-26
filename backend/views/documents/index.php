@@ -7,7 +7,7 @@ use common\modules\GridView\GridView;
 /* @var $searchModel backend\models\DocumentsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Documents';
+$this->title = 'Документы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="documents-index">
