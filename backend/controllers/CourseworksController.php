@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Courseworks;
 use backend\models\CourseworksSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,6 +25,15 @@ class CourseworksController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['Администратор'],
+                    ],
                 ],
             ],
         ];
