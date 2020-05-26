@@ -12,9 +12,12 @@ use Yii;
  * @property int $course
  * @property int $dir_id
  * @property int $curator_id
+ * @property int $form_id
  *
  * @property User $curator
  * @property Direction $dir
+ * @property EduForm $form
+ * @property Shedule[] $shedules
  * @property Students[] $students
  */
 class Group extends \yii\db\ActiveRecord
@@ -33,11 +36,12 @@ class Group extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'course', 'dir_id', 'curator_id'], 'required'],
-            [['course', 'dir_id', 'curator_id'], 'integer'],
+            [['title', 'course', 'dir_id', 'curator_id', 'form_id'], 'required'],
+            [['course', 'dir_id', 'curator_id', 'form_id'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['curator_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['curator_id' => 'id']],
             [['dir_id'], 'exist', 'skipOnError' => true, 'targetClass' => Direction::className(), 'targetAttribute' => ['dir_id' => 'id']],
+            [['form_id'], 'exist', 'skipOnError' => true, 'targetClass' => EduForm::className(), 'targetAttribute' => ['form_id' => 'id']],
         ];
     }
 
@@ -52,6 +56,7 @@ class Group extends \yii\db\ActiveRecord
             'course' => 'Курс',
             'dir_id' => '№ Направления',
             'curator_id' => '№ Куратора',
+            'form_id' => '№ Формы обучения',
         ];
     }
 
@@ -73,6 +78,26 @@ class Group extends \yii\db\ActiveRecord
     public function getDir()
     {
         return $this->hasOne(Direction::className(), ['id' => 'dir_id']);
+    }
+
+    /**
+     * Gets query for [[Form]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getForm()
+    {
+        return $this->hasOne(EduForm::className(), ['id' => 'form_id']);
+    }
+
+    /**
+     * Gets query for [[Shedules]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getShedules()
+    {
+        return $this->hasMany(Shedule::className(), ['group_id' => 'id']);
     }
 
     /**
