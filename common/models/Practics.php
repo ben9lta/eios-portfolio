@@ -36,8 +36,8 @@ class Practics extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date_start', 'date_end'], 'safe'],
-            [['stud_id'], 'required'],
+            [['date_start', 'date_end', 'safe'],
+            [['stud_id', 'title', 'place']], 'required'],
             [['stud_id'], 'integer'],
             [['title', 'place', 'document', 'diary', 'characteristic', 'evaluation'], 'string', 'max' => 255],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['stud_id' => 'id']],
