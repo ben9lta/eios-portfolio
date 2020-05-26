@@ -17,7 +17,7 @@ class DirectionSearch extends Direction
     public function rules()
     {
         return [
-            [['id', 'dep_id'], 'integer'],
+            [['id', 'dep_id', 'level_id'], 'integer'],
             [['title', 'code'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class DirectionSearch extends Direction
         $query->andFilterWhere([
             'id' => $this->id,
             'dep_id' => $this->dep_id,
+            'level_id' => $this->level_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

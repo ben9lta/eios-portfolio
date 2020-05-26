@@ -11,8 +11,10 @@ use Yii;
  * @property string $title
  * @property string $code
  * @property int $dep_id
+ * @property int $level_id
  *
  * @property Department $dep
+ * @property EduLevel $level
  * @property Group[] $groups
  */
 class Direction extends \yii\db\ActiveRecord
@@ -31,11 +33,12 @@ class Direction extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'code', 'dep_id'], 'required'],
-            [['dep_id'], 'integer'],
+            [['title', 'code', 'dep_id', 'level_id'], 'required'],
+            [['dep_id', 'level_id'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 20],
             [['dep_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['dep_id' => 'id']],
+            [['level_id'], 'exist', 'skipOnError' => true, 'targetClass' => EduLevel::className(), 'targetAttribute' => ['level_id' => 'id']],
         ];
     }
 
@@ -49,6 +52,7 @@ class Direction extends \yii\db\ActiveRecord
             'title' => 'Наименование',
             'code' => 'Шифр',
             'dep_id' => '№ Факультета',
+            'level_id' => '№ Уровня образования',
         ];
     }
 
@@ -60,6 +64,16 @@ class Direction extends \yii\db\ActiveRecord
     public function getDep()
     {
         return $this->hasOne(Department::className(), ['id' => 'dep_id']);
+    }
+
+    /**
+     * Gets query for [[Level]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLevel()
+    {
+        return $this->hasOne(EduLevel::className(), ['id' => 'level_id']);
     }
 
     /**
