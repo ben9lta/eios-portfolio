@@ -21,6 +21,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'group_id') ?>
 
+    <?= $form->field($model, 'budget') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Очистить', ['class' => 'btn btn-outline-secondary']) ?>

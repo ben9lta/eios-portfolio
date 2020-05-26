@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'user_id',
             'group_id',
+            'budget',
 
             [
                 'class' => 'common\modules\GridView\ActionColumn',

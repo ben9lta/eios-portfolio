@@ -17,7 +17,7 @@ class StudentsSearch extends Students
     public function rules()
     {
         return [
-            [['id', 'user_id', 'group_id'], 'integer'],
+            [['id', 'user_id', 'group_id', 'budget'], 'integer'],
         ];
     }
 
@@ -60,6 +60,7 @@ class StudentsSearch extends Students
             'id' => $this->id,
             'user_id' => $this->user_id,
             'group_id' => $this->group_id,
+            'budget' => $this->budget,
         ]);
 
         return $dataProvider;

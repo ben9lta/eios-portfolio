@@ -10,12 +10,16 @@ use Yii;
  * @property int $id
  * @property int $user_id
  * @property int $group_id
+ * @property int $budget
  *
  * @property Achievements[] $achievements
  * @property Conferences[] $conferences
+ * @property Courseworks[] $courseworks
+ * @property Practics[] $practics
  * @property Publications[] $publications
  * @property Group $group
  * @property User $user
+ * @property Vkr[] $vkrs
  */
 class Students extends \yii\db\ActiveRecord
 {
@@ -33,8 +37,8 @@ class Students extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'group_id'], 'required'],
-            [['user_id', 'group_id'], 'integer'],
+            [['user_id', 'group_id', 'budget'], 'required'],
+            [['user_id', 'group_id', 'budget'], 'integer'],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -49,6 +53,7 @@ class Students extends \yii\db\ActiveRecord
             'id' => '№ Зачетки',
             'user_id' => '№ Пользователя',
             'group_id' => '№ Группы',
+            'budget' => 'Бюджетная форма',
         ];
     }
 
@@ -70,6 +75,26 @@ class Students extends \yii\db\ActiveRecord
     public function getConferences()
     {
         return $this->hasMany(Conferences::className(), ['student_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Courseworks]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCourseworks()
+    {
+        return $this->hasMany(Courseworks::className(), ['stud_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Practics]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPractics()
+    {
+        return $this->hasMany(Practics::className(), ['stud_id' => 'id']);
     }
 
     /**
@@ -100,5 +125,15 @@ class Students extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * Gets query for [[Vkrs]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVkrs()
+    {
+        return $this->hasMany(Vkr::className(), ['stud_id' => 'id']);
     }
 }
