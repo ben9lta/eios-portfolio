@@ -12,12 +12,17 @@ class m200526_174026_create_doc_types_table extends Migration
      */
     public function safeUp()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
         $this->createTable('{{%doc_types}}', [
             'id' => $this->primaryKey(),
             'title' => $this->string(),
             'doc_maintypes_id' => $this->integer()->notNull(),
             'comments' => $this->string()->defaultValue(null)
-        ]);
+        ],$tableOptions);
 
         $this->createIndex(
           '{{%idx-doc_types-doc_maintypes_id}}',
