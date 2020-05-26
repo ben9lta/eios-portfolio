@@ -8,6 +8,7 @@ use backend\models\DocMaintypesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * DocMaintypesController implements the CRUD actions for DocMaintypes model.
