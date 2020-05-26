@@ -24,7 +24,7 @@ class m200523_195322_create_vkr_table extends Migration
 
         $this->createTable('{{%vkr}}', [
             'id' => $this->primaryKey(),
-            'title' => $this->string(),
+            'title' => $this->string()->notNull(),
             'document' => $this->string(),
             'evaluation' => $this->string(),
             'stud_id' => $this->integer()->notNull(),

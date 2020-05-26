@@ -20,7 +20,7 @@ class m200526_191333_create_edu_form_table extends Migration
 
         $this->createTable('{{%edu_form}}', [
             'id'    => $this->primaryKey(),
-            'title' => $this->string()
+            'title' => $this->string()->notNull()
         ], $tableOptions);
     }
 

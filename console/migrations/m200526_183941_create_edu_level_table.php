@@ -19,7 +19,7 @@ class m200526_183941_create_edu_level_table extends Migration
         }
         $this->createTable('{{%edu_level}}', [
             'id'    => $this->primaryKey(),
-            'title' => $this->string(),
+            'title' => $this->string()->notNull(),
         ],$tableOptions);
     }
 
