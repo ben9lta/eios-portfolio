@@ -14,7 +14,7 @@ $this->title = 'Административная часть';
                     <i class="fa fa-user"></i>
                     <span class="count-numbers">Кол-во: <?= $tables['user']['count'] ?></span>
                     <span class="count-name">Пользователи</span>
-                    <a class="card-url" href="/users/index"></a>0
+                    <a class="card-url" href="/users/index"></a>
                 </div>
 
             </div>
