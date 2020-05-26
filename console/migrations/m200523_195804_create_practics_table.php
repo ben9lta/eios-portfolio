@@ -23,8 +23,8 @@ class m200523_195804_create_practics_table extends Migration
 
         $this->createTable('{{%practics}}', [
             'id' => $this->primaryKey(),
-            'title' => $this->string(),
-            'place' => $this->string(),
+            'title' => $this->string()->notNull(),
+            'place' => $this->string()->notNull(),
             'date_start' => $this->datetime(),
             'date_end' => $this->datetime(),
             'document' => $this->string(),

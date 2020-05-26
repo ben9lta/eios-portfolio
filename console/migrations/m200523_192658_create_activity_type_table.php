@@ -20,7 +20,7 @@ class m200523_192658_create_activity_type_table extends Migration
 
         $this->createTable('{{%activity_type}}', [
             'id' => $this->primaryKey(),
-            'title' => $this->string(),
+            'title' => $this->string()->notNull(),
         ], $tableOptions);
     }
 
