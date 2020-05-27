@@ -32,7 +32,7 @@ class Courseworks extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['stud_id', 'title'], 'required'],
+            [['stud_id', 'title', 'subject'], 'required'],
             [['stud_id'], 'integer'],
             [['subject', 'title', 'document', 'evaluation'], 'string', 'max' => 255],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['stud_id' => 'id']],
