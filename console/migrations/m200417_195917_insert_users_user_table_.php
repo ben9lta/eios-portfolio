@@ -47,7 +47,7 @@ class m200417_195917_insert_users_user_table_ extends Migration
         $user->generateEmailVerificationToken();
         if($user->save()) {
             $auth = Yii::$app->authManager;
-            $role = $auth->getRole('Пользователь');
+            $role = $auth->getRole('Преподаватель');
             $auth->assign($role, $user->getId());
             $user->save();
         }
