@@ -37,7 +37,7 @@ class Publications extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'authors', 'document', 'date', 'indexing_id', 'stud_id', 'user_id'], 'required'],
+            [['title', 'authors', 'document', 'date', 'indexing_id', 'stud_id'], 'required'],
             [['date'], 'safe'],
             [['indexing_id', 'stud_id', 'user_id'], 'integer'],
             [['title', 'authors', 'document', 'description'], 'string', 'max' => 255],
