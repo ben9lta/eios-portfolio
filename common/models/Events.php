@@ -23,7 +23,7 @@ use Yii;
  * @property EventStatus $status
  * @property Students $student
  * @property EventType $type
- * @property Students $user
+ * @property User $user
  */
 class Events extends \yii\db\ActiveRecord
 {
@@ -48,7 +48,7 @@ class Events extends \yii\db\ActiveRecord
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventStatus::className(), 'targetAttribute' => ['status_id' => 'id']],
             [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['student_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventType::className(), 'targetAttribute' => ['type_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -110,6 +110,6 @@ class Events extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(Students::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

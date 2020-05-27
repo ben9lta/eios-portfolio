@@ -15,7 +15,6 @@ use Yii;
  * @property Achievements[] $achievements
  * @property Courseworks[] $courseworks
  * @property Events[] $events
- * @property Events[] $events0
  * @property Practics[] $practics
  * @property Publications[] $publications
  * @property Group $group
@@ -86,16 +85,6 @@ class Students extends \yii\db\ActiveRecord
     public function getEvents()
     {
         return $this->hasMany(Events::className(), ['student_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Events0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEvents0()
-    {
-        return $this->hasMany(Events::className(), ['user_id' => 'id']);
     }
 
     /**
