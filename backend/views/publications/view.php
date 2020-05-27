@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'indexing_id',
             'stud_id',
             'user_id',
+            'comment',
         ],
     ]) ?>
 
