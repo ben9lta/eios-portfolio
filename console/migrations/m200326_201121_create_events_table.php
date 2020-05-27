@@ -69,7 +69,7 @@ class m200326_201121_create_events_table extends Migration
             '{{%fk-events-user_id}}',
             '{{%events}}',
             'user_id',
-            '{{%students}}',
+            '{{%user}}',
             'id',
             'CASCADE',
             'CASCADE'
@@ -126,6 +126,18 @@ class m200326_201121_create_events_table extends Migration
         // drops index for column `student_id`
         $this->dropIndex(
             '{{%idx-events-student_id}}',
+            '{{%events}}'
+        );
+
+        // drops foreign key for table `{{%user}}`
+        $this->dropForeignKey(
+            '{{%fk-events-user_id}}',
+            '{{%events}}'
+        );
+
+        // drops index for column `user_id`
+        $this->dropIndex(
+            '{{%idx-events-user_id}}',
             '{{%events}}'
         );
 
