@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m200526_184551_add_fk_to_edu_level_table
  */
-class m200526_184551_add_fk_to_edu_level_table extends Migration
+class m200526_184551_add_fk_to_direction_table extends Migration
 {
     /**
      * {@inheritdoc}
