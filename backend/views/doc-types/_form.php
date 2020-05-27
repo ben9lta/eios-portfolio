@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'doc_maintypes_id')->textInput() ?>
 
-    <?= $form->field($model, 'comments')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
