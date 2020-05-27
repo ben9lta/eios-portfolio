@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $title
- * @property string|null $comments
+ * @property string|null $comment
  *
  * @property DocTypes[] $docTypes
  */
@@ -30,7 +30,7 @@ class DocMaintypes extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['title', 'comments'], 'string', 'max' => 255],
+            [['title', 'comment'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,7 +42,7 @@ class DocMaintypes extends \yii\db\ActiveRecord
         return [
             'id' => '№ Главного типа документа',
             'title' => 'Наименование',
-            'comments' => 'Комментарий',
+            'comment' => 'Комментарий',
         ];
     }
 

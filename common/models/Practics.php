@@ -8,15 +8,16 @@ use Yii;
  * This is the model class for table "practics".
  *
  * @property int $id
- * @property string|null $title
- * @property string|null $place
+ * @property string $title
+ * @property string $place
  * @property string|null $date_start
  * @property string|null $date_end
  * @property string|null $document
  * @property string|null $diary
  * @property string|null $characteristic
- * @property string|null $evaluation
+ * @property int|null $evaluation
  * @property int $stud_id
+ * @property string|null $comment
  *
  * @property Students $stud
  */
@@ -36,10 +37,10 @@ class Practics extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date_start', 'date_end', 'safe'],
-            [['stud_id', 'title', 'place']], 'required'],
-            [['stud_id'], 'integer'],
-            [['title', 'place', 'document', 'diary', 'characteristic', 'evaluation'], 'string', 'max' => 255],
+            [['title', 'place', 'stud_id'], 'required'],
+            [['date_start', 'date_end'], 'safe'],
+            [['evaluation', 'stud_id'], 'integer'],
+            [['title', 'place', 'document', 'diary', 'characteristic', 'comment'], 'string', 'max' => 255],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['stud_id' => 'id']],
         ];
     }
@@ -52,7 +53,7 @@ class Practics extends \yii\db\ActiveRecord
         return [
             'id' => '№ Практики',
             'title' => 'Наименование',
-            'place' => 'Место',
+            'place' => 'Место проведения',
             'date_start' => 'Дата начала',
             'date_end' => 'Дата окончания',
             'document' => 'Документ',
@@ -60,6 +61,7 @@ class Practics extends \yii\db\ActiveRecord
             'characteristic' => 'Характеристика',
             'evaluation' => 'Оценка',
             'stud_id' => '№ Студента',
+            'comment' => 'Комментарий'
         ];
     }
 
