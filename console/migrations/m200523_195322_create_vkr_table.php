@@ -26,9 +26,10 @@ class m200523_195322_create_vkr_table extends Migration
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull(),
             'document' => $this->string(),
-            'evaluation' => $this->string(),
+            'evaluation' => $this->tinyInteger(),
             'stud_id' => $this->integer()->notNull(),
-            'user_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer()->defaultValue(null),
+            'comment' => $this->string()->defaultValue(null)
         ], $tableOptions);
 
         // creates index for column `stud_id`

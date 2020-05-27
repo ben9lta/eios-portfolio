@@ -9,13 +9,13 @@ use Yii;
  *
  * @property int $id
  * @property string $title
- * @property string $authors
+ * @property string|null $authors
  * @property string $document
  * @property string $date
  * @property string|null $description
  * @property int $indexing_id
  * @property int $stud_id
- * @property int $user_id
+ * @property int|null $user_id
  *
  * @property PublIndexing $indexing
  * @property Students $stud
@@ -37,7 +37,7 @@ class Publications extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'authors', 'document', 'date', 'indexing_id', 'stud_id', 'user_id'], 'required'],
+            [['title', 'document', 'date', 'stud_id'], 'required'],
             [['date'], 'safe'],
             [['indexing_id', 'stud_id', 'user_id'], 'integer'],
             [['title', 'authors', 'document', 'description'], 'string', 'max' => 255],
