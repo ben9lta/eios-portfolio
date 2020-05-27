@@ -8,11 +8,12 @@ use Yii;
  * This is the model class for table "courseworks".
  *
  * @property int $id
- * @property string|null $subject
- * @property string|null $title
+ * @property string $subject
+ * @property string $title
  * @property string|null $document
- * @property string|null $evaluation
+ * @property int|null $evaluation
  * @property int $stud_id
+ * @property string|null $comment
  *
  * @property Students $stud
  */
@@ -32,9 +33,9 @@ class Courseworks extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['stud_id', 'title', 'subject'], 'required'],
-            [['stud_id'], 'integer'],
-            [['subject', 'title', 'document', 'evaluation'], 'string', 'max' => 255],
+            [['subject', 'title', 'stud_id'], 'required'],
+            [['evaluation', 'stud_id'], 'integer'],
+            [['subject', 'title', 'document', 'comment'], 'string', 'max' => 255],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['stud_id' => 'id']],
         ];
     }
@@ -51,6 +52,7 @@ class Courseworks extends \yii\db\ActiveRecord
             'document' => 'Документ',
             'evaluation' => 'Оценка',
             'stud_id' => '№ Студента',
+            'comment' => 'Комментарий',
         ];
     }
 

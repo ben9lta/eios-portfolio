@@ -9,13 +9,15 @@ use Yii;
  *
  * @property int $id
  * @property string $title
- * @property string|null $status
  * @property string $date
  * @property string|null $result
  * @property string|null $document
  * @property int $stud_id
+ * @property int|null $status_id
+ * @property string|null $comment
  * @property int $type_id
  *
+ * @property EventStatus $status
  * @property Students $stud
  * @property ActivityType $type
  */
@@ -37,8 +39,9 @@ class Achievements extends \yii\db\ActiveRecord
         return [
             [['title', 'date', 'stud_id', 'type_id'], 'required'],
             [['date'], 'safe'],
-            [['stud_id', 'type_id'], 'integer'],
-            [['title', 'status', 'result', 'document'], 'string', 'max' => 255],
+            [['stud_id', 'status_id', 'type_id'], 'integer'],
+            [['title', 'result', 'document', 'comment'], 'string', 'max' => 255],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventStatus::className(), 'targetAttribute' => ['status_id' => 'id']],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['stud_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => ActivityType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
@@ -52,13 +55,23 @@ class Achievements extends \yii\db\ActiveRecord
         return [
             'id' => '№ Достижения',
             'title' => 'Наименование',
-            'status' => 'Статус',
             'date' => 'Дата',
             'result' => 'Результат',
             'document' => 'Документ',
             'stud_id' => '№ Студента',
             'type_id' => '№ Деятельности',
+            'comment' => 'Комментарий',
         ];
+    }
+
+    /**
+     * Gets query for [[Status]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatus()
+    {
+        return $this->hasOne(EventStatus::className(), ['id' => 'status_id']);
     }
 
     /**

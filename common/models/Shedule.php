@@ -12,7 +12,7 @@ use Yii;
  * @property int $user_approve
  * @property int $group_id
  * @property string $document
- * @property string|null $comments
+ * @property string|null $comment
  *
  * @property Group $group
  * @property User $userAdd
@@ -36,7 +36,7 @@ class Shedule extends \yii\db\ActiveRecord
         return [
             [['user_add', 'user_approve', 'group_id', 'document'], 'required'],
             [['user_add', 'user_approve', 'group_id'], 'integer'],
-            [['document', 'comments'], 'string', 'max' => 255],
+            [['document', 'comment'], 'string', 'max' => 255],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],
             [['user_add'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_add' => 'id']],
             [['user_approve'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_approve' => 'id']],
@@ -54,7 +54,7 @@ class Shedule extends \yii\db\ActiveRecord
             'user_approve' => '№ Пользователя2',
             'group_id' => '№ Группы',
             'document' => 'Документ',
-            'comments' => 'Комментарий',
+            'comment' => 'Комментарий',
         ];
     }
 

@@ -16,6 +16,7 @@ use Yii;
  * @property int|null $indexing_id
  * @property int $stud_id
  * @property int|null $user_id
+ * @property string|null $comment
  *
  * @property PublIndexing $indexing
  * @property Students $stud
@@ -40,7 +41,7 @@ class Publications extends \yii\db\ActiveRecord
             [['title', 'document', 'date', 'stud_id'], 'required'],
             [['date'], 'safe'],
             [['indexing_id', 'stud_id', 'user_id'], 'integer'],
-            [['title', 'authors', 'document', 'description'], 'string', 'max' => 255],
+            [['title', 'authors', 'document', 'description', 'comment'], 'string', 'max' => 255],
             [['indexing_id'], 'exist', 'skipOnError' => true, 'targetClass' => PublIndexing::className(), 'targetAttribute' => ['indexing_id' => 'id']],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['stud_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -62,6 +63,7 @@ class Publications extends \yii\db\ActiveRecord
             'indexing_id' => '№ Индекс',
             'stud_id' => '№ Студента',
             'user_id' => '№ Соавтора',
+            'comment' => 'Комментарий',
         ];
     }
 

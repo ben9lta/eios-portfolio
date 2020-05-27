@@ -8,9 +8,9 @@ use Yii;
  * This is the model class for table "doc_types".
  *
  * @property int $id
- * @property string|null $title
+ * @property string $title
  * @property int $doc_maintypes_id
- * @property string|null $comments
+ * @property string|null $comment
  *
  * @property DocMaintypes $docMaintypes
  * @property Documents[] $documents
@@ -31,9 +31,9 @@ class DocTypes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['doc_maintypes_id'], 'required'],
+            [['title', 'doc_maintypes_id'], 'required'],
             [['doc_maintypes_id'], 'integer'],
-            [['title', 'comments'], 'string', 'max' => 255],
+            [['title', 'comment'], 'string', 'max' => 255],
             [['doc_maintypes_id'], 'exist', 'skipOnError' => true, 'targetClass' => DocMaintypes::className(), 'targetAttribute' => ['doc_maintypes_id' => 'id']],
         ];
     }
@@ -47,7 +47,7 @@ class DocTypes extends \yii\db\ActiveRecord
             'id' => '№ Типа документа',
             'title' => 'Наименование',
             'doc_maintypes_id' => '№ Главного типа документа',
-            'comments' => 'Комментарий',
+            'comment' => 'Комментарий',
         ];
     }
 
