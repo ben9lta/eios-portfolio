@@ -18,6 +18,10 @@ class m200330_175421_insert_admin_user_table extends Migration
         $admin = $auth->createRole('Администратор');
         $auth->add($admin);
 
+        // добавляем роль "Преподаватель"
+        $professor = $auth->createRole("Преподаватель");
+        $auth->add($professor);
+
         // добавляем роль "Студент"
         $student = $auth->createRole("Студент");
         $auth->add($student);
