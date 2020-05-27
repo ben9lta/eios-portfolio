@@ -17,8 +17,8 @@ class CourseworksSearch extends Courseworks
     public function rules()
     {
         return [
-            [['id', 'stud_id'], 'integer'],
-            [['subject', 'title', 'document', 'evaluation'], 'safe'],
+            [['id', 'evaluation', 'stud_id'], 'integer'],
+            [['subject', 'title', 'document', 'comment'], 'safe'],
         ];
     }
 
@@ -59,13 +59,14 @@ class CourseworksSearch extends Courseworks
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'evaluation' => $this->evaluation,
             'stud_id' => $this->stud_id,
         ]);
 
         $query->andFilterWhere(['like', 'subject', $this->subject])
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'document', $this->document])
-            ->andFilterWhere(['like', 'evaluation', $this->evaluation]);
+            ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
     }

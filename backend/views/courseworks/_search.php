@@ -25,7 +25,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'evaluation') ?>
 
-    <?php // echo $form->field($model, 'stud_id') ?>
+    <?= $form->field($model, 'stud_id') ?>
+
+    <?= $form->field($model, 'comment') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
