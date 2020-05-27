@@ -20,8 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Удалить?',
-                'method' => 'post',
+                'id',
+                'title',
+                'comment',
             ],
         ]) ?>
     </p>
