@@ -18,7 +18,7 @@ class VkrSearch extends Vkr
     {
         return [
             [['id', 'stud_id', 'user_id'], 'integer'],
-            [['title', 'document', 'evaluation'], 'safe'],
+            [['title', 'document', 'evaluation', 'comment'], 'safe'],
         ];
     }
 
@@ -65,7 +65,8 @@ class VkrSearch extends Vkr
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'document', $this->document])
-            ->andFilterWhere(['like', 'evaluation', $this->evaluation]);
+            ->andFilterWhere(['like', 'evaluation', $this->evaluation])
+            ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
     }

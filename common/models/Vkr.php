@@ -11,6 +11,7 @@ use Yii;
  * @property string|null $title
  * @property string|null $document
  * @property string|null $evaluation
+ * @property string|null $comment
  * @property int $stud_id
  * @property int $user_id
  *
@@ -53,6 +54,7 @@ class Vkr extends \yii\db\ActiveRecord
             'evaluation' => 'Оценка',
             'stud_id' => '№ Студента',
             'user_id' => '№ Научного руководителя',
+            'comment' => 'Комментарий'
         ];
     }
 
