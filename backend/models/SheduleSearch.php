@@ -18,7 +18,7 @@ class SheduleSearch extends Shedule
     {
         return [
             [['id', 'user_add', 'user_approve', 'group_id'], 'integer'],
-            [['document', 'comments'], 'safe'],
+            [['document', 'comment'], 'safe'],
         ];
     }
 
@@ -65,7 +65,7 @@ class SheduleSearch extends Shedule
         ]);
 
         $query->andFilterWhere(['like', 'document', $this->document])
-            ->andFilterWhere(['like', 'comments', $this->comments]);
+            ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
     }
