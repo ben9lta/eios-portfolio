@@ -26,11 +26,11 @@ class m200326_202422_create_publications_table extends Migration
         $this->createTable('{{%publications}}', [
             'id'          => $this->primaryKey(),
             'title'       => $this->string()->notNull(),
-            'authors'     => $this->string()->notNull(),
+            'authors'     => $this->string()->defaultValue(null),
             'document'    => $this->string()->notNull(),
             'date'        => $this->dateTime()->notNull(),
             'description' => $this->string()->defaultValue(null),
-            'indexing_id' => $this->integer()->notNull(),
+            'indexing_id' => $this->integer()->defaultValue(null),
             'stud_id'     => $this->integer()->notNull(),
             'user_id'     => $this->integer()->defaultValue(null),
         ], $tableOptions);
