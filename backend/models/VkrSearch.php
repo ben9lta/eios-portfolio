@@ -17,8 +17,8 @@ class VkrSearch extends Vkr
     public function rules()
     {
         return [
-            [['id', 'stud_id', 'user_id'], 'integer'],
-            [['title', 'document', 'evaluation', 'comment'], 'safe'],
+            [['id', 'evaluation', 'stud_id', 'user_id'], 'integer'],
+            [['title', 'document', 'comment'], 'safe'],
         ];
     }
 
@@ -59,13 +59,13 @@ class VkrSearch extends Vkr
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'evaluation' => $this->evaluation,
             'stud_id' => $this->stud_id,
             'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'document', $this->document])
-            ->andFilterWhere(['like', 'evaluation', $this->evaluation])
             ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;

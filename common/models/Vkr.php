@@ -8,12 +8,12 @@ use Yii;
  * This is the model class for table "vkr".
  *
  * @property int $id
- * @property string|null $title
+ * @property string $title
  * @property string|null $document
- * @property string|null $evaluation
- * @property string|null $comment
+ * @property int|null $evaluation
  * @property int $stud_id
- * @property int $user_id
+ * @property int|null $user_id
+ * @property string|null $comment
  *
  * @property Students $stud
  * @property User $user
@@ -34,8 +34,8 @@ class Vkr extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['stud_id', 'title'], 'required'],
-            [['stud_id', 'user_id', 'evaluation'], 'integer'],
+            [['title', 'stud_id'], 'required'],
+            [['evaluation', 'stud_id', 'user_id'], 'integer'],
             [['title', 'document', 'comment'], 'string', 'max' => 255],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['stud_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],

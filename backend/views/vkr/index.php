@@ -30,7 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'document',
             'evaluation',
             'stud_id',
-            //'user_id',
+            'user_id',
+            'comment',
 
             [
                 'class' => 'common\modules\GridView\ActionColumn',

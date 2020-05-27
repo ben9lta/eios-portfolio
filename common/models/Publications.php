@@ -13,7 +13,7 @@ use Yii;
  * @property string $document
  * @property string $date
  * @property string|null $description
- * @property int $indexing_id
+ * @property int|null $indexing_id
  * @property int $stud_id
  * @property int|null $user_id
  *
