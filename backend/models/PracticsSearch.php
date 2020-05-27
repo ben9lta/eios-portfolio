@@ -17,8 +17,8 @@ class PracticsSearch extends Practics
     public function rules()
     {
         return [
-            [['id', 'stud_id'], 'integer'],
-            [['title', 'place', 'date_start', 'date_end', 'document', 'diary', 'characteristic', 'evaluation'], 'safe'],
+            [['id', 'evaluation', 'stud_id'], 'integer'],
+            [['title', 'place', 'date_start', 'date_end', 'document', 'diary', 'characteristic', 'comment'], 'safe'],
         ];
     }
 
@@ -61,6 +61,7 @@ class PracticsSearch extends Practics
             'id' => $this->id,
             'date_start' => $this->date_start,
             'date_end' => $this->date_end,
+            'evaluation' => $this->evaluation,
             'stud_id' => $this->stud_id,
         ]);
 
@@ -69,7 +70,7 @@ class PracticsSearch extends Practics
             ->andFilterWhere(['like', 'document', $this->document])
             ->andFilterWhere(['like', 'diary', $this->diary])
             ->andFilterWhere(['like', 'characteristic', $this->characteristic])
-            ->andFilterWhere(['like', 'evaluation', $this->evaluation]);
+            ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
     }
