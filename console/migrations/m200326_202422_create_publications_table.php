@@ -29,10 +29,10 @@ class m200326_202422_create_publications_table extends Migration
             'authors'     => $this->string()->notNull(),
             'document'    => $this->string()->notNull(),
             'date'        => $this->dateTime()->notNull(),
-            'description' => $this->string(),
+            'description' => $this->string()->defaultValue(null),
             'indexing_id' => $this->integer()->notNull(),
             'stud_id'     => $this->integer()->notNull(),
-            'user_id'     => $this->integer()->notNull(),
+            'user_id'     => $this->integer()->defaultValue(null),
         ], $tableOptions);
 
         // creates index for column `indexing_id`
