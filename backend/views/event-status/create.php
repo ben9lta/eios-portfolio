@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\EventStatus */
 
-$this->title = 'Create Event Status';
-$this->params['breadcrumbs'][] = ['label' => 'Event Statuses', 'url' => ['index']];
+$this->title = 'Добавить';
+$this->params['breadcrumbs'][] = ['label' => 'Статус мероприятия', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="event-status-create">
