@@ -22,14 +22,14 @@ class m200326_201505_create_achievements_table extends Migration
         }
 
         $this->createTable('{{%achievements}}', [
-            'id' => $this->primaryKey(),
-            'title' => $this->string()->notNull(),
-            'type' => $this->string(),
-            'status' => $this->string(),
-            'date' => $this->dateTime()->notNull(),
-            'result' => $this->string(),
-            'document' => $this->string(),
-            'stud_id' => $this->integer()->notNull(),
+            'id'        => $this->primaryKey(),
+            'title'     => $this->string()->notNull(),
+            'date'      => $this->dateTime()->notNull(),
+            'result'    => $this->string()->defaultValue(null),
+            'document'  => $this->string()->defaultValue(null),
+            'stud_id'   => $this->integer()->notNull(),
+            'status_id' => $this->integer()->defaultValue(null),
+            'comment'   => $this->string()->defaultValue(null)
         ], $tableOptions);
 
         // creates index for column `stud_id`
@@ -45,6 +45,24 @@ class m200326_201505_create_achievements_table extends Migration
             '{{%achievements}}',
             'stud_id',
             '{{%students}}',
+            'id',
+            'CASCADE',
+            'CASCADE'
+        );
+
+        // creates index for column `status_id`
+        $this->createIndex(
+            '{{%idx-achievements-status_id}}',
+            '{{%achievements}}',
+            'status_id'
+        );
+
+        // add foreign key for table `{{%event_status}}`
+        $this->addForeignKey(
+            '{{%fk-achievements-status_id}}',
+            '{{%achievements}}',
+            'status_id',
+            '{{%event_status}}',
             'id',
             'CASCADE',
             'CASCADE'
@@ -65,6 +83,16 @@ class m200326_201505_create_achievements_table extends Migration
         // drops index for column `stud_id`
         $this->dropIndex(
             '{{%idx-achievements-stud_id}}',
+            '{{%achievements}}'
+        );
+
+        $this->dropForeignKey(
+            '{{%fk-achievements-status_id}}',
+            '{{%achievements}}'
+        );
+
+        $this->dropIndex(
+            '{{%idx-achievements-status_id}}',
             '{{%achievements}}'
         );
 

@@ -18,10 +18,10 @@ class m200526_174026_create_doc_types_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
         $this->createTable('{{%doc_types}}', [
-            'id' => $this->primaryKey(),
-            'title' => $this->string(),
+            'id'               => $this->primaryKey(),
+            'title'            => $this->string()->notNull(),
             'doc_maintypes_id' => $this->integer()->notNull(),
-            'comments' => $this->string()->defaultValue(null)
+            'comment'          => $this->string()->defaultValue(null)
         ],$tableOptions);
 
         $this->createIndex(

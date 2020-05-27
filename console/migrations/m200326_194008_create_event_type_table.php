@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%conf_status}}`.
+ * Handles the creation of table `{{%conf_type}}`.
  */
-class m200326_193858_create_conf_status_table extends Migration
+class m200326_194008_create_event_type_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class m200326_193858_create_conf_status_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%conf_status}}', [
+        $this->createTable('{{%event_type}}', [
             'id'    => $this->primaryKey(),
             'title' => $this->string()->notNull(),
         ], $tableOptions);
@@ -29,6 +29,6 @@ class m200326_193858_create_conf_status_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%conf_status}}');
+        $this->dropTable('{{%event_type}}');
     }
 }

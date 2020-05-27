@@ -23,7 +23,7 @@ class m200525_174505_create_shedule_table extends Migration
           	'user_approve' => $this->integer()->notNull(),
           	'group_id'     => $this->integer()->notNull(),
           	'document'     => $this->string()->notNull(),
-          	'comments'     => $this->string()->defaultValue(null)
+          	'comment'     => $this->string()->defaultValue(null)
         ], $tableOptions);
 
         $this->createIndex(

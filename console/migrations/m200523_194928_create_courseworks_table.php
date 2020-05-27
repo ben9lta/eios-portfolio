@@ -22,12 +22,13 @@ class m200523_194928_create_courseworks_table extends Migration
         }
 
         $this->createTable('{{%courseworks}}', [
-            'id' => $this->primaryKey(),
-            'subject' => $this->string()->notNull(),
-            'title' => $this->string()->notNull(),
-            'document' => $this->string(),
-            'evaluation' => $this->string(),
-            'stud_id' => $this->integer()->notNull(),
+            'id'         => $this->primaryKey(),
+            'subject'    => $this->string()->notNull(),
+            'title'      => $this->string()->notNull(),
+            'document'   => $this->string()->defaultValue(null),
+            'evaluation' => $this->tinyInteger()->defaultValue(null),
+            'stud_id'    => $this->integer()->notNull(),
+            'comment'    => $this->string()->defaultValue(null)
         ], $tableOptions);
 
         // creates index for column `stud_id`

@@ -18,9 +18,9 @@ class m200526_172325_create_doc_maintypes_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
         $this->createTable('{{%doc_maintypes}}', [
-            'id' => $this->primaryKey(),
-            'title' => $this->string()->notNull(),
-            'comments' => $this->string()->defaultValue(null),
+            'id'      => $this->primaryKey(),
+            'title'   => $this->string()->notNull(),
+            'comment' => $this->string()->defaultValue(null),
         ],$tableOptions);
     }
 
