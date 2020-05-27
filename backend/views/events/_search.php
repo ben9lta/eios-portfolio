@@ -25,23 +25,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'location') ?>
 
-    <?php // echo $form->field($model, 'document') ?>
+    <?= $form->field($model, 'document') ?>
 
-    <?php // echo $form->field($model, 'evaluation') ?>
+    <?= $form->field($model, 'evaluation') ?>
 
-    <?php // echo $form->field($model, 'student_id') ?>
+    <?= $form->field($model, 'student_id') ?>
 
-    <?php // echo $form->field($model, 'user_id') ?>
+    <?= $form->field($model, 'user_id') ?>
 
-    <?php // echo $form->field($model, 'status_id') ?>
+    <?= $form->field($model, 'status_id') ?>
 
-    <?php // echo $form->field($model, 'type_id') ?>
+    <?= $form->field($model, 'type_id') ?>
 
-    <?php // echo $form->field($model, 'comment') ?>
+    <?= $form->field($model, 'comment') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Очистить', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

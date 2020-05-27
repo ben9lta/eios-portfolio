@@ -25,15 +25,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'date_end') ?>
 
-    <?php // echo $form->field($model, 'document') ?>
+    <?= $form->field($model, 'document') ?>
 
-    <?php // echo $form->field($model, 'diary') ?>
+    <?= $form->field($model, 'diary') ?>
 
-    <?php // echo $form->field($model, 'characteristic') ?>
+    <?= $form->field($model, 'characteristic') ?>
 
-    <?php // echo $form->field($model, 'evaluation') ?>
+    <?= $form->field($model, 'evaluation') ?>
 
-    <?php // echo $form->field($model, 'stud_id') ?>
+    <?= $form->field($model, 'stud_id') ?>
+
+    <?= $form->field($model, 'comment') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>

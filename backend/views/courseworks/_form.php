@@ -18,9 +18,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'document')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'evaluation')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'evaluation')->textInput() ?>
 
     <?= $form->field($model, 'stud_id')->textInput() ?>
+
+    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

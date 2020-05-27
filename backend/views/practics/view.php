@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'characteristic',
             'evaluation',
             'stud_id',
+            'comment',
         ],
     ]) ?>
 

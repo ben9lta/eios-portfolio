@@ -27,12 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'status',
             'date',
             'result',
-            //'document',
-            //'stud_id',
-            //'type_id',
+            'document',
+            'stud_id',
+            'status_id',
+            'comment',
+            'type_id',
 
             [
                 'class' => 'common\modules\GridView\ActionColumn',

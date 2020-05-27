@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_approve',
             'group_id',
             'document',
-            'comments',
+            'comment',
         ],
     ]) ?>
 

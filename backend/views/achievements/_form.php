@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'date')->textInput() ?>
 
     <?= $form->field($model, 'result')->textInput(['maxlength' => true]) ?>
@@ -24,7 +22,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stud_id')->textInput() ?>
 
+    <?= $form->field($model, 'status_id')->textInput() ?>
+
+    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'type_id')->textInput() ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'id',
             'title',
-            'comments',
+            'comment',
             [
                 'class' => 'common\modules\GridView\ActionColumn',
                 'header'=>'Действия',

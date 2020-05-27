@@ -18,7 +18,7 @@ class DocTypesSearch extends DocTypes
     {
         return [
             [['id', 'doc_maintypes_id'], 'integer'],
-            [['title', 'comments'], 'safe'],
+            [['title', 'comment'], 'safe'],
         ];
     }
 
@@ -63,7 +63,7 @@ class DocTypesSearch extends DocTypes
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'comments', $this->comments]);
+            ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
     }

@@ -1,13 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use common\modules\GridView\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EventTypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Event Types';
+$this->title = 'Тип мероприятия';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="event-type-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Event Type', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -24,12 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'title',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'common\modules\GridView\ActionColumn',
+                'header'=>'Действия',
+            ],
         ],
     ]); ?>
 
