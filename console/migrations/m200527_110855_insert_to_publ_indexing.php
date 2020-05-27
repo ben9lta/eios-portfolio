@@ -25,9 +25,8 @@ class m200527_110855_insert_to_publ_indexing extends Migration
      */
     public function safeDown()
     {
-        echo "m200527_110855_insert_to_publ_indexing cannot be reverted.\n";
-
-        return false;
+        $this->delete('publ_indexing');
+        return true;
     }
 
     /*
