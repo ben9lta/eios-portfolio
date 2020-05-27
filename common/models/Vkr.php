@@ -33,9 +33,9 @@ class Vkr extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['stud_id', 'user_id'], 'required'],
-            [['stud_id', 'user_id'], 'integer'],
-            [['title', 'document', 'evaluation'], 'string', 'max' => 255],
+            [['stud_id', 'title'], 'required'],
+            [['stud_id', 'user_id', 'evaluation'], 'integer'],
+            [['title', 'document', 'comment'], 'string', 'max' => 255],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['stud_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
