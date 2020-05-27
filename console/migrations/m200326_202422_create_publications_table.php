@@ -33,6 +33,7 @@ class m200326_202422_create_publications_table extends Migration
             'indexing_id' => $this->integer()->defaultValue(null),
             'stud_id'     => $this->integer()->notNull(),
             'user_id'     => $this->integer()->defaultValue(null),
+            'comment'     => $this->string()->defaultValue(null)
         ], $tableOptions);
 
         // creates index for column `indexing_id`

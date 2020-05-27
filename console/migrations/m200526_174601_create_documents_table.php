@@ -18,14 +18,14 @@ class m200526_174601_create_documents_table extends Migration
           $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
       }
       $this->createTable('{{%documents}}', [
-          'id' => $this->primaryKey(),
-          'user_add_id' =>$this->integer()->notNull(),
-          'user_approve_id' =>$this->integer()->defaultValue(null),
-          'doc_type_id' =>$this->integer()->notNull(),
-          'title' =>$this->string()->notNull(),
-          'document' =>$this->string()->notNull(),
-          'status' =>$this->smallInteger()->defaultValue(null),
-          'comment' =>$this->string()
+          'id'              => $this->primaryKey(),
+          'user_add_id'     => $this->integer()->notNull(),
+          'user_approve_id' => $this->integer()->defaultValue(null),
+          'doc_type_id'     => $this->integer()->notNull(),
+          'title'           => $this->string()->notNull(),
+          'document'        => $this->string()->notNull(),
+          'status'          => $this->smallInteger()->defaultValue(null),
+          'comment'         => $this->string()->defaultValue(null),
       ], $tableOptions);
 
       //creates indexes for foreign keys

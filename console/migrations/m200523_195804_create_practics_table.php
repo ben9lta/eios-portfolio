@@ -22,16 +22,17 @@ class m200523_195804_create_practics_table extends Migration
         }
 
         $this->createTable('{{%practics}}', [
-            'id' => $this->primaryKey(),
-            'title' => $this->string()->notNull(),
-            'place' => $this->string()->notNull(),
-            'date_start' => $this->datetime(),
-            'date_end' => $this->datetime(),
-            'document' => $this->string(),
-            'diary' => $this->string(),
-            'characteristic' => $this->string(),
-            'evaluation' => $this->string(),
-            'stud_id' => $this->integer()->notNull(),
+            'id'             => $this->primaryKey(),
+            'title'          => $this->string()->notNull(),
+            'place'          => $this->string()->notNull(),
+            'date_start'     => $this->datetime(),
+            'date_end'       => $this->datetime(),
+            'document'       => $this->string()->defaultValue(null),
+            'diary'          => $this->string()->defaultValue(null),
+            'characteristic' => $this->string()->defaultValue(null),
+            'evaluation'     => $this->tinyInteger()->defaultValue(null),
+            'stud_id'        => $this->integer()->notNull(),
+            'comment'        => $this->string()->defaultValue(null)
         ], $tableOptions);
 
         // creates index for column `stud_id`

@@ -23,10 +23,10 @@ class m200326_181002_create_group_table extends Migration
         }
 
         $this->createTable('{{%group}}', [
-            'id' => $this->primaryKey(),
-            'title' => $this->string()->notNull(),
-            'course' => $this->smallInteger()->notNull(),
-            'dir_id' => $this->integer()->notNull(),
+            'id'         => $this->primaryKey(),
+            'title'      => $this->string()->notNull(),
+            'course'     => $this->tinyInteger(1)->notNull(),
+            'dir_id'     => $this->integer()->notNull(),
             'curator_id' => $this->integer()->notNull(),
         ], $tableOptions);
 

@@ -23,8 +23,8 @@ class m200326_193539_create_students_table extends Migration
         }
 
         $this->createTable('{{%students}}', [
-            'id' => $this->primaryKey(),
-            'user_id' => $this->integer()->notNull(),
+            'id'       => $this->primaryKey(),
+            'user_id'  => $this->integer()->notNull(),
             'group_id' => $this->integer()->notNull(),
         ], $tableOptions);
 
