@@ -53,9 +53,9 @@ $this->title = 'Административная часть';
             <div class="col-md-4 mb-4">
                 <div class="card-counter success">
                     <i class="fa fa-comments"></i>
-                    <span class="count-numbers">Кол-во: <?= $tables['conferences']['count'] ?></span>
-                    <span class="count-name">Конференции</span>
-                    <a class="card-url" href="/conferences/index"></a>
+                    <span class="count-numbers">Кол-во: <?= $tables['events']['count'] ?></span>
+                    <span class="count-name">Мероприятия</span>
+                    <a class="card-url" href="/events/index"></a>
                 </div>
             </div>
             <div class="col-md-4 mb-4">

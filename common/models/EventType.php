@@ -39,8 +39,8 @@ class EventType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
+            'id' => '№ Типа мероприятия',
+            'title' => 'Наименование',
         ];
     }
 

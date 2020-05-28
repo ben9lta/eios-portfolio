@@ -58,18 +58,18 @@ class Events extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'date_start' => 'Date Start',
-            'date_end' => 'Date End',
-            'location' => 'Location',
-            'document' => 'Document',
-            'evaluation' => 'Evaluation',
-            'student_id' => 'Student ID',
-            'user_id' => 'User ID',
-            'status_id' => 'Status ID',
-            'type_id' => 'Type ID',
-            'comment' => 'Comment',
+            'id' => '№ Мероприятия',
+            'title' => 'Наименвоание',
+            'date_start' => 'Дата начала',
+            'date_end' => 'Дата окончания',
+            'location' => 'Место проведения',
+            'document' => 'Документ',
+            'evaluation' => 'Оценка',
+            'student_id' => '№ Студента',
+            'user_id' => '№ Научного руководителя',
+            'status_id' => '№ Статуса',
+            'type_id' => '№ Типа мероприятия',
+            'comment' => 'Комменатрий',
         ];
     }
 
