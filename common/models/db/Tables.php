@@ -37,7 +37,7 @@ class Tables
 
     public CONST LINKS = [
         'achievements'  => 'achievements',
-        'activity_type' => 'activity_type',
+        'activity_type' => 'activity-type',
         'courseworks'   => 'courseworks',
         'department'    => 'department',
         'direction'     => 'direction',
