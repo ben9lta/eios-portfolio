@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use common\models\db\Tables;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -60,15 +61,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        preg_match("/dbname=([^;]*)/", Yii::$app->db->dsn, $matches);
-        $tables = (new \yii\db\Query())
-            ->select('table_name as table, table_rows as count')
-            ->from('information_schema.tables')
-            ->where('table_schema = ' . Yii::$app->db->quoteValue($matches[1]))
-            ->andWhere('table_name <> "migration"')->all();
-
-        $tables = array_combine(array_column($tables, 'table'), array_values($tables));
-        return $this->render('index', ['tables' => $tables]);
+        $model = new Tables();
+        return $this->render('index', ['model' => $model]);
     }
 
     public function beforeAction($action)
