@@ -18,6 +18,8 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'new_pass')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
@@ -51,8 +53,10 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
     ]); ?>
     <p class="mb-3"></p>
 
-    <label class="control-label"><?= $model->getAttributeLabel('photo')?></label>
-    <?= $form->field($model, 'imageFile')->fileInput(['accept' => '.jpeg, .jpg, .png'])->label('') ?>
+    <?php if(Yii::$app->controller->action->id !== 'create') { ?>
+        <label class="control-label"><?= $model->getAttributeLabel('photo')?></label>
+        <?= $form->field($model, 'imageFile')->fileInput(['accept' => '.jpeg, .jpg, .png'])->label('') ?>
+    <?php } ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

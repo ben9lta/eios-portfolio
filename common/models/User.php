@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use frontend\models\SignupForm;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -32,16 +33,24 @@ use yii\web\UploadedFile;
  * @property string|null $last_name
  * @property string|null $middle_name
  * @property string|null $phone
- * @property int $gender
+ * @property int|null $gender
  * @property string|null $birthday
  * @property int|null $consent
  * @property string|null $photo
+ * @property string|null $new_pass
  *
+ * @property Documents[] $documents
+ * @property Documents[] $documents0
+ * @property Events[] $events
  * @property Group[] $groups
  * @property Publications[] $publications
- * @property string $password
- * @property string $authKey
+ * @property Shedule[] $shedules
+ * @property Shedule[] $shedules0
  * @property Students[] $students
+ * @property string $fullname
+ * @property string $userInitials
+ * @property string $authKey
+ * @property Vkr[] $vkrs
  */
 
 class User extends ActiveRecord implements IdentityInterface
@@ -52,6 +61,7 @@ class User extends ActiveRecord implements IdentityInterface
     const DEFAULT_USER_IMAGE = 'users/undefined-user.webp';
 
     public $imageFile;
+    public $new_pass;
     /**
      * {@inheritdoc}
      */
@@ -78,7 +88,6 @@ class User extends ActiveRecord implements IdentityInterface
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
             ],
-            TimestampBehavior::className(),
         ];
     }
 
@@ -92,12 +101,14 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'consent'], 'required'],
             [['created_at', 'updated_at', 'gender', 'consent'], 'integer'],
             [['birthday'], 'safe'],
-            [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token', 'photo'], 'string', 'max' => 255],
+            [['username', 'new_pass', 'password_hash', 'password_reset_token', 'email', 'verification_token', 'photo'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['first_name', 'last_name', 'middle_name'], 'string', 'max' => 20],
             [['phone'], 'match', 'pattern' => '/^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/i'],
             [['username'], 'unique'],
             [['email'], 'unique'],
+            [['new_pass'], 'string', 'min' => 6],
+            [['new_pass'], 'match', 'pattern' => '/^[^'.preg_quote('\\/', '/').'\s]*$/i'],
             [['password_reset_token'], 'unique'],
             [['birthday'], 'datetime', 'format' => 'php:Y-m-d'],
             [['photo', 'imageFile'], 'image',
@@ -107,9 +118,10 @@ class User extends ActiveRecord implements IdentityInterface
                 'maxSize' => 2000 * 1024, // 2 МБ = 2000 * 1024 байта = 2 048 000‬ байт
                 'tooBig' => 'Лимит 2Мб'
             ],
+            [['created_at', 'updated_at'], 'default', 'value' => time()],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
-            [['photo', 'phone', 'first_name', 'last_name', 'middle_name', 'gender'], 'default', 'value' => null]
+            [['photo', 'phone', 'first_name', 'last_name', 'middle_name', 'gender'], 'default', 'value' => null],
         ];
     }
 
@@ -119,6 +131,7 @@ class User extends ActiveRecord implements IdentityInterface
             'id' => '№',
             'username' => 'Логин',
             'auth_key' => 'Auth Key',
+            'new_pass' => 'Новый пароль',
             'password_hash' => 'Пароль',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
@@ -194,7 +207,7 @@ class User extends ActiveRecord implements IdentityInterface
             if(empty($image))
                 return false;
 
-            $destination = 'users/' . $this->id . '/uploads/photo/';
+            $destination = 'users/' . $this->getId() . '/uploads/photo/';
             $path = Storage::getStoragePath() . $destination;
             $filename = Storage::randomFileName($image);
 
@@ -207,9 +220,14 @@ class User extends ActiveRecord implements IdentityInterface
             }
 
             return true;
-        } else {
-            return false;
         }
+        return false;
+    }
+
+    public function deleteImage()
+    {
+        if($this->photo)
+            FileHelper::removeDirectory(Storage::getStoragePath() . 'users/' . $this->id);
     }
 
     /**
@@ -371,10 +389,72 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function save($runValidation = true, $attributeNames = null)
     {
+        $this->birthday = empty($this->birthday) ? null : (Yii::$app->formatter->asDate(strtotime($this->birthday), "php:Y-m-d"));
+        if(Yii::$app->id === 'app-backend') {
+            if(Yii::$app->controller->action->id === 'create')
+            {
+                if(empty($this->new_pass))
+                    return false;
+                $this->setPassword($this->new_pass);
+                $this->consent = 0;
+                $this->created_at = time();
+                $this->updated_at = $this->created_at;
+                $this->status = 10;
+                $this->generateAuthKey();
+                $this->generateEmailVerificationToken();
+            }
+            else
+            {
+                if(!empty($this->new_pass) && $this->validate('new_pass'))
+                    $this->setPassword($this->new_pass);
+                $this->updated_at = time();
+            }
+        }
+        else
+        {
+            $this->consent = 0;
+            $this->created_at = time();
+            $this->updated_at = $this->created_at;
+        }
         $photo = UploadedFile::getInstance($this, 'imageFile');
         $this->uploadImage($photo, 'imageFile');
-        $this->birthday = empty($this->birthday) ? null : (Yii::$app->formatter->asDate(strtotime($this->birthday), "php:Y-m-d"));
         return parent::save($runValidation, $attributeNames);
+    }
+
+    public function delete()
+    {
+        $this->deleteImage();
+        return parent::delete(); // TODO: Change the autogenerated stub
+    }
+
+    /**
+     * Gets query for [[Documents]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocuments()
+    {
+        return $this->hasMany(Documents::className(), ['user_add_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Documents0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocuments0()
+    {
+        return $this->hasMany(Documents::className(), ['user_approve_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Events]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEvents()
+    {
+        return $this->hasMany(Events::className(), ['user_id' => 'id']);
     }
 
     /**
@@ -398,6 +478,26 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Gets query for [[Shedules]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getShedules()
+    {
+        return $this->hasMany(Shedule::className(), ['user_add' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Shedules0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getShedules0()
+    {
+        return $this->hasMany(Shedule::className(), ['user_approve' => 'id']);
+    }
+
+    /**
      * Gets query for [[Students]].
      *
      * @return \yii\db\ActiveQuery
@@ -405,5 +505,15 @@ class User extends ActiveRecord implements IdentityInterface
     public function getStudents()
     {
         return $this->hasMany(Students::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Vkrs]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVkrs()
+    {
+        return $this->hasMany(Vkr::className(), ['user_id' => 'id']);
     }
 }
