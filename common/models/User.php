@@ -131,7 +131,7 @@ class User extends ActiveRecord implements IdentityInterface
             'id' => '№',
             'username' => 'Логин',
             'auth_key' => 'Auth Key',
-            'new_pass' => 'Новый пароль',
+            'new_pass' => 'Пароль',
             'password_hash' => 'Пароль',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
