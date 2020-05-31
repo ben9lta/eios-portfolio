@@ -31,6 +31,7 @@ class m200330_175421_insert_admin_user_table extends Migration
         $auth->add($simple);
 
         $user = new \common\models\User();
+        $user->id = 1;
         $user->username = 'admin';
         $user->setPassword(123456);
         $user->generateAuthKey();
@@ -56,7 +57,7 @@ class m200330_175421_insert_admin_user_table extends Migration
         $auth = Yii::$app->authManager;
         $auth->removeAll();
 
-        $id = \common\models\User::findOne(['username' => 'admin'])->getId();
+        $id = 1;
         $this->delete('user', ['id' => $id]);
         $this->delete('auth_assignment', ['user_id' => $id]);
         return true;
