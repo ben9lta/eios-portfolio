@@ -7,6 +7,7 @@ use yii\helpers\Html;
 
 class ActionColumn extends AC
 {
+    public $filter = "";
     public function __construct($config = [])
     {
         parent::__construct($config);
@@ -16,6 +17,11 @@ class ActionColumn extends AC
     {
         parent::init();
         $this->initDefaultButtons();
+    }
+
+    protected function renderFilterCellContent()
+    {
+        return Html::a('Очистить', ['index'],['class' => 'btn btn-outline-secondary']);
     }
 
     protected function initDefaultButtons()
