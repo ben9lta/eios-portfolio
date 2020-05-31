@@ -30,9 +30,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'user_id',
-            'group_id',
-            'budget',
+            [
+                'label' => 'ФИО',
+                'attribute' => 'user_id',
+                'value' => $model->user->fullname
+            ],
+            [
+                'label' => 'Группа',
+                'attribute' => 'group_id',
+                'value' => $model->group->title
+            ],
+            [
+                'label' => 'Форма обучения',
+                'attribute' => 'budget',
+                'value' => $model->getBudget()
+            ],
+
         ],
     ]) ?>
 
