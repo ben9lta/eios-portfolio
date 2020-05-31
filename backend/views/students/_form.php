@@ -16,8 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id')->textInput() ?>
 
-    <?=
-        $form->field($model, 'user_id')->widget(Select2::classname(), [
+    <?php
+    if(Yii::$app->controller->action->id !== "update")
+        echo $form->field($model, 'user_id')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(\common\models\User::find()->asArray()->all(), 'id', 'email'),
             'options' => ['placeholder' => 'Выберите пользователя'],
             'pluginOptions' => [
@@ -25,6 +26,8 @@ use yii\widgets\ActiveForm;
                 'minimumInputLength' => 0, //Кол-во символов для поиска и вывода информации
             ],
         ]);
+    else
+        echo $form->field($model, 'fullName')->textInput(['readonly' => true]);
     ?>
 
     <?=
