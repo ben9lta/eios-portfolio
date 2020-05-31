@@ -50,11 +50,28 @@ class Students extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => '№ Зачетки',
+            'id' => '№ Студента',
             'user_id' => '№ Пользователя',
             'group_id' => '№ Группы',
             'budget' => 'Бюджетная форма',
+            'fullName' => 'ФИО',
+            'groupName' => 'Группа'
         ];
+    }
+
+    public function getBudget()
+    {
+        return $this->budget === 1 ? 'Бюджет' : 'Коммерция';
+    }
+
+    public function getFullName()
+    {
+        return $this->user->fullname;
+    }
+
+    public function getGroupName()
+    {
+        return $this->group->title;
     }
 
     /**

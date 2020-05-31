@@ -25,15 +25,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'id',
-            'user_id',
-            'group_id',
-            'budget',
-
+            'fullName',
+            'groupName',
+            [
+                'attribute' => 'budget',
+                'label' => 'Форма обучения',
+                'filter' => ['0' => 'Коммерция', '1' => 'Бюджет'],
+                'value' => 'Budget'
+            ],
             [
                 'class' => 'common\modules\GridView\ActionColumn',
-                'header'=>'Действия',
+                'header'=> 'Действия',
+                'filter' => Html::resetButton('Очистить', ['class' => 'btn btn-outline-secondary']),
             ],
+
         ],
+
     ]); ?>
 
 

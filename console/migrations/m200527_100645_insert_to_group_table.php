@@ -27,7 +27,7 @@ class m200527_100645_insert_to_group_table extends Migration
      */
     public function safeDown()
     {
-        $this->delete('group');
+        $this->delete('group', ['id' => 1]);
         return true;
     }
 

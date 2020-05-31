@@ -22,7 +22,9 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?php if(Yii::$app->controller->action->id !== 'create')
+        echo $form->field($model, 'status')->textInput()
+    ?>
 
     <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
