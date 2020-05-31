@@ -15,6 +15,7 @@ class m200417_195917_insert_users_user_table_ extends Migration
     public function safeUp()
     {
         $user = new \common\models\User();
+        $user->id = 2;
         $user->username = 'user1';
         $user->setPassword(123456);
         $user->generateAuthKey();
@@ -36,6 +37,7 @@ class m200417_195917_insert_users_user_table_ extends Migration
         }
 
         $user = new \common\models\User();
+        $user->id = 3;
         $user->username = 'user2';
         $user->setPassword(123456);
         $user->generateAuthKey();
@@ -58,11 +60,11 @@ class m200417_195917_insert_users_user_table_ extends Migration
      */
     public function safeDown()
     {
-        $id = \common\models\User::findOne(['username' => 'user1'])->getId();
+        $id = 2;
         $this->delete('user', ['id' => $id]);
         $this->delete('auth_assignment', ['user_id' => $id]);
 
-        $id = \common\models\User::findOne(['username' => 'user2'])->getId();
+        $id = 3;
         $this->delete('user', ['id' => $id]);
         $this->delete('auth_assignment', ['user_id' => $id]);
         return true;
