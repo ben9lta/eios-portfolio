@@ -12,13 +12,9 @@ class m200527_100645_insert_to_group_table extends Migration
      */
     public function safeUp()
     {
-        $this->insert('group', [
-            'id'         => 1,
-            'title'      => 'Я/ПИ-м-о-181',
-            'course'     => 2,
-            'dir_id'     => 2,
-            'curator_id' => 2,
-            'form_id'    => 1
+        $this->batchInsert('group', ['id', 'title', 'course', 'dir_id', 'curator_id', 'form_id'], [
+            [1, 'Я/ПИ-м-о-181', 2, 2, 2, 1],
+            [2, 'Я/ПИ-м-о-191', 2, 2, 2, 1]
         ]);
     }
 
@@ -28,6 +24,7 @@ class m200527_100645_insert_to_group_table extends Migration
     public function safeDown()
     {
         $this->delete('group', ['id' => 1]);
+        $this->delete('group', ['id' => 2]);
         return true;
     }
 
