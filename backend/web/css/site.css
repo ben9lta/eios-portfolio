@@ -103,6 +103,13 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+.users-form img {
+    object-fit: cover;
+    object-position: top;
+    width: 200px;
+    height: 200px;
+}
+
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
     padding: 15px;
