@@ -19,7 +19,12 @@ class Storage
         $url = Url::base(true); //domain url
         $position = strpos($url, '//') + 2;
 
-        $storageUrl = substr($url, 0, $position) . 'storage.' . substr($url, $position);
+        if(basename(Yii::getAlias('@app')) === 'backend') {
+            $domain = array_shift(explode('.', $_SERVER['HTTP_HOST']));
+            $storageUrl = substr($url, 0, $position) . 'storage.' . substr($url, $position + strlen($domain) + 1);
+        }
+        else
+            $storageUrl = substr($url, 0, $position) . 'storage.' . $_SERVER['HTTP_HOST'];
 
         return $storageUrl . '/'. $file;
     }
