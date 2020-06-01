@@ -1,5 +1,6 @@
 <?php
 
+use common\models\storage\Storage;
 use kartik\date\DatePicker;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -14,7 +15,20 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
 
 <div class="users-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php
+    $form = ActiveForm::begin();
+    if(!empty($model->photo)) {
+        echo Html::img(Storage::getFileUrl($model->photo), ['alt' => $model->getUserInitials()]);
+        echo '<br>';
+        echo Html::a('Удалить фотографию', ['delete-image', 'id' => $model->id], [
+            'class' => 'btn btn-danger my-2',
+            'data' => [
+                'confirm' => 'Вы действительно хотите удалить фотографию?',
+                'method' => 'post',
+            ],
+        ]);
+    }
+    ?>
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
