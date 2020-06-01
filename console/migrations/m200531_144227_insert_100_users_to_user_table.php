@@ -20,7 +20,7 @@ class m200531_144227_insert_100_users_to_user_table extends Migration
             $user->id = 5000 + $i;
             $user->setPassword(123456);
             $user->generateAuthKey();
-            $user->email = $user->username . '@mail.ru';
+            $user->email = $faker->email;
             $user->status = 10;
             $user->created_at = time();
             $user->updated_at = $user->created_at;
@@ -28,12 +28,13 @@ class m200531_144227_insert_100_users_to_user_table extends Migration
             $user->last_name = $faker->lastName;
             $user->consent = 1;
             $user->generateEmailVerificationToken();
-            if($user->save()) {
-                $auth = Yii::$app->authManager;
-                $role = $auth->getRole('Пользователь');
-                $auth->assign($role, $user->getId());
-                $user->save();
-            }
+            $user->save();
+//            if($user->save()) {
+//                $auth = Yii::$app->authManager;
+//                $role = $auth->getRole('Пользователь');
+//                $auth->assign($role, $user->getId());
+//                $user->save();
+//            }
         }
     }
 
@@ -45,7 +46,7 @@ class m200531_144227_insert_100_users_to_user_table extends Migration
         for($i = 0; $i < 100; $i++) {
             $id = $i + 5000;
             $this->delete('user', ['id' => $id]);
-            $this->delete('auth_assignment', ['user_id' => $id]);
+            //$this->delete('auth_assignment', ['user_id' => $id]);
         }
         return true;
     }
