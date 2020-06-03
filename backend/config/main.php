@@ -59,6 +59,11 @@ return [
             ],
         ],
     ],
+    'container' => [
+        'definitions' => [
+            'yii\widgets\LinkPager' => \yii\bootstrap4\LinkPager::class,
+        ]
+    ],
 //    'as access' => [
 //        'class' => 'mdm\admin\components\AccessControl',
 //        'allowActions' => [
