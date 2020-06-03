@@ -24,4 +24,9 @@ return [
 //            'class' => 'yii\swiftmailer\Mailer',
 //        ],
     ],
+    'container' => [
+        'definitions' => [
+            'yii\widgets\LinkPager' => \yii\bootstrap4\LinkPager::class,
+        ]
+    ],
 ];
