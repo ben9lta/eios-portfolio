@@ -12,7 +12,7 @@ class m200531_144227_insert_100_users_to_user_table extends Migration
      */
     public function safeUp()
     {
-        $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create('Ru_RU');
         for($i = 0; $i < 100; $i++)
         {
             $user = new \common\models\User();
