@@ -8,6 +8,8 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Students */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $students array */
+/* @var $group array */
 ?>
 
 <div class="students-form">
@@ -19,20 +21,20 @@ use yii\widgets\ActiveForm;
     <?php
     if(Yii::$app->controller->action->id !== "update")
         echo $form->field($model, 'user_id')->widget(Select2::classname(), [
-            'data' => ArrayHelper::map(\common\models\User::find()->asArray()->all(), 'id', 'email'),
+            'data' => ArrayHelper::map($students, 'id', 'email'),
             'options' => ['placeholder' => 'Выберите пользователя'],
             'pluginOptions' => [
                 'allowClear' => true,
                 'minimumInputLength' => 0, //Кол-во символов для поиска и вывода информации
             ],
-        ]);
+        ])->label('Email Пользователя');
     else
         echo $form->field($model, 'fullName')->textInput(['readonly' => true]);
     ?>
 
     <?=
-    $form->field($model, 'group_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(\common\models\Group::find()->asArray()->all(), 'id', 'title'),
+    $form->field($model, 'groupName')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map($group, 'id', 'title'),
         'options' => ['placeholder' => 'Выберите группу'],
         'pluginOptions' => [
             'allowClear' => true,
