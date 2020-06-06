@@ -40,7 +40,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ''=>'site/index',
+//                ''=>'site/index',
+                ''=>'students',
+                'students'=>'students/index',
                 'profile'=>'user/index',
                 '<action>'=>'site/<action>',
             ],
@@ -51,6 +53,7 @@ return [
         'allowActions' => [
             'site/*',
             'user/*',
+            'students/*',
         ]
     ],
     'params' => $params,
