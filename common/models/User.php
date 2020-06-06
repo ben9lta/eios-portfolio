@@ -60,6 +60,24 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
     const DEFAULT_USER_IMAGE = 'users/undefined-user.webp';
 
+    const ROLE_USER = 1;
+    const ROLE_STUDENT = 2;
+    const ROLE_TUTOR = 3;
+    const ROLE_CURATOR = 4;
+    const ROLE_HEAD_DEPARTMENT = 5;
+    const ROLE_MODERATOR = 6;
+    const ROLE_ADMIN = 7;
+
+    public static $rolesList = [
+        self::ROLE_USER             => 'Пользователь',
+        self::ROLE_STUDENT          => 'Студент',
+        self::ROLE_TUTOR            => 'Преподаватель',
+        self::ROLE_CURATOR          => 'Куратор',
+        self::ROLE_HEAD_DEPARTMENT  => 'Зав_каф',
+        self::ROLE_MODERATOR        => 'Модератор',
+        self::ROLE_ADMIN            => 'Администратор',
+    ];
+
     public $imageFile;
     public $new_pass;
     /**

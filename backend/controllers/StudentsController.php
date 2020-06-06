@@ -76,12 +76,23 @@ class StudentsController extends Controller
     {
         $model = new Students();
 
+        $students = \common\models\User::find()
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('students.user_id is null')
+            ->andWhere('auth_assignment.user_id is null')
+            ->asArray()->all();
+
+        $group = \common\models\Group::find()->asArray()->all();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'students' => $students,
+            'group' => $group
         ]);
     }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36d8ec7ee914fa270c64397c13109d82",
+    "content-hash": "25b7428ebd353ec6d8910c25b1f1cfa6",
     "packages": [
         {
             "name": "2amigos/yii2-arrayquery-component",
@@ -69,7 +69,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "url": "https://github.com/RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -90,7 +90,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {
@@ -388,6 +388,53 @@
             "time": "2019-10-28T03:44:26+00:00"
         },
         {
+            "name": "kartik-v/dependent-dropdown",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/dependent-dropdown.git",
+                "reference": "c9e0b2b5b58ad717842396053804f8d0281df1ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/c9e0b2b5b58ad717842396053804f8d0281df1ae",
+                "reference": "c9e0b2b5b58ad717842396053804f8d0281df1ae",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\depdrop\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A multi level dependent dropdown JQuery plugin that allows nested dependencies.",
+            "homepage": "https://github.com/kartik-v/dependent-dropdown",
+            "keywords": [
+                "dependent",
+                "dropdown",
+                "jquery",
+                "option",
+                "select"
+            ],
+            "time": "2019-09-03T03:12:44+00:00"
+        },
+        {
             "name": "kartik-v/yii2-krajee-base",
             "version": "dev-master",
             "source": {
@@ -492,6 +539,60 @@
                 "yii2"
             ],
             "time": "2020-03-20T14:21:31+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-depdrop",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-depdrop.git",
+                "reference": "4dffe1fd0c9d9d5b7e6231f6cd059dfa36d22b3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/4dffe1fd0c9d9d5b7e6231f6cd059dfa36d22b3b",
+                "reference": "4dffe1fd0c9d9d5b7e6231f6cd059dfa36d22b3b",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/dependent-dropdown": "~1.4",
+                "kartik-v/yii2-krajee-base": ">=2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\depdrop\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Widget that enables setting up dependent dropdowns with nested dependencies (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-depdrop",
+            "keywords": [
+                "dependent",
+                "dropdown",
+                "extension",
+                "form",
+                "jquery",
+                "plugin",
+                "widget",
+                "yii2"
+            ],
+            "time": "2019-05-25T07:32:15+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-select2",
@@ -661,12 +762,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "4633950338d22b4406e5c77f6e25c658435d5db4"
+                "reference": "09176b9ab06b168fb181b7e09429d6aaf70cf290"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/4633950338d22b4406e5c77f6e25c658435d5db4",
-                "reference": "4633950338d22b4406e5c77f6e25c658435d5db4",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/09176b9ab06b168fb181b7e09429d6aaf70cf290",
+                "reference": "09176b9ab06b168fb181b7e09429d6aaf70cf290",
                 "shasum": ""
             },
             "require": {
@@ -714,7 +815,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2020-03-03T08:49:48+00:00"
+            "time": "2020-06-02T20:39:32+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",
@@ -722,12 +823,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-iconv.git",
-                "reference": "c4de7601eefbf25f9d47190abe07f79fe0a27424"
+                "reference": "2ddc64431e96297f3868d4f7958dcdcea29ce9fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/c4de7601eefbf25f9d47190abe07f79fe0a27424",
-                "reference": "c4de7601eefbf25f9d47190abe07f79fe0a27424",
+                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/2ddc64431e96297f3868d4f7958dcdcea29ce9fc",
+                "reference": "2ddc64431e96297f3868d4f7958dcdcea29ce9fc",
                 "shasum": ""
             },
             "require": {
@@ -773,7 +874,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-12T16:47:27+00:00"
+            "time": "2020-06-04T17:06:46+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
@@ -843,12 +944,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c"
+                "reference": "3ed80deaf77c304010e3f637bc1842c85fd6c485"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fa79b11539418b02fc5e1897267673ba2c19419c",
-                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/3ed80deaf77c304010e3f637bc1842c85fd6c485",
+                "reference": "3ed80deaf77c304010e3f637bc1842c85fd6c485",
                 "shasum": ""
             },
             "require": {
@@ -894,7 +995,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-12T16:47:27+00:00"
+            "time": "2020-06-04T17:06:46+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -1012,12 +1113,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "5dc258cfc508d3647e4ee59885669977d2cc98de"
+                "reference": "9ab04d7f383344cb54421655063f8521ac854f04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5dc258cfc508d3647e4ee59885669977d2cc98de",
-                "reference": "5dc258cfc508d3647e4ee59885669977d2cc98de",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/9ab04d7f383344cb54421655063f8521ac854f04",
+                "reference": "9ab04d7f383344cb54421655063f8521ac854f04",
                 "shasum": ""
             },
             "require": {
@@ -1104,7 +1205,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2020-05-31T13:15:54+00:00"
+            "time": "2020-06-04T21:18:36+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap4",
@@ -2752,12 +2853,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1a8bd75c86088b338a7d9fdd6ea41d3eb8ac0776"
+                "reference": "2888671050a3a596b0a765b24f87cb2436e664ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1a8bd75c86088b338a7d9fdd6ea41d3eb8ac0776",
-                "reference": "1a8bd75c86088b338a7d9fdd6ea41d3eb8ac0776",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2888671050a3a596b0a765b24f87cb2436e664ea",
+                "reference": "2888671050a3a596b0a765b24f87cb2436e664ea",
                 "shasum": ""
             },
             "require": {
@@ -2827,7 +2928,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-05-28T08:02:33+00:00"
+            "time": "2020-06-05T06:51:25+00:00"
         },
         {
             "name": "psr/container",
@@ -4228,12 +4329,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-                "reference": "1357b1d168eb7f68ad6a134838e46b0b159444a9"
+                "reference": "8dd19dd0cb244eb14f620eedb529a923342276f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/1357b1d168eb7f68ad6a134838e46b0b159444a9",
-                "reference": "1357b1d168eb7f68ad6a134838e46b0b159444a9",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/8dd19dd0cb244eb14f620eedb529a923342276f9",
+                "reference": "8dd19dd0cb244eb14f620eedb529a923342276f9",
                 "shasum": ""
             },
             "require": {
@@ -4283,7 +4384,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-12T16:14:59+00:00"
+            "time": "2020-06-04T17:06:46+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -4469,12 +4570,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "5a3def001d333ffba82085f63efb575f09a9c724"
+                "reference": "14004ebbfa47ae53c5d06095385c12b80432a29e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/5a3def001d333ffba82085f63efb575f09a9c724",
-                "reference": "5a3def001d333ffba82085f63efb575f09a9c724",
+                "url": "https://api.github.com/repos/symfony/string/zipball/14004ebbfa47ae53c5d06095385c12b80432a29e",
+                "reference": "14004ebbfa47ae53c5d06095385c12b80432a29e",
                 "shasum": ""
             },
             "require": {
@@ -4532,7 +4633,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2020-05-20T17:44:07+00:00"
+            "time": "2020-05-28T07:59:23+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -4850,7 +4951,8 @@
     "stability-flags": {
         "yiisoft/yii2-bootstrap4": 20,
         "kartik-v/yii2-widget-datepicker": 20,
-        "kartik-v/yii2-widget-select2": 20
+        "kartik-v/yii2-widget-select2": 20,
+        "kartik-v/yii2-widget-depdrop": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
