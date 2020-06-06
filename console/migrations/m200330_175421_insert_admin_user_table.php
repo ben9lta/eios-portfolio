@@ -14,9 +14,22 @@ class m200330_175421_insert_admin_user_table extends Migration
     public function safeUp()
     {
         $auth = Yii::$app->authManager;
+        $auth->removeAll();
         // добавляем роль "Администратор"
         $admin = $auth->createRole('Администратор');
         $auth->add($admin);
+
+        // добавляем роль "Модератор"
+        $moderator = $auth->createRole('Модератор');
+        $auth->add($moderator);
+
+        // добавляем роль "Заведующий кафдрой"
+        $head = $auth->createRole('Зав_каф');
+        $auth->add($head);
+
+        // добавляем роль "Куратор"
+        $curator = $auth->createRole('Куратор');
+        $auth->add($curator);
 
         // добавляем роль "Преподаватель"
         $professor = $auth->createRole("Преподаватель");
@@ -27,8 +40,14 @@ class m200330_175421_insert_admin_user_table extends Migration
         $auth->add($student);
 
         // добавляем роль "Пользователь"
-        $simple = $auth->createRole("Пользователь");
-        $auth->add($simple);
+        $user = $auth->createRole("Пользователь");
+        $auth->add($user);
+
+        //Добавляем потомков
+        $auth->addChild($moderator, $head);
+        $auth->addChild($head, $curator);
+        $auth->addChild($curator, $student);
+        $auth->addChild($student, $user);
 
         $user = new \common\models\User();
         $user->id = 1;
