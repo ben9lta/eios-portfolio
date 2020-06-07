@@ -41,7 +41,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                     ''=>'students',
-                'student/<id:\w+>' => 'students/student',
+                'students/<action>/<id:\w+>' => 'students/<action>',
                 'profile'=>'user/index',
                 '<action>'=>'site/<action>',
             ],
