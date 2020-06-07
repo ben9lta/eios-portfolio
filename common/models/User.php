@@ -204,6 +204,11 @@ class User extends ActiveRecord implements IdentityInterface
             : $this->username;
     }
 
+    public function getUserPhoto()
+    {
+        return Storage::getFileUrl((!empty($this->photo) ? $this->photo : self::DEFAULT_USER_IMAGE));
+    }
+
     public function getUserInitials()
     {
         if($this->last_name AND $this->first_name) {
