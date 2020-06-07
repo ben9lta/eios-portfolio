@@ -2,15 +2,16 @@
 
 namespace frontend\controllers;
 
-//use backend\models\StudentsSearch;
 use common\models\Students;
 use frontend\models\students\StudentsSearch;
 use common\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
-class StudentsController extends \yii\web\Controller
+class StudentsController extends Controller
 {
 
     public function behaviors()
@@ -51,5 +52,28 @@ class StudentsController extends \yii\web\Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionStudent($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Finds the Students model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Students the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Students::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
     }
 }
