@@ -3,6 +3,9 @@ body {
     height: 100%;
 }
 
+/*.wrap {
+    background-color: #eff2f7;
+}*/
 /* Red styles */
 
 .custom-control-input:checked ~ .custom-control-label::before {
@@ -38,6 +41,20 @@ body {
 }
 
 /* end Red styles */
+
+/* user-photo */
+
+.figure img.profile-photo {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.figure .figure-caption {
+    text-align: center;
+}
+
+/* end user-photo */
 
 .wrap {
     min-height: 100%;
