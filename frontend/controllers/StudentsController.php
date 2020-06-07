@@ -2,10 +2,17 @@
 
 namespace frontend\controllers;
 
+use common\models\Achievements;
+use common\models\Courseworks;
+use common\models\Events;
+use common\models\Practics;
+use common\models\Publications;
 use common\models\Students;
+use common\models\Vkr;
 use frontend\models\students\StudentsSearch;
 use common\models\User;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -58,6 +65,64 @@ class StudentsController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionEdu($id)
+    {
+        $vkrProvider = new ActiveDataProvider([
+            'query' => Vkr::find()->joinWith(['stud'])->where(['students.id' => $id]),
+            'sort' => false,
+        ]);
+
+        $cwProvider = new ActiveDataProvider([
+            'query' => Courseworks::find()->joinWith(['stud'])->where(['students.id' => $id]),
+            'sort' => false,
+        ]);
+
+        $prProvider = new ActiveDataProvider([
+            'query' => Practics::find()->joinWith(['stud'])->where(['students.id' => $id]),
+            'sort' => false,
+        ]);
+
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+            'vkrProvider' => $vkrProvider,
+            'cwProvider' => $cwProvider,
+            'prProvider' => $prProvider,
+        ]);
+    }
+
+    public function actionScience($id)
+    {
+        $evProvider = new ActiveDataProvider([
+            'query' => Events::find()->joinWith(['student'])->where(['students.id' => $id]),
+            'sort' => false,
+        ]);
+
+        $pbProvider = new ActiveDataProvider([
+            'query' => Publications::find()->joinWith(['stud'])->where(['students.id' => $id]),
+            'sort' => false,
+        ]);
+
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+            'evProvider' => $evProvider,
+            'pbProvider' => $pbProvider,
+        ]);
+    }
+
+    public function actionAchievements($id)
+    {
+        $achProvider = new ActiveDataProvider([
+            'query' => Achievements::find()->joinWith(['stud'])->where(['students.id' => $id]),
+            'sort' => false,
+        ]);
+
+
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+            'achProvider' => $achProvider,
         ]);
     }
 

@@ -59,7 +59,7 @@ class Events extends \yii\db\ActiveRecord
     {
         return [
             'id' => '№ Мероприятия',
-            'title' => 'Наименвоание',
+            'title' => 'Наименование',
             'date_start' => 'Дата начала',
             'date_end' => 'Дата окончания',
             'location' => 'Место проведения',

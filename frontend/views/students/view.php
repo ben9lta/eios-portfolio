@@ -1,13 +1,20 @@
-    <?php
+<?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Students */
+/* @var $prProvider yii\data\ActiveDataProvider */
+/* @var $vkrProvider yii\data\ActiveDataProvider */
+/* @var $cwProvider yii\data\ActiveDataProvider */
+/* @var $evProvider yii\data\ActiveDataProvider */
+/* @var $pbProvider yii\data\ActiveDataProvider */
+/* @var $achProvider yii\data\ActiveDataProvider */
+
 
 $this->title = $model->user->fullname;
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to(['students/student', 'id' => $model->id])];
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="students-view">
@@ -31,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-lg-8 pl-0 mt-3">
 
                     <!-- <h4 class="mb-4">Личная информация</h4> -->
-                    <table class="table table-sm">
+                    <table class="table table-sm table-responsive-md">
                         <tbody>
                         <tr>
                             <td class="active">Дата рождения</td>
@@ -45,6 +52,18 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td class="active">Email</td>
                             <td><?= $model->user->email ?? 'Не указано' ?></td>
                         </tr>
+                        <tr>
+                            <td class="active">Учебная деятельность</td>
+                            <td><?= Html::a('Перейти', Url::to(['students/edu', 'id' => $model->id])) ?></td>
+                        </tr>
+                        <tr>
+                            <td class="active">Научная деятельность</td>
+                            <td><?= Html::a('Перейти', Url::to(['students/science', 'id' => $model->id])) ?></td>
+                        </tr>
+                        <tr>
+                            <td class="active">Достижения</td>
+                            <td><?= Html::a('Перейти', Url::to(['students/achievements', 'id' => $model->id])) ?></td>
+                        </tr>
 
                         </tbody>
                     </table>
@@ -53,35 +72,35 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <hr/>
-    <!-- Блок "Образование" -->
-    <div class="row mr-0">
-        <div class="profile-education ml-3 w-100">
-            <div class="study-head">
-                <h4 class="mb-4 alert alert-warning">Образование</h4>
-            </div>
-            <div class="study-info">
-                <table class="table-table table-responsive">
-                    <thead>
-                    <tr class="table-active">
-                        <th class="p-2 pl-4 bg-info vw-100">Текущее</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class="bg-light p-4">
-                                <p><b>Образовательное учреждение:</b> <?= $model->group->dir->dep->inst->univer->title ?></p>
-                                <p class="institute"><b>Институт:</b> <?= $model->group->dir->dep->inst->title ?></p>
-                                <p class="specialization"><b>Специальность:</b> <?= $model->group->dir->dep->title ?></p>
-                                <p><b>Направление подготовки:</b> <?= $model->group->dir->code ?> <?= $model->group->dir->title ?></p>
-                                <p><b>Группа:</b> <?= $model->group->title ?>,  <?= $model->group->form->title ?></p>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+    <?php
+        switch(Yii::$app->controller->action->id) {
+            case 'edu':
+                echo $this->render('section/edu.php', [
+                    'model' => $model,
+                    'vkrProvider' => $vkrProvider,
+                    'cwProvider' => $cwProvider,
+                    'prProvider' => $prProvider,
+                ]);
+                break;
+            case 'science':
+                echo $this->render('section/science.php', [
+                    'model' => $model,
+                    'evProvider' => $evProvider,
+                    'pbProvider' => $pbProvider,
+                ]);
+                break;
+            case 'achievements':
+                echo $this->render('section/achievements.php', [
+                    'model' => $model,
+                    'achProvider' => $achProvider,
+                ]);
+                break;
+            default:
+                echo $this->render('section/main.php', [
+                    'model' => $model,
+                ]);
+                break;
+        }
+    ?>
     <hr/>
 </div>
