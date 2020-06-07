@@ -40,9 +40,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-//                ''=>'site/index',
-                ''=>'students',
-                'students'=>'students/index',
+                    ''=>'students',
+                'student/<id:\w+>' => 'students/student',
                 'profile'=>'user/index',
                 '<action>'=>'site/<action>',
             ],
