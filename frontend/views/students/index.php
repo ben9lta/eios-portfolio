@@ -4,6 +4,7 @@ use common\modules\GridView\GridView;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\students\StudentsSearch */
@@ -23,14 +24,17 @@ $this->title = 'Поиск студентов';
         'columns' => [
             [
                 'attribute' => 'fullName',
-                'value' => 'fullName',
+                'format' => 'raw',
+                'value' => function($data) {
+                    return Html::a($data->user->fullName, ['students/student', 'id' => $data->id]);
+                },
                 'filter' =>  Select2::widget([
                     'model' => $searchModel,
-                    'attribute' => 'fullName',
+                    'attribute' => 'user_id',
                     'data' => ArrayHelper::map(\common\models\Students::find()
                         ->select(["students.id", "user_id", "CONCAT(ifnull(concat(user.last_name, ' '), ''), ifnull(concat(user.first_name, ' '), ''), ifnull(user.middle_name, '')) as fio"])
-                        ->leftJoin('user', 'user.id = students.user_id')->asArray()->all(), 'id', 'fio'),
-                    'value' => 'fullName ',
+                        ->leftJoin('user', 'user.id = students.user_id')->asArray()->all(), 'user_id', 'fio'),
+                    'value' => 'user_id ',
                     'options' => [
                         'class' => 'form-control',
                         'placeholder' => 'Студент'
@@ -93,29 +97,12 @@ $this->title = 'Поиск студентов';
                      ]
                 ]),
             ],
-//            [
-//                'attribute' => 'budget',
-//                'label' => 'Форма обучения',
-//                'value' => 'Budget',
-//                'filter' =>  Select2::widget([
-//                    'model' => $searchModel,
-//                    'attribute' => 'budget',
-//                    'data' => ['0' => 'Коммерция', '1' => 'Бюджет'],
-//                    'value' => 'Budget',
-//                    'options' => [
-//                        'class' => 'form-control',
-//                        'placeholder' => 'Выберите значение'
-//                    ],
-//                    'pluginOptions' => [
-//                        'allowClear' => true,
-//                        'selectOnClose' => true,
-//                    ]
-//                ]),
-//            ],
-
             [
                 'class' => 'common\modules\GridView\ActionColumn',
-                'template' => '',
+                'template' => '{view}',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    return Url::to(['students/student', 'id' => $model->id]);
+                },
                 'header'=> 'Действия',
                 'filter' => Html::resetButton('Очистить', ['class' => 'btn btn-outline-secondary']),
             ],
