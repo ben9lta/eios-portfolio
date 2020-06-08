@@ -147,6 +147,26 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+/* TOOLTIP BGColor */
+
+.tooltip-inner {
+    background-color: rgba(0, 0, 0, 0.95);
+}
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: rgba(0, 0, 0, 0.95) !important;
+}
+.tooltip.bs-tooltip-left .arrow:before {
+    border-left-color: rgba(0, 0, 0, 0.95) !important;
+}
+.tooltip.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: rgba(0, 0, 0, 0.95) !important;
+}
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: rgba(0, 0, 0, 0.95) !important;
+}
+
+/* END TOOLTIP BGColor */
+
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
     padding: 15px;
