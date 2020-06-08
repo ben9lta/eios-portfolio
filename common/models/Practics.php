@@ -125,8 +125,11 @@ class Practics extends \yii\db\ActiveRecord
         $this->date_end = empty($this->date_end) ? null : (Yii::$app->formatter->asDate(strtotime($this->date_end), "php:Y-m-d"));
         if(Yii::$app->controller->action->id === 'upload-practics')
         {
-            $file = UploadedFile::getInstance($this, 'file');
-            $this->uploadFile($file, 'file');
+            if($this->validate())
+            {
+                $file = UploadedFile::getInstance($this, 'file');
+                $this->uploadFile($file, 'file');
+            }
         }
 
         return parent::save($runValidation, $attributeNames);

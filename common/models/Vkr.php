@@ -118,8 +118,11 @@ class Vkr extends \yii\db\ActiveRecord
     {
         if(Yii::$app->controller->action->id === 'upload-vkr')
         {
-            $file = UploadedFile::getInstance($this, 'file');
-            $this->uploadFile($file, 'file');
+            if($this->validate())
+            {
+                $file = UploadedFile::getInstance($this, 'file');
+                $this->uploadFile($file, 'file');
+            }
         }
 
         return parent::save($runValidation, $attributeNames);

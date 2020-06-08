@@ -125,8 +125,11 @@ class Publications extends \yii\db\ActiveRecord
         $this->date = empty($this->date) ? null : (Yii::$app->formatter->asDate(strtotime($this->date), "php:Y-m-d"));
         if(Yii::$app->controller->action->id === 'upload-publ')
         {
-            $file = UploadedFile::getInstance($this, 'file');
-            $this->uploadFile($file, 'file');
+            if($this->validate())
+            {
+                $file = UploadedFile::getInstance($this, 'file');
+                $this->uploadFile($file, 'file');
+            }
         }
 
         return parent::save($runValidation, $attributeNames);

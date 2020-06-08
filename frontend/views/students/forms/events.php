@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'status_id')->widget(Select2::classname(), [
             'data' => ArrayHelper::map($status, 'id', 'title'),
-            'options' => ['placeholder' => 'Выберите группу'],
+            'options' => ['placeholder' => 'Выберите статус'],
             'pluginOptions' => [
                 'allowClear' => true,
                 'minimumInputLength' => 0, //Кол-во символов для поиска и вывода информации
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'type_id')->widget(Select2::classname(), [
             'data' => ArrayHelper::map($type, 'id', 'title'),
-            'options' => ['placeholder' => 'Выберите группу'],
+            'options' => ['placeholder' => 'Выберите тип'],
             'pluginOptions' => [
                 'allowClear' => true,
                 'minimumInputLength' => 0, //Кол-во символов для поиска и вывода информации
