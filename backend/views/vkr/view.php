@@ -8,12 +8,12 @@ use yii\widgets\DetailView;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'ВКР', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $model->stud->user->fullname;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="vkr-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($model->stud->user->fullname) ?></h1>
 
     <p>
         <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -31,9 +31,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'document',
+            [
+                'attribute' => 'document',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                }
+            ],
             'evaluation',
-            'stud_id',
+            [
+                'attribute' => 'stud_id',
+                'label' => 'Студент',
+                'value' => function ($model) {
+                    return $model->stud->user->fullname;
+                }
+            ],
             'user_id',
             'comment',
         ],
