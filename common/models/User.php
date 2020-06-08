@@ -441,7 +441,8 @@ class User extends ActiveRecord implements IdentityInterface
         }
         else
         {
-            $this->consent = 0;
+//            $this->consent = 0;
+
             $this->created_at = time();
             $this->updated_at = $this->created_at;
         }
