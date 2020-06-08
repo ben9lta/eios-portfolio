@@ -8,6 +8,8 @@ $this->title = 'Достижения';
 $this->params['breadcrumbs'][] = $this->title;
 
 use common\modules\GridView\GridView;
+use yii\helpers\Html;
+
 ?>
 
 <!-- Блок "Достижения" -->
@@ -21,21 +23,37 @@ use common\modules\GridView\GridView;
                 'dataProvider' => $achProvider,
                 'summary' => false,
                 'columns' => [
-                    'title',
-                    'date',
+                    [
+                        'attribute' => 'title',
+                        'headerOptions' => ['style' => 'width:25%'],
+                        'contentOptions' => ['style'=>'white-space: normal;']
+                    ],
+                    'date:date',
                     'result',
                     [
                         'attribute' => 'status_id',
                         'label' => 'Статус',
                         'value' => 'title',
+                        'headerOptions' => ['style' => 'width:15%'],
                     ],
                     [
                         'attribute' => 'type_id',
                         'label' => 'Вид',
                         'value' => 'title',
+                        'headerOptions' => ['style' => 'width:15%'],
                     ],
-                    'comment',
-                    'document',
+                    [
+                        'attribute' => 'comment',
+                        'headerOptions' => ['style' => 'width:25%'],
+                        'contentOptions' => ['style'=>'white-space: normal;']
+                    ],
+                    [
+                        'attribute' => 'document',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                        }
+                    ],
                 ],
             ]);
             ?>
