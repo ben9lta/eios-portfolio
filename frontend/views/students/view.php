@@ -24,13 +24,14 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to(['st
         <div class="mx-auto col-lg-3">
             <figure class="figure">
                 <?= Html::img($model->user->getUserPhoto(), ['alt' => $this->title, 'class' => 'figure-img img-fluid rounded profile-photo']); ?>
+                <?= Yii::$app->user->id === $model->user_id ? Html::a('Редактировать', Url::to(['site/profile']), ['class' => 'btn btn-success w-100']) : ''; ?>
                 <figcaption class="figure-caption">Последнее обновление: <?= date('d.m.Y', $model->user->updated_at) ?></figcaption>
             </figure>
         </div>
         <!-- Информация о студенте -->
         <div class="col-lg-9">
             <div class="profile-head">
-                <?= Html::tag('h5', Html::encode($this->title)) ?>
+                <?= Html::tag('h5', Html::encode($this->title)); ?>
                 <p>
                     Студент<?= $model->user->gender == 0 ? ', ' : 'ка, ' ?>
                     <?= $model->group->course ?> курс. <?= $model->group->dir->code ?> <?= $model->group->dir->title ?>.
@@ -64,7 +65,6 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to(['st
                             <td class="active">Достижения</td>
                             <td><?= Html::a('Перейти', Url::to(['students/achievements', 'id' => $model->id])) ?></td>
                         </tr>
-
                         </tbody>
                     </table>
                 </div>

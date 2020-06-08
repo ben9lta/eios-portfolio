@@ -4,10 +4,12 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Students */
+/* @var $students array */
+/* @var $group array */
 
-$this->title = 'Редактирование: ' . $model->id;
+$this->title = 'Редактирование: ' . $model->user->fullname;
 $this->params['breadcrumbs'][] = ['label' => 'Студенты', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->user->fullname, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="students-update">
@@ -16,6 +18,8 @@ $this->params['breadcrumbs'][] = 'Редактирование';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'students' => $students,
+        'group' => $group,
     ]) ?>
 
 </div>
