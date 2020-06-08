@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
     ?>
 
     <?=
-    $form->field($model, 'groupName')->widget(Select2::classname(), [
+    $form->field($model, 'group_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map($group, 'id', 'title'),
         'options' => ['placeholder' => 'Выберите группу'],
         'pluginOptions' => [
