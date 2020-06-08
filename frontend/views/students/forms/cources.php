@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
 
         <label class="control-label"><?= $model->getAttributeLabel('document')?></label>
-        <?= $form->field($model, 'file')->fileInput(['accept' => '.pdf'])->label('') ?>
+        <?= $form->field($model, 'file')->fileInput(['accept' => '.pdf, .doc, .docx, .rtf'])->label('') ?>
 
         <div class="form-group">
             <?= Html::submitButton('Добавить', ['class' => 'btn btn-success']) ?>
