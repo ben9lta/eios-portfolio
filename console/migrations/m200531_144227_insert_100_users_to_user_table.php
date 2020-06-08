@@ -21,15 +21,22 @@ class m200531_144227_insert_100_users_to_user_table extends Migration
         $faker = Faker\Factory::create('ru_RU');
         for($i = 0; $i < 100; $i++)
         {
-            if(rand(0, 1) === 1)
-                $name = $faker->name('male');
+            $user = new \common\models\User();
+            $name[1] = $faker->lastName;
+            if(rand(0, 1) === 0) {
+                $name[0] = $faker->firstName('male');
+                $name[1] = substr($name[1], -1) == 'a' ? substr($name[1],0,-1) : $name[1];
+                $user->gender = 0;
+            }
             else
-                $name = $faker->name('female');
-            $name = explode(' ', $name);
+            {
+                $name[0] = $faker->firstName('female');
+                $name[1] = substr($name[1], -1) == 'a' ? $name[1] : $name[1].'а';
+                $user->gender = 1;
+            }
             $mail = $faker->freeEmail;
             $username = $this->translit($name[0]) . '.' . $this->translit($name[1]);
             $mail = $username.substr($mail, strpos($mail, '@'));
-            $user = new \common\models\User();
             $user->username = $username;
             $user->id = 5000 + $i;
             $user->setPassword(123456);
