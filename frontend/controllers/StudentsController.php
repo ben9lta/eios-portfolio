@@ -5,6 +5,8 @@ namespace frontend\controllers;
 use common\models\Achievements;
 use common\models\Courseworks;
 use common\models\Events;
+use common\models\EventStatus;
+use common\models\EventType;
 use common\models\Practics;
 use common\models\Publications;
 use common\models\Students;
@@ -120,7 +122,6 @@ class StudentsController extends Controller
             'sort' => false,
         ]);
 
-
         return $this->render('view', [
             'model' => $this->findModel($id),
             'achProvider' => $achProvider,
@@ -168,6 +169,46 @@ class StudentsController extends Controller
 
         return $this->render('forms/practics', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionUploadPubl()
+    {
+        $model = new Publications();
+
+        $publ = \common\models\PublIndexing::find()->asArray()->all();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['students/science', 'id' => $model->stud_id]);
+        }
+
+        return $this->render('forms/publ', [
+            'model' => $model,
+            'publ' => $publ,
+        ]);
+    }
+
+    public function actionUploadEvents()
+    {
+        $model = new Events();
+
+        $type = EventType::find()->asArray()->all();
+        $status = EventStatus::find()->asArray()->all();
+
+        $users = \common\models\User::find()->select(["user.id", "CONCAT(ifnull(concat(user.last_name, ' '), ''), ifnull(concat(user.first_name, ' '), ''), ifnull(user.middle_name, '')) as fio"])
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['students/science', 'id' => $model->student_id]);
+        }
+
+        return $this->render('forms/events', [
+            'model' => $model,
+            'type' => $type,
+            'status' => $status,
+            'users' => $users,
         ]);
     }
 
