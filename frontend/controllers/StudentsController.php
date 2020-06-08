@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Achievements;
+use common\models\ActivityType;
 use common\models\Courseworks;
 use common\models\Events;
 use common\models\EventStatus;
@@ -209,6 +210,24 @@ class StudentsController extends Controller
             'type' => $type,
             'status' => $status,
             'users' => $users,
+        ]);
+    }
+
+    public function actionUploadAchievements()
+    {
+        $model = new Achievements();
+
+        $type = ActivityType::find()->asArray()->all();
+        $status = EventStatus::find()->asArray()->all();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['students/achievements', 'id' => $model->stud_id]);
+        }
+
+        return $this->render('forms/achieve', [
+            'model' => $model,
+            'type' => $type,
+            'status' => $status,
         ]);
     }
 
