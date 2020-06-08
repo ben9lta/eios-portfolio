@@ -211,10 +211,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getUserInitials()
     {
-        if($this->last_name AND $this->first_name) {
-            if($this->middle_name) return $this->last_name .' '. mb_substr($this->first_name, 0, 1) . '. ' . mb_substr($this->middle_name, 0, 1) . '.';
-            else return $this->last_name .' '. mb_strstr($this->first_name, 0, 1) . '.';
-        }
+        if($this->last_name)
+            return ($this->last_name ? $this->last_name . ' ' : '') . ($this->first_name ? mb_substr($this->first_name, 0, 1) . '. ' : '') . ($this->middle_name ? mb_substr($this->middle_name, 0, 1) . '.' : '');
         return $this->username;
     }
 
