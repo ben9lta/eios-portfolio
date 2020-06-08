@@ -105,6 +105,15 @@ class StudentsController extends Controller
      */
     public function actionUpdate($id)
     {
+        $students = \common\models\User::find()
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('students.user_id is null')
+            ->andWhere('auth_assignment.user_id is null')
+            ->asArray()->all();
+
+        $group = \common\models\Group::find()->asArray()->all();
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -113,6 +122,8 @@ class StudentsController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'students' => $students,
+            'group' => $group
         ]);
     }
 
