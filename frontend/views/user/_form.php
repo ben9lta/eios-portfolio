@@ -18,30 +18,51 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
 <div class="users-form">
 
     <?=
+    array_keys(Yii::$app->authManager->getRolesByUser($model->id))[0] === 'Студент' ?
+        '<div class="row"><div class="col-lg-6">'
+        : '';
+    ?>
+
+    <?=
+        '<div class="mb-4" style="text-align: center">' .
         Html::img(Storage::getFileUrl(
             (!empty($model->photo) ? $model->photo : Users::DEFAULT_USER_IMAGE)),
             ['alt' => $model->getUserInitials()]
-        );
+        ) . '</div>';
 
     ?>
     <?php $form = ActiveForm::begin([
         'options' => ['enctype' => 'multipart/form-data']
     ]); ?>
 
-    <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'middle_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'phone')->textInput(['type' => 'number', 'maxlength' => true])->widget(MaskedInput::className(), [
-        'mask' => '+7 (999) 999-99-99',
-        'options' => [
-            'placeholder' => '+7 (999) 999-99-99'
-        ],
-    ]) ?>
-
-    <?= $form->field($model, 'gender')->dropDownList(['' => '', 0 => 'Мужской', 1 => 'Женский']) ?>
+    <?php
+        if(array_keys(Yii::$app->authManager->getRolesByUser($model->id))[0] === 'Студент')
+        {
+            echo '<div class="row"><div class="col-md-6">'
+                . $form->field($model, 'phone')->textInput(['type' => 'number', 'maxlength' => true])->widget(MaskedInput::className(), [
+                    'mask' => '+7 (999) 999-99-99',
+                    'options' => [
+                        'placeholder' => '+7 (999) 999-99-99'
+                    ],
+                ]) . '</div><div class="col-md-6">' . $form->field($model, 'gender')->dropDownList(['' => '', 0 => 'Мужской', 1 => 'Женский']) .
+            '</div></div>';
+        }
+        else
+        {
+            echo $form->field($model, 'phone')->textInput(['type' => 'number', 'maxlength' => true])->widget(MaskedInput::className(), [
+                'mask' => '+7 (999) 999-99-99',
+                'options' => [
+                    'placeholder' => '+7 (999) 999-99-99'
+                ],
+            ]) . $form->field($model, 'gender')->dropDownList(['' => '', 0 => 'Мужской', 1 => 'Женский']);
+        }
+    ?>
 
     <label class="control-label">Дата рождения</label>
     <?= DatePicker::widget([
@@ -61,17 +82,52 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
     <?= $form->field($model, 'imageFile')->fileInput(['accept' => '.jpeg, .jpg, .png'])->label('') ?>
 
     <?php
-        if(empty($model['consent'])) {
-           echo $form->field($model, 'consent')->checkbox([
-                'label' => 'Я соглашаюсь на ' . $this->render('_modal', ['policy' => $this->render('/site/policy')]),
-                'uncheck' => '',
-            ]);
-        }
+    if(empty($model['consent'])) {
+        echo $form->field($model, 'consent')->checkbox([
+            'label' => 'Я соглашаюсь на ' . $this->render('_modal', ['policy' => $this->render('/site/policy')]),
+            'uncheck' => '',
+        ]);
+    }
     ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
+
+    <?php
+    if(array_keys(Yii::$app->authManager->getRolesByUser($model->id))[0] === 'Студент')
+    {
+        echo '</div>';
+        echo
+        '<div class="col-lg-4 mx-auto"> 
+            <div class="card">
+                <div class="card-header">
+                    Информация
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Учебная деятельность</h5>
+                    <p class="card-text">Чтобы загрузить ВКР, курсовые работы и практики, необходимо кликнуть по кнопке</p>
+                    <a href="#" class="btn btn-primary">ВКР</a>
+                    <a href="#" class="btn btn-primary">Курсовые</a>
+                    <a href="#" class="btn btn-primary">Практики</a>
+                </div>
+                <hr/>
+                <div class="card-body">
+                    <h5 class="card-title">Научная деятельность</h5>
+                    <p class="card-text">Чтобы загрузить ВКР, курсовые работы и практики, необходимо кликнуть по кнопке</p>
+                    <a href="#" class="btn btn-primary">Публикации</a>
+                    <a href="#" class="btn btn-primary">Мероприятия</a>
+                </div>
+                <hr/>
+                <div class="card-body">
+                    <h5 class="card-title">Внеучебные достижения</h5>
+                    <p class="card-text">Чтобы загрузить ВКР, курсовые работы и практики, необходимо кликнуть по кнопке</p>
+                    <a href="#" class="btn btn-primary">Достижения</a>
+                </div>
+            </div>
+        </div>';
+    }
+    ?>
 
     <?php ActiveForm::end(); ?>
 
