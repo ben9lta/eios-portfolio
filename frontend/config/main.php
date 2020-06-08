@@ -40,7 +40,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                    ''=>'students',
+                ''=>'students',
                 'students/<action>/<id:\w+>' => 'students/<action>',
                 'profile'=>'user/index',
                 '<action>'=>'site/<action>',
