@@ -128,8 +128,10 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
                 <hr/>
                 <div class="card-body">
                     <h5 class="card-title">Внеучебные достижения</h5>
-                    <p class="card-text">Чтобы загрузить ВКР, курсовые работы и практики, необходимо кликнуть по кнопке</p>
-                    <a href="#" class="btn btn-primary">Достижения</a>
+                    <p class="card-text">Чтобы загрузить ВКР, курсовые работы и практики, необходимо кликнуть по кнопке</p>'
+                    . '<div style="display: grid !important;grid-template-columns: 1fr;grid-column-gap: 1rem;">' .
+                    Html::a('Достижения', ['students/upload-achievements'], ['class' => 'btn btn-light'])
+                    . '</div>
                 </div>
             </div>
         </div>';
