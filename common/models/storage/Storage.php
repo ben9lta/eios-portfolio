@@ -16,6 +16,11 @@ class Storage
 
     public static function getFileUrl($file)
     {
+        if(empty($file))
+        {
+            return null;
+        }
+
         $url = Url::base(true); //domain url
         $position = strpos($url, '//') + 2;
 

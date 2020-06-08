@@ -9,6 +9,8 @@ $this->title = 'Научная деятельность';
 $this->params['breadcrumbs'][] = $this->title;
 
 use common\modules\GridView\GridView;
+use yii\helpers\Html;
+
 ?>
 
 <!-- Блок "Публикации" -->
@@ -22,21 +24,31 @@ use common\modules\GridView\GridView;
                 'dataProvider' => $pbProvider,
                 'summary' => false,
                 'columns' => [
-                    'title',
+                    [
+                        'attribute' => 'title',
+                        'headerOptions' => ['style' => 'width:24%'],
+                        'contentOptions' => ['style'=>'white-space: normal;']
+                    ],
                     [
                         'attribute' => 'user_id',
                         'label' => 'Научный руководитель',
                         'value' => 'user.fullName',
                     ],
                     'authors',
-                    'date',
+                    'date:date',
                     'description',
                     [
                         'attribute' => 'indexing_id',
                         'label' => 'Издание',
                         'value' => 'indexing.title'
                     ],
-                    'document',
+                    [
+                        'attribute' => 'document',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                        }
+                    ],
                 ],
             ]);
             ?>
@@ -75,8 +87,18 @@ use common\modules\GridView\GridView;
                         'label' => 'Вид',
                         'value' => 'title',
                     ],
-                    'comment',
-                    'document',
+                    [
+                        'attribute' => 'comment',
+                        'headerOptions' => ['style' => 'width:22%'],
+                        'contentOptions' => ['style'=>'white-space: normal;']
+                    ],
+                    [
+                        'attribute' => 'document',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                        }
+                    ],
                 ],
             ]);
             ?>

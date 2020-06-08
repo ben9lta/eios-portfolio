@@ -15,6 +15,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -123,6 +124,50 @@ class StudentsController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'achProvider' => $achProvider,
+        ]);
+    }
+
+    public function actionUploadVkr()
+    {
+        $model = new Vkr();
+        $users = \common\models\User::find()->select(["user.id", "CONCAT(ifnull(concat(user.last_name, ' '), ''), ifnull(concat(user.first_name, ' '), ''), ifnull(user.middle_name, '')) as fio"])
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['students/edu', 'id' => $model->stud_id]);
+        }
+
+        return $this->render('forms/vkr', [
+            'model' => $model,
+            'users' => $users,
+        ]);
+    }
+
+    public function actionUploadCources()
+    {
+        $model = new Courseworks();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['students/edu', 'id' => $model->stud_id]);
+        }
+
+        return $this->render('forms/cources', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionUploadPractics()
+    {
+        $model = new Practics();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['students/edu', 'id' => $model->stud_id]);
+        }
+
+        return $this->render('forms/practics', [
+            'model' => $model,
         ]);
     }
 

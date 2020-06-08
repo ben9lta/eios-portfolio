@@ -13,5 +13,5 @@ class GridView extends GV
         parent::__construct($config);
     }
 
-    public $tableOptions = ['class' => 'table table-sm table-responsive-md'];
+    public $tableOptions = ['class' => 'table table-sm table-responsive'];
 }

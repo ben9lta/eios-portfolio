@@ -106,10 +106,12 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Учебная деятельность</h5>
-                    <p class="card-text">Чтобы загрузить ВКР, курсовые работы и практики, необходимо кликнуть по кнопке</p>
-                    <a href="#" class="btn btn-primary">ВКР</a>
-                    <a href="#" class="btn btn-primary">Курсовые</a>
-                    <a href="#" class="btn btn-primary">Практики</a>
+                    <p class="card-text">Допустимый формат: pdf, doc, docx, rtf. 5Мб максимальный размер файла.</p>'
+                    . '<div class="d-flex justify-content-around">' .
+                    Html::a('ВКР', ['students/upload-vkr'], ['class' => 'btn btn-light']) .
+                    Html::a('Курсовые', ['students/upload-cources'], ['class' => 'btn btn-light']) .
+                    Html::a('Практики', ['students/upload-practics'], ['class' => 'btn btn-light'])
+                    . '</div>
                 </div>
                 <hr/>
                 <div class="card-body">
