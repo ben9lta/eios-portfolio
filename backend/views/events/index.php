@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'date_start',
-            'date_end',
+            'date_start:date',
+            'date_end:date',
             'location',
             'document',
             'evaluation',
