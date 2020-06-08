@@ -80,7 +80,7 @@ class Vkr extends \yii\db\ActiveRecord
             if(empty($file))
                 return false;
 
-            $destination = 'users/' . Yii::$app->user->id . '/uploads/files/Научная деятельность/ВКР/';
+            $destination = 'users/' . Yii::$app->user->id . '/uploads/files/Учебная деятельность/ВКР/';
             $path = Storage::getStoragePath() . $destination;
             $filename = Storage::randomFileName($file);
 
