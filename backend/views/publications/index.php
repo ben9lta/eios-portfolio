@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'authors',
             'document',
-            'date',
+            'date:date',
             'description',
             'indexing_id',
             'stud_id',
