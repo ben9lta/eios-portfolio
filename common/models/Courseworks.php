@@ -114,8 +114,11 @@ class Courseworks extends \yii\db\ActiveRecord
     {
         if(Yii::$app->controller->action->id === 'upload-cources')
         {
-            $file = UploadedFile::getInstance($this, 'file');
-            $this->uploadFile($file, 'file');
+            if($this->validate())
+            {
+                $file = UploadedFile::getInstance($this, 'file');
+                $this->uploadFile($file, 'file');
+            }
         }
 
         return parent::save($runValidation, $attributeNames);
