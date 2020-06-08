@@ -72,7 +72,7 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="page-footer font-small bg-dark pt-4">
+<footer class="page-footer font-small bg-dark pt-4 mt-5">
 
     <!-- Footer Elements -->
     <div class="container">
