@@ -85,7 +85,7 @@ class Practics extends \yii\db\ActiveRecord
             if(empty($file))
                 return false;
 
-            $destination = 'users/' . Yii::$app->user->id . '/uploads/files/Научная деятельность/Практика/';
+            $destination = 'users/' . Yii::$app->user->id . '/uploads/files/Учебная деятельность/Практика/';
             $path = Storage::getStoragePath() . $destination;
             $filename = Storage::randomFileName($file);
 
@@ -121,6 +121,8 @@ class Practics extends \yii\db\ActiveRecord
 
     public function save($runValidation = true, $attributeNames = null)
     {
+        $this->date_start = empty($this->date_start) ? null : (Yii::$app->formatter->asDate(strtotime($this->date_start), "php:Y-m-d"));
+        $this->date_end = empty($this->date_end) ? null : (Yii::$app->formatter->asDate(strtotime($this->date_end), "php:Y-m-d"));
         if(Yii::$app->controller->action->id === 'upload-practics')
         {
             $file = UploadedFile::getInstance($this, 'file');

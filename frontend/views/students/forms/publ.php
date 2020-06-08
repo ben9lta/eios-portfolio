@@ -1,5 +1,6 @@
 <?php
 
+use kartik\date\DatePicker;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -7,15 +8,16 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $users array */
+/* @var $publ array */
 
 $this->title = Yii::$app->user->identity->fullName;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="vkr-upload">
+<div class="publ-upload">
 
-    <h1><?= Html::encode('Загрузка ВКР') ?></h1>
+    <h1><?= Html::encode('Загрузка публикаций') ?></h1>
 
-    <div class="vkr-form">
+    <div class="publ-form">
 
         <?php $form = ActiveForm::begin(); ?>
 
@@ -23,20 +25,32 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'title')->textarea(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'evaluation')->textInput(['type' => 'number', 'placeholder' => '0 - 100', 'max' => 100, 'min' => 0]) ?>
-
-        <?php
-        echo $form->field($model, 'user_id')->widget(Select2::classname(), [
-            'data' => ArrayHelper::map($users, 'id', 'fio'),
-            'options' => ['placeholder' => 'Выберите пользователя'],
+        <?= $form->field($model, 'indexing_id')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map($publ, 'id', 'title'),
+            'options' => ['placeholder' => 'Выберите индексацию'],
             'pluginOptions' => [
                 'allowClear' => true,
                 'minimumInputLength' => 0, //Кол-во символов для поиска и вывода информации
             ],
-        ])->label('Научный руководитель');
+        ])->label('Индексация');
         ?>
 
-        <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
+        <?= $form->field($model, 'authors')->textInput(['maxlength' => true, 'placeholder' => 'Укажите авторов через запятую']) ?>
+
+        <?= $form->field($model, 'date')->widget(
+            DatePicker::class,
+            [
+                'options' => ['placeholder' => 'Выберите дату'],
+                'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                'pluginOptions' => [
+                    'format' => 'dd.mm.yyyy',
+                    'todayHighlight' => true,
+                    'autoclose' => true,
+                ]
+            ]
+        ); ?>
+
+        <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
 
         <label class="control-label"><?= $model->getAttributeLabel('document')?></label>
         <?= $form->field($model, 'file')->fileInput(['accept' => '.pdf, .doc, .docx, .rtf'])->label('') ?>
@@ -48,5 +62,4 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php ActiveForm::end(); ?>
 
     </div>
-
 </div>

@@ -68,8 +68,8 @@ use yii\helpers\Html;
                 'summary' => false,
                 'columns' => [
                     'title',
-                    'date_start',
-                    'date_end',
+                    'date_start:date',
+                    'date_end:date',
                     'location',
                     'evaluation',
                     [
@@ -80,12 +80,12 @@ use yii\helpers\Html;
                     [
                         'attribute' => 'status_id',
                         'label' => 'Статус',
-                        'value' => 'title',
+                        'value' => 'status.title',
                     ],
                     [
                         'attribute' => 'type_id',
                         'label' => 'Вид',
-                        'value' => 'title',
+                        'value' => 'type.title',
                     ],
                     [
                         'attribute' => 'comment',

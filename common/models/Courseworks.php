@@ -76,7 +76,7 @@ class Courseworks extends \yii\db\ActiveRecord
             if(empty($file))
                 return false;
 
-            $destination = 'users/' . Yii::$app->user->id . '/uploads/files/Научная деятельность/Курсовые работы/';
+            $destination = 'users/' . Yii::$app->user->id . '/uploads/files/Учебная деятельность/Курсовые работы/';
             $path = Storage::getStoragePath() . $destination;
             $filename = Storage::randomFileName($file);
 

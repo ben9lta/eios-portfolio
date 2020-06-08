@@ -97,6 +97,9 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
     <?php
     if(array_keys(Yii::$app->authManager->getRolesByUser($model->id))[0] === 'Студент')
     {
+        $hint_vkr = 'Файл с ВКР включает:  скан титульных листов с подписями;  скан задания и календарного плана выполнения ВКР с подписями;  аннотацию отчёта по ВКР;  содержательную часть отчёта ВКР и приложения;  скан отзывов;  скан рецензий (при наличии);  скан справки о внедрении результатов ВКР (при наличии);  скан справки о результатах прохождения проверки на антиплагиат.';
+        $hint_cources = 'Файл курсовой работы включает: отсканированный титульный лист, имеющий все подписи участников образовательного процесса (три подписи комиссии, утв. в сентябре протоколом кафедры);  содержательную часть курсовой работы;  скан отзыва руководителя при наличии;  отчёты о прохождении практик, в т. ч. ПДП, и сопровождающую документацию.';
+        $hint_practice = 'Файл практик включает: титульный лист и содержательную часть отчёта;  скан индивидуального задания по практике;  скан дневника и графика прохождения практики;  скан рецензии (характеристики) обучающегося с места практики;';
         echo '</div>';
         echo
         '<div class="col-lg-4 mx-auto"> 
@@ -107,18 +110,20 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
                 <div class="card-body">
                     <h5 class="card-title">Учебная деятельность</h5>
                     <p class="card-text">Допустимый формат: pdf, doc, docx, rtf. 5Мб максимальный размер файла.</p>'
-                    . '<div class="d-flex justify-content-around">' .
-                    Html::a('ВКР', ['students/upload-vkr'], ['class' => 'btn btn-light']) .
-                    Html::a('Курсовые', ['students/upload-cources'], ['class' => 'btn btn-light']) .
-                    Html::a('Практики', ['students/upload-practics'], ['class' => 'btn btn-light'])
+                    . '<div style="display: grid !important;grid-template-columns: 1fr 1fr 1fr;grid-column-gap: 1rem;">' .
+                    Html::a('ВКР', ['students/upload-vkr'], ['class' => 'btn btn-light', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => $hint_vkr]) .
+                    Html::a('Курсовые', ['students/upload-cources'], ['class' => 'btn btn-light', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => $hint_cources]) .
+                    Html::a('Практики', ['students/upload-practics'], ['class' => 'btn btn-light', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => $hint_practice])
                     . '</div>
                 </div>
                 <hr/>
                 <div class="card-body">
                     <h5 class="card-title">Научная деятельность</h5>
-                    <p class="card-text">Чтобы загрузить ВКР, курсовые работы и практики, необходимо кликнуть по кнопке</p>
-                    <a href="#" class="btn btn-primary">Публикации</a>
-                    <a href="#" class="btn btn-primary">Мероприятия</a>
+                    <p class="card-text">Допустимый формат: pdf, doc, docx, rtf. 5Мб максимальный размер файла.</p>'
+                    . '<div style="display: grid !important;grid-template-columns: 1fr 1fr;grid-column-gap: 1rem;">' .
+                    Html::a('Публикации', ['students/upload-publ'], ['class' => 'btn btn-light']) .
+                    Html::a('Мероприятия', ['students/upload-events'], ['class' => 'btn btn-light'])
+                    . '</div>
                 </div>
                 <hr/>
                 <div class="card-body">
