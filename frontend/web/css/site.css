@@ -3,9 +3,10 @@ body {
     height: 100%;
 }
 
-/*.wrap {
-    background-color: #eff2f7;
-}*/
+.wrap {
+    /*background-color: #eff2f7;*/
+    background-color: #aec0d23b;
+}
 /* Red styles */
 
 .custom-control-input:checked ~ .custom-control-label::before {

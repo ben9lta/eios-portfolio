@@ -22,11 +22,12 @@ use yii\helpers\Html;
         <div class="edu-info">
             <?= GridView::widget([
                 'dataProvider' => $pbProvider,
+                'tableOptions' => ['class' => 'table table-bordered table-responsive-lg', 'style' => 'background-color: #f8f9fa'],
                 'summary' => false,
                 'columns' => [
                     [
                         'attribute' => 'title',
-                        'headerOptions' => ['style' => 'width:24%'],
+//                        'headerOptions' => ['style' => 'width:24%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     [
@@ -58,13 +59,14 @@ use yii\helpers\Html;
 <hr/>
 <!-- Блок "Мероприятия" -->
 <div class="row mr-0">
-    <div class="profile-edu ml-3 w-100">
+    <div class="profile-edu mr-3 pl-3 w-100">
         <div class="edu-head">
             <h4 class="mb-4 alert alert-warning">Мероприятия</h4>
         </div>
         <div class="edu-info">
             <?= GridView::widget([
                 'dataProvider' => $evProvider,
+                'tableOptions' => ['class' => 'table table-bordered table-responsive', 'style' => 'background-color: #f8f9fa'],
                 'summary' => false,
                 'columns' => [
                     'title',
@@ -89,7 +91,7 @@ use yii\helpers\Html;
                     ],
                     [
                         'attribute' => 'comment',
-                        'headerOptions' => ['style' => 'width:22%'],
+//                        'headerOptions' => ['style' => 'width:22%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     [
