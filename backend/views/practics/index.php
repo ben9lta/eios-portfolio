@@ -24,17 +24,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-
-            'id',
+//            'id',
             'title',
             'place',
-            'date_start:date',
-            'date_end:date',
-            'document',
-            'diary',
-            'characteristic',
+//            'date_start:date',
+//            'date_end:date',
+            [
+                'attribute' => 'document',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                }
+            ],
             'evaluation',
-            'stud_id',
+            [
+                'attribute' => 'stud_id',
+                'label' => 'Студент',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->stud->user->fullName, ['students/view', 'id' => $model->stud_id], ['target' => '_blank']);
+                }
+            ],
             'comment',
 
             [
