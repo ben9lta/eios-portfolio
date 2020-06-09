@@ -59,7 +59,7 @@ use yii\helpers\Html;
 <hr/>
 <!-- Блок "Мероприятия" -->
 <div class="row mr-0">
-    <div class="profile-edu mr-3 pl-3 w-100">
+    <div class="profile-edu pl-3 w-100">
         <div class="edu-head">
             <h4 class="mb-4 alert alert-warning">Мероприятия</h4>
         </div>
