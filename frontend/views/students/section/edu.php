@@ -23,24 +23,25 @@ use yii\helpers\Html;
         <div class="edu-info">
             <?= GridView::widget([
                 'dataProvider' => $vkrProvider,
+                'tableOptions' => ['class' => 'table table-bordered table-responsive', 'style' => 'background-color: #f8f9fa'],
                 'summary' => false,
                 'columns' => [
                     [
                         'attribute' => 'title',
                         'value' => 'title',
-                        'headerOptions' => ['style' => 'width:30%'],
+//                        'headerOptions' => ['style' => 'width:30%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     [
                         'attribute' => 'user_id',
                         'label' => 'Научный руководитель',
                         'value' => 'user.fullName',
-                        'headerOptions' => ['style' => 'width:20%'],
+//                        'headerOptions' => ['style' => 'width:20%'],
                     ],
                     'evaluation',
                     [
                         'attribute' => 'comment',
-                        'headerOptions' => ['style' => 'width:15%'],
+//                        'headerOptions' => ['style' => 'width:15%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     [
@@ -66,22 +67,23 @@ use yii\helpers\Html;
         <div class="edu-info">
             <?= GridView::widget([
                 'dataProvider' => $cwProvider,
+                'tableOptions' => ['class' => 'table table-bordered table-responsive-lg', 'style' => 'background-color: #f8f9fa'],
                 'summary' => false,
                 'columns' => [
                     [
                         'attribute' => 'title',
-                        'headerOptions' => ['style' => 'width:35%'],
+//                        'headerOptions' => ['style' => 'width:35%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     [
                         'attribute' => 'subject',
-                        'headerOptions' => ['style' => 'width:35%'],
+//                        'headerOptions' => ['style' => 'width:35%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     'evaluation',
                     [
                         'attribute' => 'comment',
-                        'headerOptions' => ['style' => 'width:20%'],
+//                        'headerOptions' => ['style' => 'width:20%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     [
@@ -107,16 +109,17 @@ use yii\helpers\Html;
         <div class="edu-info">
             <?= GridView::widget([
                 'dataProvider' => $prProvider,
+                'tableOptions' => ['class' => 'table table-bordered table-responsive', 'style' => 'background-color: #f8f9fa'],
                 'summary' => false,
                 'columns' => [
                     [
                         'attribute' => 'title',
-                        'headerOptions' => ['style' => 'width:24%'],
+//                        'headerOptions' => ['style' => 'width:24%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     [
                         'attribute' => 'place',
-                        'headerOptions' => ['style' => 'width:24%'],
+//                        'headerOptions' => ['style' => 'width:24%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     'date_start:date',
@@ -124,7 +127,7 @@ use yii\helpers\Html;
                     'evaluation',
                     [
                         'attribute' => 'comment',
-                        'headerOptions' => ['style' => 'width:22%'],
+//                        'headerOptions' => ['style' => 'width:22%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     [

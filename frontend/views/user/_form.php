@@ -24,7 +24,7 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
     ?>
 
     <?=
-        '<div class="mb-4" style="text-align: center">' .
+        '<div class="mb-4">' .
         Html::img(Storage::getFileUrl(
             (!empty($model->photo) ? $model->photo : Users::DEFAULT_USER_IMAGE)),
             ['alt' => $model->getUserInitials()]
@@ -109,7 +109,7 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Учебная деятельность</h5>
-                    <p class="card-text">Допустимый формат: pdf, doc, docx, rtf. 5Мб максимальный размер файла.</p>'
+                    <p class="card-text">Форма загрузка ВКР, Курсовых работ и практик.</p>'
                     . '<div style="display: grid !important;grid-template-columns: 1fr 1fr 1fr;grid-column-gap: 1rem;">' .
                     Html::a('ВКР', ['students/upload-vkr'], ['class' => 'btn btn-light', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => $hint_vkr]) .
                     Html::a('Курсовые', ['students/upload-cources'], ['class' => 'btn btn-light', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => $hint_cources]) .
@@ -119,7 +119,7 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
                 <hr/>
                 <div class="card-body">
                     <h5 class="card-title">Научная деятельность</h5>
-                    <p class="card-text">Допустимый формат: pdf, doc, docx, rtf. 5Мб максимальный размер файла.</p>'
+                    <p class="card-text">Научно-практические конференции, конкурсы научных работ, Дни науки, летние школ и т.п.</p>'
                     . '<div style="display: grid !important;grid-template-columns: 1fr 1fr;grid-column-gap: 1rem;">' .
                     Html::a('Публикации', ['students/upload-publ'], ['class' => 'btn btn-light']) .
                     Html::a('Мероприятия', ['students/upload-events'], ['class' => 'btn btn-light'])
@@ -127,8 +127,8 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
                 </div>
                 <hr/>
                 <div class="card-body">
-                    <h5 class="card-title">Внеучебные достижения</h5>
-                    <p class="card-text">Чтобы загрузить ВКР, курсовые работы и практики, необходимо кликнуть по кнопке</p>'
+                    <h5 class="card-title">Достижения</h5>
+                    <p class="card-text">Участие в конкурсах, олимпиадах, получение наград, грамот, призовых мест в различных видах деятельности и др.</p>'
                     . '<div style="display: grid !important;grid-template-columns: 1fr;grid-column-gap: 1rem;">' .
                     Html::a('Достижения', ['students/upload-achievements'], ['class' => 'btn btn-light'])
                     . '</div>

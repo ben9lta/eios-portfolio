@@ -21,11 +21,12 @@ use yii\helpers\Html;
         <div class="edu-info">
             <?= GridView::widget([
                 'dataProvider' => $achProvider,
+                'tableOptions' => ['class' => 'table table-bordered table-responsive-lg', 'style' => 'background-color: #f8f9fa'],
                 'summary' => false,
                 'columns' => [
                     [
                         'attribute' => 'title',
-                        'headerOptions' => ['style' => 'width:25%'],
+//                        'headerOptions' => ['style' => 'width:25%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     'date:date',
@@ -34,17 +35,17 @@ use yii\helpers\Html;
                         'attribute' => 'status_id',
                         'label' => 'Статус',
                         'value' => 'title',
-                        'headerOptions' => ['style' => 'width:15%'],
+//                        'headerOptions' => ['style' => 'width:15%'],
                     ],
                     [
                         'attribute' => 'type_id',
                         'label' => 'Вид',
                         'value' => 'title',
-                        'headerOptions' => ['style' => 'width:15%'],
+//                        'headerOptions' => ['style' => 'width:15%'],
                     ],
                     [
                         'attribute' => 'comment',
-                        'headerOptions' => ['style' => 'width:25%'],
+//                        'headerOptions' => ['style' => 'width:25%'],
                         'contentOptions' => ['style'=>'white-space: normal;']
                     ],
                     [
