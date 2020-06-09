@@ -5,10 +5,10 @@ namespace common\models\db;
 
 
 use Yii;
+use yii\db\QueryBuilder;
 
 class Tables
 {
-
     public CONST TABLE_NAMES = [
         'achievements'  => 'Достижения',
         'activity_type' => 'Тип деятельности',
@@ -63,16 +63,36 @@ class Tables
 
     /**
      * @return array
+     * @throws \yii\db\Exception
      */
     public function getAllTables()
     {
-        preg_match("/dbname=([^;]*)/", Yii::$app->db->dsn, $matches);
-        $tables = (new \yii\db\Query())
-            ->select('table_name as table, table_rows as count')
-            ->from('information_schema.tables')
-            ->where('table_schema = ' . Yii::$app->db->quoteValue($matches[1]))
-            ->andWhere('table_name not in ("migration", "auth_assignment", "auth_item", "auth_item_child", "auth_rule", "menu")')->all();
+        $connection = Yii::$app->getDb();
+        $tables = $connection->createCommand(/** @lang mysql */ "
+            SELECT 'univer' as 'table', COUNT(*) as 'count' FROM univer UNION
+            (SELECT 'institute', COUNT(*) FROM institute) UNION
+            (SELECT 'department', COUNT(*) FROM department) UNION
+            (SELECT 'direction', COUNT(*) FROM direction) UNION
+            (SELECT 'edu_level', COUNT(*) FROM edu_level) UNION
+            (SELECT 'edu_form', COUNT(*) FROM edu_form) UNION
+            (SELECT 'group', COUNT(*) FROM `group`) UNION
+            (SELECT 'students', COUNT(*) FROM students) UNION
+            (SELECT 'user', COUNT(*) FROM user) UNION
+            (SELECT 'vkr', COUNT(*) FROM vkr) UNION
+            (SELECT 'publications', COUNT(*) FROM publications) UNION
+            (SELECT 'publ_indexing', COUNT(*) FROM publ_indexing) UNION
+            (SELECT 'events', COUNT(*) FROM events) UNION
+            (SELECT 'event_type', COUNT(*) FROM event_type) UNION
+            (SELECT 'event_status', COUNT(*) FROM event_status) UNION
+            (SELECT 'achievements', COUNT(*) FROM achievements) UNION
+            (SELECT 'activity_type', COUNT(*) FROM activity_type) UNION
+            (SELECT 'courseworks', COUNT(*) FROM courseworks) UNION
+            (SELECT 'practics', COUNT(*) FROM practics) UNION
+            (SELECT 'documents', COUNT(*) FROM documents) UNION
+            (SELECT 'doc_maintypes', COUNT(*) FROM doc_maintypes) UNION
+            (SELECT 'doc_types', COUNT(*) FROM doc_types) UNION
+            (SELECT 'shedule', COUNT(*) FROM shedule);");
 
-        return array_values($tables);
+        return $tables->queryAll();
     }
 }
