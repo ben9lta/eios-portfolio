@@ -39,28 +39,39 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Главная', 'url' => ['/site/index']],
+        ['label' => 'Портфолио', 'url' => ['/students']],
+        ['label' => 'Документы', 'url' => ['/documents/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li class="nav-item">'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Выйти (' . Yii::$app->user->identity->getUserInitials() . ')',
-                ['class' => 'btn nav-link', 'style' => 'margin: -1px 0;']
-            )
-            . Html::endForm()
-            . '</li>';
     }
+
     echo Nav::widget([
         'options' => ['class' => 'nav navbar-nav ml-auto'],
         'items' => $menuItems,
-    ]);
-    NavBar::end();
+    ]);?>
+    <?php if(!Yii::$app->user->isGuest) { ?>
+    <div class="dropdown pmd-dropdown pmd-user-info" style="margin-left: 5%;">
+        <a href="javascript:void(0);" class="btn-user dropdown-toggle media align-items-center" style="text-decoration: none; color: inherit;" data-toggle="dropdown" data-sidebar="true" aria-expanded="false">
+            <img class="profile-avatar mr-2" src="<?= \common\models\storage\Storage::getFileUrl(Yii::$app->user->identity->photo) ?>" width="40" height="40" alt="avatar">
+            <div class="media-body">
+                <?= Yii::$app->user->identity->getUserInitials() ?>
+            </div>
+            <i class="material-icons md-light ml-2 pmd-sm"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <a class="dropdown-item" href="/profile">Профиль</a>
+            <?=
+             Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton('Выйти', ['class' => 'dropdown-item', 'style' => 'margin: -1px 0;'])
+            . Html::endForm() ?>
+        </ul>
+    </div>
+    <?php } ?>
+
+    <?php NavBar::end();
     ?>
 
     <div class="container">
