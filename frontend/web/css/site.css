@@ -89,6 +89,15 @@ body {
     font-style: italic;
 }
 
+/* profile icon */
+.pmd-user-info .profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+/* end profile icon */
+
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;
