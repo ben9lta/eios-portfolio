@@ -63,6 +63,10 @@ AppAsset::register($this);
         </a>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <a class="dropdown-item" href="/profile">Профиль</a>
+            <?php if(Yii::$app->authManager->getRolesByUser(Yii::$app->user->id)['Студент']) {
+                $s_id = \common\models\Students::find()->select('id')->where(['user_id' => Yii::$app->user->id])->asArray()->one();
+                echo Html::a('Портфолио', ['students/student', 'id' => $s_id['id']], ['class' => 'dropdown-item']);
+            } ?>
             <?=
              Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton('Выйти', ['class' => 'dropdown-item', 'style' => 'margin: -1px 0;'])
