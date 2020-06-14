@@ -77,8 +77,8 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
         ]
     ]); ?>
     <p class="mb-3"></p>
-
     <label class="control-label"><?= $model->getAttributeLabel('photo')?></label>
+    <div style="display: flex; justify-content: space-between; align-items: center">
     <?= $form->field($model, 'imageFile')->fileInput(['accept' => '.jpeg, .jpg, .png'])->label('') ?>
 
     <?php
@@ -92,6 +92,7 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+    </div>
     </div>
 
     <?php
