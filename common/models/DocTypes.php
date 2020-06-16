@@ -51,6 +51,10 @@ class DocTypes extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getMainTypeName()
+    {
+        return $this->docMaintypes->title;
+    }
     /**
      * Gets query for [[DocMaintypes]].
      *

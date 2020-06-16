@@ -54,7 +54,7 @@ class Documents extends \yii\db\ActiveRecord
             'id' => '№ Документа',
             'user_add_id' => '№ Пользователя1',
             'user_approve_id' => '№ Пользователя2',
-            'doc_type_id' => '№ Типа документа',
+            'doc_type_id' => 'Тип документа',
             'title' => 'Наименование',
             'document' => 'Документ',
             'status' => 'Статус',
@@ -90,5 +90,29 @@ class Documents extends \yii\db\ActiveRecord
     public function getUserApprove()
     {
         return $this->hasOne(User::className(), ['id' => 'user_approve_id']);
+    }
+
+    public function uploadDocument($doc, $attr)
+    {
+        if ($this->validate($attr)) {
+
+            if(empty($doc))
+                return false;
+
+            $destination = 'documents/' . $this->getId() . '/'.$this->getDocType()."/";
+            $path = Storage::getStoragePath() . $destination;
+            $filename = Storage::randomFileName($doc);
+
+            if($this->document)
+                unlink(Storage::getStoragePath() . $this->document);
+
+            if (FileHelper::createDirectory($path, $mode = 0755, $recursive = true)) {
+                $image->saveAs($path . $filename);
+                $this->document = $destination . $filename;
+            }
+
+            return true;
+        }
+        return false;
     }
 }

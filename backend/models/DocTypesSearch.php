@@ -11,6 +11,7 @@ use common\models\DocTypes;
  */
 class DocTypesSearch extends DocTypes
 {
+    public $mainTypeName;
     /**
      * {@inheritdoc}
      */
@@ -18,7 +19,7 @@ class DocTypesSearch extends DocTypes
     {
         return [
             [['id', 'doc_maintypes_id'], 'integer'],
-            [['title', 'comment'], 'safe'],
+            [['title', 'comment','mainTypeName'], 'safe'],
         ];
     }
 
@@ -56,15 +57,42 @@ class DocTypesSearch extends DocTypes
             return $dataProvider;
         }
 
+        $dataProvider->setSort([
+            'attributes' => [
+              'id' => [
+                  'asc' => ['id' => SORT_ASC],
+                  'desc' => ['id' => SORT_DESC],
+                  'default' => SORT_ASC
+              ],
+              'title' => [
+                  'asc' => ['title' => SORT_ASC],
+                  'desc' => ['title' => SORT_DESC],
+                  'default' => SORT_ASC
+              ],
+              'comment' => [
+                  'asc' => ['comment' => SORT_ASC],
+                  'desc' => ['comment' => SORT_DESC],
+                  'default' => SORT_ASC
+              ],
+                'mainTypeName' => [
+                    'asc' => ['doc_maintypes.title' => SORT_ASC],
+                    'desc' => ['doc_maintypes.title' => SORT_DESC],
+                    'default' => SORT_ASC
+                ],
+            ],
+        ]);
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'doc_maintypes_id' => $this->doc_maintypes_id,
+            //'doc_maintypes_id' => $this->doc_maintypes_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'comment', $this->comment]);
 
+        $query->joinWith(['docMaintypes' => function ($q) {
+            $q->where('doc_maintypes.title LIKE "%' . $this->mainTypeName . '%"');
+        }]);
         return $dataProvider;
     }
 }
