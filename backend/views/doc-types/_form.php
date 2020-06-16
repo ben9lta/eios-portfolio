@@ -1,5 +1,7 @@
 <?php
 
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -14,7 +16,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'doc_maintypes_id')->textInput() ?>
+    <?=
+    $form->field($model, 'doc_maintypes_id')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map($maintypes, 'id', 'title'),
+        'options' => ['placeholder' => 'Выберите главный тип'],
+        'pluginOptions' => [
+            'allowClear' => true,
+            'minimumInputLength' => 0, //Кол-во символов для поиска и вывода информации
+        ],
+    ]);
+    ?>
 
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 

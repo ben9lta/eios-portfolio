@@ -80,8 +80,11 @@ class DocumentsController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $doc_types = \common\models\DocTypes::find()->asArray()->all();
+
         return $this->render('create', [
             'model' => $model,
+            'doc_types'=>$doc_types
         ]);
     }
 

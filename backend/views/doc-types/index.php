@@ -26,7 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'id',
             'title',
-            'doc_maintypes_id',
+            [
+                'attribute' => 'mainTypeName',
+                'value' => "docMaintypes.title",
+                'label'=> "Главный тип документа"
+            ],
             'comment',
             [
                 'class' => 'common\modules\GridView\ActionColumn',
