@@ -30,30 +30,38 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
     }
     ?>
 
+    <div class="row">
+        <div class="col-md-6">
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-
+        </div>
+        <div class="col-md-6">
     <?= $form->field($model, 'new_pass')->textInput(['maxlength' => true]) ?>
-
+        </div>
+    </div>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?php if(Yii::$app->controller->action->id !== 'create')
-        echo $form->field($model, 'status')->textInput()
-    ?>
 
     <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'middle_name')->textInput(['maxlength' => true]) ?>
-
+    <div class="row">
+        <div class="col-md-6">
     <?= $form->field($model, 'phone')->textInput(['type' => 'number', 'maxlength' => true])->widget(MaskedInput::className(), [
         'mask' => '+7 (999) 999-99-99',
         'options' => [
             'placeholder' => '+7 (999) 999-99-99'
         ],
     ]) ?>
-
+        </div>
+        <div class="col-md-6">
     <?= $form->field($model, 'gender')->dropDownList(['' => '', 0 => 'Мужской', 1 => 'Женский']) ?>
+        </div>
+    </div>
+
+    <?php if(Yii::$app->controller->action->id !== 'create')
+        echo $form->field($model, 'status')->dropDownList(['' => '', 0 => 'Удален', 9 => 'Ожидает подтверждения', 10 => 'Подтвержден'])
+    ?>
 
     <label class="control-label">Дата рождения</label>
     <?= DatePicker::widget([
