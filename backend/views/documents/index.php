@@ -25,18 +25,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'id',
-            'user_add_id',
-            'user_approve_id',
-            'doc_type_id',
+            [
+                'attribute' => 'user_add_id',
+                'value' => "profAdd.fullName",
+                'label'=> "Добавил"
+            ],
+            [
+                'attribute' => 'user_approve_id',
+                'value' => "profApprove.fullName",
+                'label'=> "Заверил"
+            ],
+            'docTypeName',
             'title',
-            //'document',
-            //'status',
-            //'comment',
-
+            'document',
+            'comment',
             [
                 'class' => 'common\modules\GridView\ActionColumn',
                 'header'=>'Действия',
             ],
+
         ],
     ]); ?>
 

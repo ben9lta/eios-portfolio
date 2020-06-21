@@ -16,8 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?=
-    $form->field($model, 'doc_maintypes_id')->widget(Select2::classname(), [
+    <?php
+    echo $form->field($model, 'doc_maintypes_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map($maintypes, 'id', 'title'),
         'options' => ['placeholder' => 'Выберите главный тип'],
         'pluginOptions' => [

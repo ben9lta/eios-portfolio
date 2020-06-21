@@ -102,9 +102,11 @@ class DocumentsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
+        $doc_types = \common\models\DocTypes::find()->asArray()->all();
 
         return $this->render('update', [
             'model' => $model,
+            'doc_types'=>$doc_types
         ]);
     }
 

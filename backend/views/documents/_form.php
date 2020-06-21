@@ -14,21 +14,33 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?=
-    $form->field($model, 'doc_type_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map($doc_types, 'id', 'title'),
-        'options' => ['placeholder' => 'Выберите тип документа'],
-        'pluginOptions' => [
-            'allowClear' => true,
-            'minimumInputLength' => 0, //Кол-во символов для поиска и вывода информации
-        ],
-    ]);
+    <?php
+      if(Yii::$app->controller->action->id !== "update"){
+      echo $form->field($model, 'doc_type_id')->widget(Select2::classname(), [
+          'data' => ArrayHelper::map($doc_types, 'id', 'title'),
+          'options' => ['placeholder' => 'Выберите тип документа'],
+          'pluginOptions' => [
+              'allowClear' => true,
+              'minimumInputLength' => 0, //Кол-во символов для поиска и вывода информации
+          ],
+      ]);
+    }else if(Yii::$app->controller->action->id === "update"){
+        //echo $form->field($model, 'doc_type_id')->textInput(['maxlength' => true]);
+        echo $form->field($model, 'doc_type_id')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map($doc_types, 'id', 'title'),
+            'options' => ['placeholder' => 'Выберите тип документа'],
+            'pluginOptions' => [
+                'allowClear' => true,
+                'minimumInputLength' => 0, //Кол-во символов для поиска и вывода информации
+            ],
+        ]);
+    }
     ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'document')->fileInput() ?>
-    <!-- $form->field($model, 'document')->textInput(['maxlength' => true]) -->
+    <!-- $form->field($model, 'document')->fileInput() -->
+    <?= $form->field($model, 'document')->textInput(['maxlength' => true]) ?>
 
 
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>

@@ -39,6 +39,7 @@ class Documents extends \yii\db\ActiveRecord
             [['user_add_id', 'doc_type_id', 'title', 'document'], 'required'],
             [['user_add_id', 'user_approve_id', 'doc_type_id', 'status'], 'integer'],
             [['title', 'document', 'comment'], 'string', 'max' => 255],
+            [['docTypeName'],'safe'],
             [['doc_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => DocTypes::className(), 'targetAttribute' => ['doc_type_id' => 'id']],
             [['user_add_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_add_id' => 'id']],
             [['user_approve_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_approve_id' => 'id']],
@@ -52,13 +53,14 @@ class Documents extends \yii\db\ActiveRecord
     {
         return [
             'id' => '№ Документа',
-            'user_add_id' => '№ Пользователя1',
-            'user_approve_id' => '№ Пользователя2',
+            'user_add_id' => 'Добавил',
+            'user_approve_id' => 'Заверил',
             'doc_type_id' => 'Тип документа',
             'title' => 'Наименование',
             'document' => 'Документ',
             'status' => 'Статус',
             'comment' => 'Комментарий',
+            'docTypeName' => 'Тип документа',
         ];
     }
 
@@ -90,6 +92,41 @@ class Documents extends \yii\db\ActiveRecord
     public function getUserApprove()
     {
         return $this->hasOne(User::className(), ['id' => 'user_approve_id']);
+    }
+
+    public function getDocTypes()
+    {
+        return $this->hasOne(DocTypes::className(), ['id' => 'doc_type_id']);
+    }
+
+    public function getProfAdd()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_add_id']);
+    }
+
+    public function getProfApprove()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_approve_id']);
+    }
+
+    public function getDocTypeName()
+    {
+        return $this->docTypes->title;
+    }
+
+    public function getProfAddName()
+    {
+        return $this->profAdd->fullname;
+    }
+
+    public function getProfApproveName()
+    {
+        return $this->profApprove->fullname;
+    }
+
+    public function getStatusValue()
+    {
+        return $this->status === 1? "Одобрено" : "На рассмотрении";
     }
 
     public function uploadDocument($doc, $attr)
