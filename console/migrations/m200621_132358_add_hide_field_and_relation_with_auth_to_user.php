@@ -39,7 +39,7 @@ class m200621_132358_add_hide_field_and_relation_with_auth_to_user extends Migra
         $this->dropColumn('user', 'hidden');
         $this->alterColumn('auth_assignment', 'user_id', $this->string(64));
         $this->dropForeignKey('{{%fk-auth_assignment-user_id2}}','{{%auth_assignment}}');
-        $this->dropIndex('{{%idx-auth_assignment-user_id}}','{{%auth_assignment}}');
+        $this->dropIndex('{{%idx-auth_assignment-user_id2}}','{{%auth_assignment}}');
 
         return true;
     }
