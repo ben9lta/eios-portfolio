@@ -31,7 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'doc_maintypes_id',
+            [
+                'label' => 'Главный тип документа',
+                'attribute' => 'docMaintypes.title',
+            ],
             'comment',
         ],
     ]) ?>

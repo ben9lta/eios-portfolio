@@ -79,7 +79,7 @@ class DocTypesController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-        
+
         $maintypes = \common\models\DocMaintypes::find()->asArray()->all();
 
         return $this->render('create', [
@@ -102,9 +102,11 @@ class DocTypesController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
+        $maintypes = \common\models\DocMaintypes::find()->asArray()->all();
 
         return $this->render('update', [
             'model' => $model,
+            'maintypes' => $maintypes
         ]);
     }
 

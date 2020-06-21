@@ -30,12 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'user_add_id',
-            'user_approve_id',
-            'doc_type_id',
+            'userAdd.fullName', // переделать в вид с квадратными скобками
+            'userApprove.fullName',
+            'docTypes.title',
             'title',
             'document',
-            'status',
+            'statusValue',
             'comment',
         ],
     ]) ?>

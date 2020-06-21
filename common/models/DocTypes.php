@@ -46,7 +46,7 @@ class DocTypes extends \yii\db\ActiveRecord
         return [
             'id' => '№ Типа документа',
             'title' => 'Наименование',
-            'doc_maintypes_id' => '№ Главного типа документа',
+            'doc_maintypes_id' => 'Главный тип документа',
             'comment' => 'Комментарий',
         ];
     }
