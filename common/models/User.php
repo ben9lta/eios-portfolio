@@ -34,6 +34,7 @@ use yii\web\UploadedFile;
  * @property string|null $middle_name
  * @property string|null $phone
  * @property int|null $gender
+ * @property int|null $hidden
  * @property string|null $birthday
  * @property int|null $consent
  * @property string|null $photo
@@ -117,7 +118,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'consent'], 'required'],
-            [['created_at', 'updated_at', 'gender', 'consent'], 'integer'],
+            [['created_at', 'updated_at', 'gender', 'consent', 'hidden'], 'integer'],
             [['birthday'], 'safe'],
             [['username', 'new_pass', 'password_hash', 'password_reset_token', 'email', 'verification_token', 'photo'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
@@ -165,6 +166,7 @@ class User extends ActiveRecord implements IdentityInterface
             'birthday' => 'День рождение',
             'consent' => 'Согласие',
             'photo' => 'Фото',
+            'hidden' => 'Доступность профиля',
         ];
     }
 
@@ -173,6 +175,10 @@ class User extends ActiveRecord implements IdentityInterface
         if (!isset($this->gender))
             return null;
         return $this->gender === 0 ? 'Мужской' : 'Женский';
+    }
+
+    public function getProfileAccess() {
+        return $this->hidden ? 'Закрытый' : 'Открытый';
     }
 
     public function getStatus()

@@ -64,8 +64,7 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
         }
     ?>
 
-    <label class="control-label">Дата рождения</label>
-    <?= DatePicker::widget([
+    <?= $form->field($model, 'birthday')->widget(DatePicker::class, ([
         'name' => 'Users[birthday]',
         'value' => $valueBirthday,
         'options' => ['placeholder' => 'Выберите дату'],
@@ -75,7 +74,10 @@ $valueBirthday = $model->birthday ? Yii::$app->formatter->asDate(strtotime($mode
             'todayHighlight' => true,
             'autoclose' => true,
         ]
-    ]); ?>
+    ])); ?>
+
+    <?= $form->field($model, 'hidden')->dropDownList([0 => 'Общедоступный', 1 => 'Скрытый']) ?>
+
     <p class="mb-3"></p>
     <label class="control-label"><?= $model->getAttributeLabel('photo')?></label>
     <div style="display: flex; justify-content: space-between; align-items: center">
