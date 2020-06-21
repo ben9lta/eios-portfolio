@@ -55,7 +55,7 @@ AppAsset::register($this);
     <?php if(!Yii::$app->user->isGuest) { ?>
     <div class="dropdown pmd-dropdown pmd-user-info" style="margin-left: 5%;">
         <a href="javascript:void(0);" class="btn-user dropdown-toggle media align-items-center" style="text-decoration: none; color: inherit;" data-toggle="dropdown" data-sidebar="true" aria-expanded="false">
-            <img class="profile-avatar mr-2" src="<?= \common\models\storage\Storage::getFileUrl(Yii::$app->user->identity->photo) ?>" width="40" height="40" alt="avatar">
+            <img class="profile-avatar mr-2" src="<?= \common\models\storage\Storage::getFileUrl(!empty(Yii::$app->user->identity->photo) ? Yii::$app->user->identity->photo : \common\models\User::DEFAULT_USER_IMAGE) ?>" width="40" height="40" alt="avatar">
             <div class="media-body">
                 <?= Yii::$app->user->identity->getUserInitials() ?>
             </div>
