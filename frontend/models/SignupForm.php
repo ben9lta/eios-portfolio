@@ -14,6 +14,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $password_confirm;
+    public $consent;
 
 
     /**
@@ -39,6 +40,8 @@ class SignupForm extends Model
             ['password_confirm', 'required'],
             ['password_confirm', 'string', 'min' => 6],
 
+            [['consent'], 'integer'],
+
             ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => 'Пароли не совпадают!'],
         ];
     }
@@ -50,6 +53,7 @@ class SignupForm extends Model
             'email' => 'Email',
             'password' => 'Пароль',
             'password_confirm' => 'Повторите пароль',
+            'consent' => 'Согласие ОПД'
         ];
     }
 
@@ -68,6 +72,7 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->consent = $this->consent;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();

@@ -32,13 +32,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'place',
-            'date_start',
-            'date_end',
-            'document',
-            'diary',
-            'characteristic',
+            'date_start:date',
+            'date_end:date',
+            [
+                'attribute' => 'document',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                }
+            ],
+//            'diary',
+//            'characteristic',
             'evaluation',
-            'stud_id',
+            [
+                'attribute' => 'fullName',
+                'label' => 'Студент',
+                'value' => function ($model) {
+                    return $model->stud->user->fullname;
+                }
+            ],
             'comment',
         ],
     ]) ?>

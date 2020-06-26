@@ -31,15 +31,45 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'date_start',
-            'date_end',
+            'date_start:date',
+            'date_end:date',
             'location',
-            'document',
+            [
+                'attribute' => 'document',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                }
+            ],
             'evaluation',
-            'student_id',
-            'user_id',
-            'status_id',
-            'type_id',
+            [
+                'attribute' => 'student_id',
+                'label' => 'Студент',
+                'value' => function ($model) {
+                    return $model->student->fullname;
+                }
+            ],
+            [
+                'attribute' => 'user_id',
+                'label' => 'Руководитель',
+                'value' => function ($model) {
+                    return $model->user->fullname;
+                }
+            ],
+            [
+                'attribute' => 'status_id',
+                'label' => 'Статус',
+                'value' => function ($model) {
+                    return $model->status->title;
+                }
+            ],
+            [
+                'attribute' => 'status_id',
+                'label' => 'Вид',
+                'value' => function ($model) {
+                    return $model->type->title;
+                }
+            ],
             'comment',
         ],
     ]) ?>

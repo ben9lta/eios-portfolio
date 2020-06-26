@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $model->stud->user->fullname;
             ],
             'evaluation',
             [
-                'attribute' => 'stud_id',
+                'attribute' => 'fullName',
                 'label' => 'Студент',
                 'value' => function ($model) {
                     return $model->stud->user->fullname;

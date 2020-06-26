@@ -29,11 +29,31 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'date:date',
             'result',
-            'document',
-            'stud_id',
-            'status_id',
+            [
+                'attribute' => 'document',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                }
+            ],
+            [
+                'attribute' => 'stud_id',
+                'label' => 'Студент',
+                'value' => function ($model) {
+                    return $model->stud->fullname;
+                }
+            ],
+            [
+                'attribute' => 'status_id',
+                'label' => 'Статус',
+                'value' => 'status.title',
+            ],
+            [
+                'attribute' => 'type_id',
+                'label' => 'Вид',
+                'value' => 'type.title',
+            ],
             'comment',
-            'type_id',
 
             [
                 'class' => 'common\modules\GridView\ActionColumn',

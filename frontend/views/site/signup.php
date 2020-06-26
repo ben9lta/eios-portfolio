@@ -23,6 +23,15 @@ $this->title = 'Регистрация';
         <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
         <?= $form->field($model, 'password_confirm')->passwordInput(['placeholder' => 'Повторите пароль'])->label(false) ?>
+
+        <?php
+        if(empty($model['consent'])) {
+            echo $form->field($model, 'consent')->checkbox([])->label('Я соглашаюсь на ' . $this->render('../user/_modal', ['policy' => $this->render('/site/policy')]));
+//                'label' => 'Я соглашаюсь на ' . $this->render('../user/_modal', ['policy' => $this->render('/site/policy')]),
+//                'uncheck' => '',
+//            ]);
+        }
+        ?>
         <div class="form-group">
             <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-lg btn-red btn-block', 'name' => 'signup-button']) ?>
         </div>

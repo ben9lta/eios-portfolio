@@ -32,9 +32,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'subject',
             'title',
-            'document',
+            [
+                'attribute' => 'document',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                }
+            ],
             'evaluation',
-            'stud_id',
+            [
+                'attribute' => 'fullName',
+                'label' => 'Студент',
+                'value' => function ($model) {
+                    return $model->stud->user->fullname;
+                }
+            ],
             'comment',
         ],
     ]) ?>
