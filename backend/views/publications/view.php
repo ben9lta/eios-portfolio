@@ -32,12 +32,30 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'authors',
-            'document',
-            'date',
+            [
+                'attribute' => 'document',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a('Посмотреть', \common\models\storage\Storage::getFileUrl($model->document), ['target' => '_blank']);
+                }
+            ],
+            'date:date',
             'description',
-            'indexing_id',
-            'stud_id',
-            'user_id',
+            'indexing.title',
+            [
+                'attribute' => 'stud_id',
+                'label' => 'Студент',
+                'value' => function ($model) {
+                    return $model->stud->fullname;
+                }
+            ],
+            [
+                'attribute' => 'user_id',
+                'label' => 'Научный руководитель',
+                'value' => function ($model) {
+                    return $model->user->fullname;
+                }
+            ],
             'comment',
         ],
     ]) ?>

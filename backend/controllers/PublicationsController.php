@@ -74,6 +74,19 @@ class PublicationsController extends Controller
      */
     public function actionCreate()
     {
+        $students = \common\models\User::find()->select("students.id as id, user.email as email, user.last_name, user.first_name, user.middle_name")
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Студент"')
+            ->asArray()->all();
+
+        $users = \common\models\User::find()
+            ->leftJoin('auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
+        $publ = \common\models\PublIndexing::find()->asArray()->all();
+
         $model = new Publications();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -82,6 +95,9 @@ class PublicationsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'students' => $students,
+            'users' => $users,
+            'publ' => $publ,
         ]);
     }
 
@@ -94,6 +110,19 @@ class PublicationsController extends Controller
      */
     public function actionUpdate($id)
     {
+        $students = \common\models\User::find()->select("students.id as id, user.email as email, user.last_name, user.first_name, user.middle_name")
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Студент"')
+            ->asArray()->all();
+
+        $users = \common\models\User::find()
+            ->leftJoin('auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
+        $publ = \common\models\PublIndexing::find()->asArray()->all();
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -102,6 +131,9 @@ class PublicationsController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'students' => $students,
+            'users' => $users,
+            'publ' => $publ,
         ]);
     }
 

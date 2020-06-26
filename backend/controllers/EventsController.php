@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use common\models\EventStatus;
+use common\models\EventType;
 use Yii;
 use common\models\Events;
 use backend\models\EventsSearch;
@@ -74,6 +76,20 @@ class EventsController extends Controller
      */
     public function actionCreate()
     {
+        $students = \common\models\User::find()->select("students.id as id, user.email as email, user.last_name, user.first_name, user.middle_name")
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Студент"')
+            ->asArray()->all();
+
+        $users = \common\models\User::find()
+            ->leftJoin('auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
+        $type = EventType::find()->asArray()->all();
+        $status = EventStatus::find()->asArray()->all();
+
         $model = new Events();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -82,6 +98,10 @@ class EventsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'type' => $type,
+            'status' => $status,
+            'users' => $users,
+            'students' => $students
         ]);
     }
 
@@ -94,6 +114,20 @@ class EventsController extends Controller
      */
     public function actionUpdate($id)
     {
+        $students = \common\models\User::find()->select("students.id as id, user.email as email, user.last_name, user.first_name, user.middle_name")
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Студент"')
+            ->asArray()->all();
+
+        $users = \common\models\User::find()
+            ->leftJoin('auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
+        $type = EventType::find()->asArray()->all();
+        $status = EventStatus::find()->asArray()->all();
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -102,6 +136,10 @@ class EventsController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'type' => $type,
+            'status' => $status,
+            'users' => $users,
+            'students' => $students
         ]);
     }
 

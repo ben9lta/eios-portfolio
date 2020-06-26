@@ -76,12 +76,25 @@ class VkrController extends Controller
     {
         $model = new Vkr();
 
+        $students = \common\models\User::find()->select("students.id as id, user.email as email, user.last_name, user.first_name, user.middle_name")
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Студент"')
+            ->asArray()->all();
+
+        $users = \common\models\User::find()
+            ->leftJoin('auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'students' => $students,
+            'users' => $users,
         ]);
     }
 
@@ -96,12 +109,25 @@ class VkrController extends Controller
     {
         $model = $this->findModel($id);
 
+        $students = \common\models\User::find()->select("students.id as id, user.email as email, user.last_name, user.first_name, user.middle_name")
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Студент"')
+            ->asArray()->all();
+
+        $users = \common\models\User::find()
+            ->leftJoin('auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'students' => $students,
+            'users' => $users,
         ]);
     }
 

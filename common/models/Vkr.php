@@ -80,7 +80,11 @@ class Vkr extends \yii\db\ActiveRecord
             if(empty($file))
                 return false;
 
-            $destination = 'users/' . Yii::$app->user->id . '/uploads/files/Учебная деятельность/ВКР/';
+            if(Yii::$app->controller->action->id === 'upload-vkr')
+                $userID = Yii::$app->user->id;
+            else $userID = $this->stud->user_id;
+
+            $destination = 'users/' . $userID . '/uploads/files/Учебная деятельность/ВКР/';
             $path = Storage::getStoragePath() . $destination;
             $filename = Storage::randomFileName($file);
 
@@ -116,18 +120,20 @@ class Vkr extends \yii\db\ActiveRecord
 
     public function save($runValidation = true, $attributeNames = null)
     {
-        if(Yii::$app->controller->action->id === 'upload-vkr')
-        {
-            if($this->validate())
-            {
-                $file = UploadedFile::getInstance($this, 'file');
-                $this->uploadFile($file, 'file');
-            }
+        switch (Yii::$app->controller->action->id){
+            case 'upload-vkr':
+            case 'update':
+            case 'create':
+                if($this->validate())
+                {
+                    $file = UploadedFile::getInstance($this, 'file');
+                    $this->uploadFile($file, 'file');
+                }
+                break;
+            default: break;
         }
-
         return parent::save($runValidation, $attributeNames);
     }
-
 
     /**
      * Gets query for [[Stud]].

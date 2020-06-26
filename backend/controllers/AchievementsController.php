@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use common\models\ActivityType;
+use common\models\EventStatus;
 use Yii;
 use common\models\Achievements;
 use backend\models\AchievementsSearch;
@@ -74,6 +76,19 @@ class AchievementsController extends Controller
      */
     public function actionCreate()
     {
+        $students = \common\models\User::find()->select("students.id as id, user.email as email, user.last_name, user.first_name, user.middle_name")
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Студент"')
+            ->asArray()->all();
+
+        $users = \common\models\User::find()
+            ->leftJoin('auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
+        $type = ActivityType::find()->asArray()->all();
+        $status = EventStatus::find()->asArray()->all();
         $model = new Achievements();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -82,6 +97,10 @@ class AchievementsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'type' => $type,
+            'status' => $status,
+            'students' => $students,
+            'users' => $users,
         ]);
     }
 
@@ -94,6 +113,19 @@ class AchievementsController extends Controller
      */
     public function actionUpdate($id)
     {
+        $students = \common\models\User::find()->select("students.id as id, user.email as email, user.last_name, user.first_name, user.middle_name")
+            ->leftJoin('students', 'user.id = students.user_id')
+            ->join('left join', 'auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Студент"')
+            ->asArray()->all();
+
+        $users = \common\models\User::find()
+            ->leftJoin('auth_assignment', 'user.id = auth_assignment.user_id')
+            ->where('auth_assignment.item_name = "Преподаватель"')
+            ->asArray()->all();
+
+        $type = ActivityType::find()->asArray()->all();
+        $status = EventStatus::find()->asArray()->all();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -102,6 +134,10 @@ class AchievementsController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'type' => $type,
+            'status' => $status,
+            'students' => $students,
+            'users' => $users,
         ]);
     }
 

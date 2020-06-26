@@ -55,15 +55,15 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to(['st
                         </tr>
                         <tr>
                             <td class="active">Учебная деятельность</td>
-                            <td><?= Html::a('Перейти', Url::to(['students/edu', 'id' => $model->id])) ?></td>
+                            <td><?= Html::a('Посмотреть', Url::to(['students/edu', 'id' => $model->id])) ?></td>
                         </tr>
                         <tr>
                             <td class="active">Научная деятельность</td>
-                            <td><?= Html::a('Перейти', Url::to(['students/science', 'id' => $model->id])) ?></td>
+                            <td><?= Html::a('Посмотреть', Url::to(['students/science', 'id' => $model->id])) ?></td>
                         </tr>
                         <tr>
                             <td class="active">Достижения</td>
-                            <td><?= Html::a('Перейти', Url::to(['students/achievements', 'id' => $model->id])) ?></td>
+                            <td><?= Html::a('Посмотреть', Url::to(['students/achievements', 'id' => $model->id])) ?></td>
                         </tr>
                         </tbody>
                     </table>

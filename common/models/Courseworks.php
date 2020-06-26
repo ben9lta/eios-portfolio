@@ -76,7 +76,11 @@ class Courseworks extends \yii\db\ActiveRecord
             if(empty($file))
                 return false;
 
-            $destination = 'users/' . Yii::$app->user->id . '/uploads/files/Учебная деятельность/Курсовые работы/';
+            if(Yii::$app->controller->action->id === 'upload-cources')
+                $userID = Yii::$app->user->id;
+            else $userID = $this->stud->user_id;
+
+            $destination = 'users/' . $userID . '/uploads/files/Учебная деятельность/Курсовые работы/';
             $path = Storage::getStoragePath() . $destination;
             $filename = Storage::randomFileName($file);
 
@@ -112,15 +116,18 @@ class Courseworks extends \yii\db\ActiveRecord
 
     public function save($runValidation = true, $attributeNames = null)
     {
-        if(Yii::$app->controller->action->id === 'upload-cources')
-        {
-            if($this->validate())
-            {
-                $file = UploadedFile::getInstance($this, 'file');
-                $this->uploadFile($file, 'file');
-            }
+        switch (Yii::$app->controller->action->id){
+            case 'upload-cources':
+            case 'update':
+            case 'create':
+                if($this->validate())
+                {
+                    $file = UploadedFile::getInstance($this, 'file');
+                    $this->uploadFile($file, 'file');
+                }
+                break;
+            default: break;
         }
-
         return parent::save($runValidation, $attributeNames);
     }
 
